@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "categories")
@@ -16,15 +17,9 @@ public class Category {
     @Column(length = 500)
     private String description;
 
-    public Category() {
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Product> products;
 
-    }
-
-    public Category(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -38,6 +33,10 @@ public class Category {
         this.description = description;
     }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public Long getId() {
         return id;
     }
@@ -48,5 +47,9 @@ public class Category {
 
     public String getDescription() {
         return description;
+    }
+
+    public List<Product> getProducts() {
+        return products;
     }
 }

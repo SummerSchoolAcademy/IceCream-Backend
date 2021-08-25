@@ -11,22 +11,13 @@ public class Rate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private List<Product> product;
+    private Product product;
 
     @NotNull
     private int rate; // 0-5
 
-    public Rate() {
-
-    }
-
-    public Rate(Long id, List<Product> product, int rate) {
-        this.id = id;
-        this.product = product;
-        this.rate = rate;
-    }
 
     public void setId(Long id) {
         this.id = id;
@@ -36,7 +27,7 @@ public class Rate {
         this.rate = rate;
     }
 
-    public void setProduct(List<Product> product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
@@ -44,7 +35,7 @@ public class Rate {
         return id;
     }
 
-    public List<Product> getProduct() {
+    public Product getProduct() {
         return product;
     }
 

@@ -15,7 +15,7 @@ public class Product {
     private String title;
 
     @NotNull
-    @Column(length = 30)
+    @Column(length = 100)
     private String shortDescription;
 
     @NotNull
@@ -23,51 +23,37 @@ public class Product {
     private String longDescription;
 
     @NotNull
-    private String ingredients;
+    @ElementCollection
+    private List<String> ingredients;
 
     @NotNull
     private int quantity;
 
     @NotNull
-    private String alergens;
+    @ElementCollection
+    private List<String> alergens;
 
     @NotNull
-    private int price;
+    private double price;
 
     @NotNull
     private String currency;
 
     @NotNull
     @ElementCollection
-    private List<String> photo_URL;
+    private List<String> photo_urls;
 
     @NotNull
-    private String type;
+    Type type;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product() {
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rate_id")
+    private List<Rate> rates;
 
-    }
-
-    public Product(Long id, String title, String shortDescription, String longDescription, String ingredients,
-                   int quantity, String alergens, int price, String currency, List<String> photo_URL,
-                   String type, Category category) {
-        this.id = id;
-        this.title = title;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
-        this.ingredients = ingredients;
-        this.quantity = quantity;
-        this.alergens = alergens;
-        this.price = price;
-        this.currency = currency;
-        this.photo_URL = photo_URL;
-        this.type = type;
-        this.category = category;
-    }
 
     // Setters
     public void setId(Long id) {
@@ -86,7 +72,7 @@ public class Product {
         this.longDescription = longDescription;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -94,11 +80,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public void setAlergens(String alergens) {
+    public void setAlergens(List<String> alergens) {
         this.alergens = alergens;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -106,16 +92,20 @@ public class Product {
         this.currency = currency;
     }
 
-    public void setPhoto_URL(List<String> photo_URL) {
-        this.photo_URL = photo_URL;
+    public void setPhoto_urls(List<String> photo_urls) {
+        this.photo_urls = photo_urls;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public void setRates(List<Rate> rates) {
+        this.rates = rates;
     }
 
 
@@ -136,7 +126,7 @@ public class Product {
         return longDescription;
     }
 
-    public String getIngredients() {
+    public List<String> getIngredients() {
         return ingredients;
     }
 
@@ -144,11 +134,11 @@ public class Product {
         return quantity;
     }
 
-    public String getAlergens() {
+    public List<String> getAlergens() {
         return alergens;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -156,15 +146,19 @@ public class Product {
         return currency;
     }
 
-    public List<String> getPhoto_URL() {
-        return photo_URL;
+    public List<String> getPhoto_urls() {
+        return photo_urls;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
     public Category getCategory() {
         return category;
+    }
+
+    public List<Rate> getRates() {
+        return rates;
     }
 }
