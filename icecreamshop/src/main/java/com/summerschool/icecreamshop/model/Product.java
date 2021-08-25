@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -37,7 +38,8 @@ public class Product {
     private String currency;
 
     @NotNull
-    private String photo_URL;
+    @ElementCollection
+    private List<String> photo_URL;
 
     @NotNull
     private String type;
@@ -50,7 +52,9 @@ public class Product {
 
     }
 
-    public Product(Long id, String title, String shortDescription, String longDescription, String ingredients, int quantity, String alergens, int price, String currency, String photo_URL, String type, Category category) {
+    public Product(Long id, String title, String shortDescription, String longDescription, String ingredients,
+                   int quantity, String alergens, int price, String currency, List<String> photo_URL,
+                   String type, Category category) {
         this.id = id;
         this.title = title;
         this.shortDescription = shortDescription;
@@ -102,7 +106,7 @@ public class Product {
         this.currency = currency;
     }
 
-    public void setPhoto_URL(String photo_URL) {
+    public void setPhoto_URL(List<String> photo_URL) {
         this.photo_URL = photo_URL;
     }
 
@@ -152,7 +156,7 @@ public class Product {
         return currency;
     }
 
-    public String getPhoto_URL() {
+    public List<String> getPhoto_URL() {
         return photo_URL;
     }
 
