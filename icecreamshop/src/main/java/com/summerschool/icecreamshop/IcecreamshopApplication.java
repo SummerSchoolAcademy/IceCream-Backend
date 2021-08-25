@@ -12,7 +12,4 @@ public class IcecreamshopApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IcecreamshopApplication.class, args);
 	}
-
-
-
 }
