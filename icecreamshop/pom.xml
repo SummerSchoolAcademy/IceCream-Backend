@@ -55,6 +55,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+          <groupId>javax.validation</groupId>
+          <artifactId>validation-api</artifactId>
+          <version>1.0.0.GA</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -81,5 +86,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
