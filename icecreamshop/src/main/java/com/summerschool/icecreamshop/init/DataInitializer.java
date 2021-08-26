@@ -124,7 +124,7 @@ public class DataInitializer implements ApplicationRunner {
         product6.setCategory(category1);
 
         Product product7 = new Product();
-        product7.setTitle("Tiramisu Donuts");
+        product7.setTitle("Tiramisu Gelato");
         product7.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
         product7.setLongDescription("Tiramisu Gelato with coffee and cocoa");
         product7.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Cocoa powder", "Coffee", "Ladyfingers"));
@@ -134,7 +134,7 @@ public class DataInitializer implements ApplicationRunner {
         product7.setCurrency("USD");
         product7.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
         product7.setType(Type.GELATO);
-        product7.setCategory(category2);
+        product7.setCategory(category1);
 
         Product product8 = new Product();
         product8.setTitle("Paradise Donuts");
