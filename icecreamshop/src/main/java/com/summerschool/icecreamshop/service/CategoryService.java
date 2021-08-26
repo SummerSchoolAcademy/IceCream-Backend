@@ -37,6 +37,19 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
+    public Category patch(Category category)
+    {
+
+        try
+        {
+            return categoryRepository.save(category);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+
+    }
 
 
 }
