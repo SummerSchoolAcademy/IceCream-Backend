@@ -20,6 +20,14 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Product> products;
 
+    public Category() {}
+
+    public Category(Long id, String name, String description, List<Product> products) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.products = products;
+    }
 
     public void setId(Long id) {
         this.id = id;
