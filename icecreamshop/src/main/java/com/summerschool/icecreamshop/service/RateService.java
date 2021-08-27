@@ -29,7 +29,7 @@ public class RateService {
         return rateRepository.findById(id);
     }
 
-    public Rate update(Rate rate, Product product) throws InvalidISBNException {
+    public Rate update(Rate rate, Product product){
 
 
         rate.setProduct(product);

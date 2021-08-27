@@ -10,7 +10,6 @@ import org.modelmapper.ModelMapper;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.model.RateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
 
 import javax.validation.Valid;

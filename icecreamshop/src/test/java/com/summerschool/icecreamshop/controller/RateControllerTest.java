@@ -1,31 +1,24 @@
-package com.summerschool.icecreamshop.service;
+package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.exception.BadRequestException;
-import com.summerschool.icecreamshop.exception.NotFoundException;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.repository.RateRepository;
-import org.junit.jupiter.api.Assertions;
+import com.summerschool.icecreamshop.service.RateService;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import java.util.Optional;
-import org.mockito.junit.MockitoJUnitRunner;
-import com.summerschool.icecreamshop.model.Product;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-
-@RunWith(MockitoJUnitRunner.class)
-public class RateServiceTests {
+public class RateControllerTest {
 
     @InjectMocks
-    private RateService rateService;
+    private RateController rateController;
 
     @Mock
-    private RateRepository rateRepository;
+    private RateService rateService;
 
     @Test
     public void testUpdateProductRating(Long id) {
@@ -34,9 +27,18 @@ public class RateServiceTests {
         rate.setId(1L);
         rate.setRate(5);
 
-        when(rateRepository.save(rate)).thenReturn(rate);
+        when(rateService.update(rate,new Product())).thenReturn(rate);
         Rate responseRate = rateService.update(rate,new Product());
         assertNotNull(responseRate);
+        assertEquals(5,responseRate.getRate());
+
+        Rate rate2 = new Rate();
+        rate2.setId(1L);
+        rate2.setRate(null);
+
+        when(rateService.update(rate2,new Product())).thenReturn(rate2);
+        Rate responseRate2 = rateService.update(rate,new Product());
+        assertNotNull(responseRate2);
         assertEquals(5,responseRate.getRate());
     }
 }
