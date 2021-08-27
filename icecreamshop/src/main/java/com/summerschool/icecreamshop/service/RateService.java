@@ -5,8 +5,6 @@ package com.summerschool.icecreamshop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.apache.commons.validator.routines.ISBNValidator;
-import com.summerschool.icecreamshop.exception.InvalidISBNException;
 
 import com.summerschool.icecreamshop.repository.RateRepository;
 import com.summerschool.icecreamshop.model.Rate;

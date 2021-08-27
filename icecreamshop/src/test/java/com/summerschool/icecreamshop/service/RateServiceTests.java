@@ -1,7 +1,5 @@
 package com.summerschool.icecreamshop.service;
 
-import com.summerschool.icecreamshop.exception.BadRequestException;
-import com.summerschool.icecreamshop.exception.NotFoundException;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.repository.RateRepository;
 import org.junit.jupiter.api.Assertions;

@@ -1,6 +1,5 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.exception.InvalidISBNException;
 import com.summerschool.icecreamshop.service.RateService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +24,7 @@ public class RateController {
     private ModelMapper modelMapper;
 
     @PutMapping("/{ratingId}")
-    public ResponseEntity<RateDTO> update (@PathVariable("ratingId") Long ratingId, @RequestBody @Valid RateDTO rateDTO) throws InvalidISBNException{
+    public ResponseEntity<RateDTO> update (@PathVariable("ratingId") Long ratingId, @RequestBody @Valid RateDTO rateDTO){
 
         Rate foundRate = rateService.get(ratingId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, RATE_NOT_FOUND));
 

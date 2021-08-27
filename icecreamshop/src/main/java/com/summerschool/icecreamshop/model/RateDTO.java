@@ -13,7 +13,7 @@ public class RateDTO {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private ProductDTO product;
 
     @NotNull
     private int rate; // 0-5
@@ -26,7 +26,7 @@ public class RateDTO {
         this.rate = rate;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductDTO product) {
         this.product = product;
     }
 
@@ -34,7 +34,7 @@ public class RateDTO {
         return id;
     }
 
-    public Product getProduct() {
+    public ProductDTO getProduct() {
         return product;
     }
 

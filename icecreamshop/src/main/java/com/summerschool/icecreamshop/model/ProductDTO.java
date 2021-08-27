@@ -48,10 +48,10 @@ public class ProductDTO {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
-    private Category category;
+    private CategoryDTO category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rate> rates;
+    private List<RateDTO> rates;
 
 
     // Setters
@@ -99,11 +99,11 @@ public class ProductDTO {
         this.type = type;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 
-    public void setRates(List<Rate> rates) {
+    public void setRates(List<RateDTO> rates) {
         this.rates = rates;
     }
 
@@ -153,11 +153,11 @@ public class ProductDTO {
         return type;
     }
 
-    public Category getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public List<Rate> getRates() {
+    public List<RateDTO> getRates() {
         return rates;
     }
 }

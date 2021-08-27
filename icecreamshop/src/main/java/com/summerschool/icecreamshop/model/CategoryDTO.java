@@ -18,7 +18,7 @@ public class CategoryDTO {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> products;
+    private List<ProductDTO> products;
 
 
     public void setId(Long id) {
@@ -33,7 +33,7 @@ public class CategoryDTO {
         this.description = description;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
 
@@ -49,7 +49,7 @@ public class CategoryDTO {
         return description;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDTO> getProducts() {
         return products;
     }
 }
