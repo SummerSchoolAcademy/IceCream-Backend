@@ -38,8 +38,6 @@ public class ProductDTO {
     @NotNull
     Type type;
 
-    private CategoryDTO categoryDTO;
-
     private List<RateDTO> rates;
 
 
@@ -85,10 +83,6 @@ public class ProductDTO {
 
     public void setType(Type type) {
         this.type = type;
-    }
-
-    public void setCategoryDTO(CategoryDTO categoryDTO) {
-        this.categoryDTO = categoryDTO;
     }
 
     public void setRates(List<RateDTO> rates) {
@@ -138,10 +132,6 @@ public class ProductDTO {
 
     public Type getType() {
         return type;
-    }
-
-    public CategoryDTO getCategoryDTO() {
-        return categoryDTO;
     }
 
     public List<RateDTO> getRates() {
