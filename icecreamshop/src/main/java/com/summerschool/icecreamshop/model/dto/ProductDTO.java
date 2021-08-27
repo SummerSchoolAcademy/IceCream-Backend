@@ -1,37 +1,32 @@
-package com.summerschool.icecreamshop.model;
+package com.summerschool.icecreamshop.model.dto;
 
-import javax.validation.constraints.NotNull;
+import com.summerschool.icecreamshop.model.domain.Category;
+import com.summerschool.icecreamshop.model.domain.Rate;
+import com.summerschool.icecreamshop.model.domain.Type;
 
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
-@Entity
-@Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductDTO {
     private Long id;
 
     @NotNull
     private String title;
 
     @NotNull
-    @Column(length = 100)
     private String shortDescription;
 
     @NotNull
-    @Column(length = 500)
     private String longDescription;
 
     @NotNull
-    @ElementCollection
     private List<String> ingredients;
 
     @NotNull
     private int quantity;
 
     @NotNull
-    @ElementCollection
     private List<String> alergens;
 
     @NotNull
@@ -41,19 +36,10 @@ public class Product {
     private String currency;
 
     @NotNull
-    @ElementCollection
     private List<String> photo_urls;
 
     @NotNull
     Type type;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rate> rates;
-
 
     // Setters
     public void setId(Long id) {
@@ -100,14 +86,6 @@ public class Product {
         this.type = type;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setRates(List<Rate> rates) {
-        this.rates = rates;
-    }
-
 
     // Getters
     public Long getId() {
@@ -152,13 +130,5 @@ public class Product {
 
     public Type getType() {
         return type;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public List<Rate> getRates() {
-        return rates;
     }
 }
