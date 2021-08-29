@@ -20,6 +20,14 @@ public class ProductController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @GetMapping
+    public ResponseEntity<List<com.summerschool.icecreamshop.model.dto.ProductDTO>> getAll() {
+        return ResponseEntity.ok(productService.getAll()
+                .stream()
+                .map(product -> modelMapper.map(product, com.summerschool.icecreamshop.model.dto.ProductDTO.class))
+                .collect(Collectors.toList()));
+    }
+
     @GetMapping("")
     public ResponseEntity<List<ProductDTO>> getProducts(
             @RequestParam(value="page") Integer page,

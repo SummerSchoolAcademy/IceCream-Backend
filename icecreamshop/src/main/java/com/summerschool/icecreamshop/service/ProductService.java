@@ -15,6 +15,8 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    public List<Product> getAll() { return productRepository.findAll();}
+
     public List<Product> getProductsOfThePage(Integer page, Integer size){
         Pageable pageable = PageRequest.of(page, size);
         return productRepository.findAll(pageable).toList();
