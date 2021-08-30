@@ -13,6 +13,15 @@ public class CategoryDTO {
 
     private List<ProductDTO> products;
 
+    public CategoryDTO() {}
+
+    public CategoryDTO(Long id, String name, String description, List<ProductDTO> products) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.products = products;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
