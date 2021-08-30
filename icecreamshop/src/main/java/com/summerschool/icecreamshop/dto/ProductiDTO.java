@@ -1,37 +1,28 @@
-package com.summerschool.icecreamshop.model;
+package com.summerschool.icecreamshop.dto;
 
-
-import javax.persistence.*;
+import com.summerschool.icecreamshop.model.Type;
 import javax.validation.constraints.NotNull;
-import java.util.*;
+import java.util.List;
 
-@Entity
-@Table(name = "products")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ProductiDTO {
     private Long id;
 
     @NotNull
     private String title;
 
     @NotNull
-    @Column(length = 100)
     private String shortDescription;
 
     @NotNull
-    @Column(length = 500)
     private String longDescription;
 
     @NotNull
-    @ElementCollection
     private List<String> ingredients;
 
     @NotNull
     private int quantity;
 
     @NotNull
-    @ElementCollection
     private List<String> alergens;
 
     @NotNull
@@ -41,21 +32,14 @@ public class Product {
     private String currency;
 
     @NotNull
-    @ElementCollection
-    private List<String> photoUrls;
+    private List<String> photo_urls;
 
     @NotNull
     Type type;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private Category category;
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Rate> rates;
+    private List<RateDTO> rates;
 
 
-    // Setters
     public void setId(Long id) {
         this.id = id;
     }
@@ -92,24 +76,19 @@ public class Product {
         this.currency = currency;
     }
 
-    public void setPhotoUrls(List<String> photoUrls) {
-        this.photoUrls = photoUrls;
+    public void setPhoto_urls(List<String> photo_urls) {
+        this.photo_urls = photo_urls;
     }
 
     public void setType(Type type) {
         this.type = type;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public void setRates(List<Rate> rates) {
+    public void setRates(List<RateDTO> rates) {
         this.rates = rates;
     }
 
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -146,19 +125,15 @@ public class Product {
         return currency;
     }
 
-    public List<String> getPhotoUrls() {
-        return photoUrls;
+    public List<String> getPhoto_urls() {
+        return photo_urls;
     }
 
     public Type getType() {
         return type;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public List<Rate> getRates() {
+    public List<RateDTO> getRates() {
         return rates;
     }
 }

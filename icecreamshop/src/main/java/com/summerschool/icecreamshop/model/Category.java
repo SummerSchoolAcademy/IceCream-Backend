@@ -1,8 +1,8 @@
 package com.summerschool.icecreamshop.model;
 
-import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -29,6 +29,7 @@ public class Category {
         this.description = description;
         this.products = products;
     }
+
 
     public void setId(Long id) {
         this.id = id;

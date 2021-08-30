@@ -11,12 +11,19 @@ import java.util.List;
 
 @Service
 public class ProductService {
-
-    @Autowired
     private ProductRepository productRepository;
 
-    public List<Product> getProductsOfThePage(Integer page, Integer size){
+    @Autowired
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    public List<Product> getProductsOfThePage(Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         return productRepository.findAll(pageable).toList();
+    }
+
+    public Product add(Product product) {
+        return productRepository.save(product);
     }
 }
