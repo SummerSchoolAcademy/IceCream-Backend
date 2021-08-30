@@ -1,6 +1,6 @@
 package com.summerschool.icecreamshop.dto;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
