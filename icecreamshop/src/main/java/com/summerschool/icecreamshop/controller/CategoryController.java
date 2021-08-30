@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import static com.summerschool.icecreamshop.exception.Constants.*;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping(path = "/categories")
 public class CategoryController {
     private CategoryService categoryService;
 
