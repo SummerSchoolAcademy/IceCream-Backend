@@ -2,21 +2,25 @@ package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.repository.RateRepository;
+import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import java.util.Optional;
 import org.mockito.junit.MockitoJUnitRunner;
 import com.summerschool.icecreamshop.model.Product;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 public class RateServiceTests {
 
     @InjectMocks
@@ -24,6 +28,11 @@ public class RateServiceTests {
 
     @Mock
     private RateRepository rateRepository;
+
+    @Before
+    public void setup(){
+        initMocks(this);
+    }
 
     @Test
     public void testUpdateProductRating() {
@@ -37,4 +46,5 @@ public class RateServiceTests {
         assertNotNull(responseRate);
         assertEquals(5,responseRate.getRate());
     }
+
 }
