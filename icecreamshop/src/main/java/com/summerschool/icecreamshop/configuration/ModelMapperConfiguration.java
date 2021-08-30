@@ -24,6 +24,9 @@ public class ModelMapperConfiguration {
             product.setPrice(productDTO.getPrice());
             product.setPhoto_urls(productDTO.getPhoto_urls());
             product.setType(productDTO.getType());
+            product.setCurrency(productDTO.getCurrency());
+            product.setIngredients(productDTO.getIngredients());
+            product.setQuantity(productDTO.getQuantity());
             return product;
         };
 

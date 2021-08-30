@@ -54,6 +54,24 @@ public class Product {
     private List<Rate> rates;
 
 
+    public Product(){}
+
+    public Product(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
+                      int quantity, List <String> alergens, double price, String curreny, List<String> photoUrls, Type type){
+        this.id = id;
+        this.title = title;
+        this.shortDescription = shorDesc;
+        this.longDescription = longDesc;
+        this.alergens = alergens;
+        this.price = price;
+        this.photo_urls = photoUrls;
+        this.type = type;
+        this.ingredients = ingredients;
+        this.quantity = quantity;
+        this.currency = curreny;
+    }
+
+
     // Setters
     public void setId(Long id) {
         this.id = id;

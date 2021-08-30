@@ -17,16 +17,65 @@ public class ProductDTO {
     @NotNull String longDescription;
 
     @NotNull
+    private List<String> ingredients;
+
+
+    @NotNull
+    private int quantity;
+
+    @NotNull
     private List<String> alergens;
 
     @NotNull
     private double price;
 
     @NotNull
+    private String currency;
+
+    @NotNull
     private List<String> photo_urls;
 
     @NotNull
     Type type;
+
+    public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
+                      int quantity, List <String> alergens, double price, String curreny, List<String> photoUrls, Type type){
+        this.id = id;
+        this.title = title;
+        this.shortDescription = shorDesc;
+        this.longDescription = longDesc;
+        this.alergens = alergens;
+        this.price = price;
+        this.photo_urls = photoUrls;
+        this.type = type;
+        this.ingredients = ingredients;
+        this.quantity = quantity;
+        this.currency = curreny;
+    }
+
+    public List<String> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<String> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
 
     public Long getId() {
         return id;

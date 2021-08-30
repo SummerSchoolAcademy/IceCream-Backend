@@ -23,7 +23,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductDTO> get(@PathVariable("id") Long id){
-        Product product = productService.get(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
+        Product product = productService.get(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
     }
 }
