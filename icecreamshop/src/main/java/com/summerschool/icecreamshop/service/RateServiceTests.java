@@ -26,7 +26,7 @@ public class RateServiceTests {
     private RateRepository rateRepository;
 
     @Test
-    public void testUpdateProductRating(Long id) {
+    public void testUpdateProductRating() {
 
         Rate rate = new Rate();
         rate.setId(1L);
