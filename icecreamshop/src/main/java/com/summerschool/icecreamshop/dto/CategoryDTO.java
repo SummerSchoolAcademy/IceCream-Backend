@@ -1,28 +1,21 @@
-package com.summerschool.icecreamshop.model;
+package com.summerschool.icecreamshop.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Entity
-@Table(name = "categories")
-public class Category {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class CategoryDTO {
     private Long id;
 
     @NotNull
     private String name;
 
-    @Column(length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> products;
+    private List<ProductDTO> products;
 
-    public Category() {}
+    public CategoryDTO() {}
 
-    public Category(Long id, String name, String description, List<Product> products) {
+    public CategoryDTO(Long id, String name, String description, List<ProductDTO> products) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,7 +34,7 @@ public class Category {
         this.description = description;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ProductDTO> products) {
         this.products = products;
     }
 
@@ -57,7 +50,7 @@ public class Category {
         return description;
     }
 
-    public List<Product> getProducts() {
+    public List<ProductDTO> getProducts() {
         return products;
     }
 }
