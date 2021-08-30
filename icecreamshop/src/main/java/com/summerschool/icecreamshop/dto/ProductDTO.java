@@ -1,6 +1,6 @@
 package com.summerschool.icecreamshop.dto;
 
-import com.summerschool.icecreamshop.model.Type;
+import com.summerschool.icecreamshop.model.domain.Type;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
