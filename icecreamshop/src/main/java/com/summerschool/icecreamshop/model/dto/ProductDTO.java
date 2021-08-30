@@ -38,6 +38,8 @@ public class ProductDTO {
     @NotNull
     Type type;
 
+    public ProductDTO(){}
+
     public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
                       int quantity, List <String> alergens, double price, String curreny, List<String> photoUrls, Type type){
         this.id = id;
