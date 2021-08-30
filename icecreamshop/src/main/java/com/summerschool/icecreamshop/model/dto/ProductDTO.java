@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.model.dto;
 
+import com.summerschool.icecreamshop.model.dto.RateDTO;
 import com.summerschool.icecreamshop.model.domain.Category;
 import com.summerschool.icecreamshop.model.domain.Rate;
 import com.summerschool.icecreamshop.model.domain.Type;
@@ -40,6 +41,8 @@ public class ProductDTO {
 
     @NotNull
     Type type;
+
+    private List<RateDTO> rates;
 
     // Setters
     public void setId(Long id) {
@@ -86,6 +89,9 @@ public class ProductDTO {
         this.type = type;
     }
 
+    public void setRates(List<RateDTO> rates) {
+        this.rates = rates;
+    }
 
     // Getters
     public Long getId() {
@@ -130,5 +136,9 @@ public class ProductDTO {
 
     public Type getType() {
         return type;
+    }
+
+    public List<RateDTO> getRates() {
+        return rates;
     }
 }

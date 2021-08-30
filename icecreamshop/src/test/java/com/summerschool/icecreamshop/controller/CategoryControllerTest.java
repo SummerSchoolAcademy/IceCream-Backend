@@ -1,7 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.dto.CategoryDTO;
-import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.model.dto.CategoryDTO;
+import com.summerschool.icecreamshop.model.dto.ProductDTO;
 import com.summerschool.icecreamshop.model.domain.Category;
 import com.summerschool.icecreamshop.model.domain.Product;
 import com.summerschool.icecreamshop.service.CategoryService;
