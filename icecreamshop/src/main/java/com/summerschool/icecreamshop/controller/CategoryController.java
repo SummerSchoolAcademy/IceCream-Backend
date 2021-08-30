@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
-import static com.summerschool.icecreamshop.exception.Constants.*;
+import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 
 @RestController
 @RequestMapping(path = "/categories")
