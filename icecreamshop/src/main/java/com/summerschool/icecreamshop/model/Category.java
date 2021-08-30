@@ -52,4 +52,14 @@ public class Category {
     public List<Product> getProducts() {
         return products;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", products=" + products +
+                '}';
+    }
 }

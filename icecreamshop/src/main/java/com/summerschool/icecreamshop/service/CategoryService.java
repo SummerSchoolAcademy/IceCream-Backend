@@ -21,4 +21,19 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
+    public Category patch(Category newCategory, Category oldCategory)
+    {
+        Category patched = oldCategory;
+
+        patched.setId(newCategory.getId()==null?oldCategory.getId():newCategory.getId());
+        patched.setName(newCategory.getName()==null?oldCategory.getName():newCategory.getName());
+        patched.setDescription(newCategory.getDescription()==null?oldCategory.getDescription():newCategory.getDescription());
+        patched.setProducts(newCategory.getProducts()==null?oldCategory.getProducts():newCategory.getProducts());
+
+        return categoryRepository.save(patched);
+
+
+    }
+
+
 }
