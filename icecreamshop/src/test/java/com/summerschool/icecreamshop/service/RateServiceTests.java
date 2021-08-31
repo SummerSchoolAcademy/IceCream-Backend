@@ -42,7 +42,7 @@ public class RateServiceTests {
         when(rateRepository.save(rate)).thenReturn(rate);
         Rate responseRate = rateService.update(rate,new Product());
         assertNotNull(responseRate);
-        assertEquals(5,responseRate.getRate());
+        assertEquals(Integer.valueOf(5),responseRate.getRate());
     }
 
 }
