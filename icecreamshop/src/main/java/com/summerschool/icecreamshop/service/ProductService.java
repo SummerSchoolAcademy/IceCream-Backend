@@ -5,22 +5,23 @@ import com.summerschool.icecreamshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@org.springframework.stereotype.Service
+@Service
 public class ProductService {
 
     @Autowired
-    private ProductRepository productsRepository;
+    private ProductRepository productRepository;
 
     public List<Product> getProductsOfThePage(Integer page, Integer size){
 
-        if (page != null) {
+        if (page != null && size != null) {
             Pageable pageable = PageRequest.of(page, size);
-            return productsRepository.findAll(pageable).toList();
+            return productRepository.findAll(pageable).toList();
         }
 
-        return productsRepository.findAll();
+        return productRepository.findAll();
     }
 }
