@@ -7,13 +7,13 @@ public class RateDTO {
     private Long id;
 
     @NotNull
-    private Integer rate; // 0-5
+    private int rate; // 0-5
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setRate(Integer rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 
@@ -21,7 +21,7 @@ public class RateDTO {
         return id;
     }
 
-    public Integer getRate() {
+    public int getRate() {
         return rate;
     }
 }

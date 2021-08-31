@@ -16,14 +16,14 @@ public class Rate {
     private Product product;
 
     @NotNull
-    private int rate; // 0-5
+    private Integer rate; // 0-5
 
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 
@@ -39,7 +39,7 @@ public class Rate {
         return product;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 }
