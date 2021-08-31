@@ -231,12 +231,12 @@ public class DataInitializer implements ApplicationRunner {
         rate10.setRate(5);
 
         Rate rate11 = new Rate();
-        rate11.setProduct(product6);
-        rate11.setRate(3);
+        rate1.setProduct(product6);
+        rate1.setRate(3);
 
         Rate rate12 = new Rate();
-        rate12.setProduct(product7);
-        rate12.setRate(4);
+        rate1.setProduct(product7);
+        rate1.setRate(4);
 
         rateRepository.saveAll(Arrays.asList(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10, rate11, rate12));
     }
