@@ -54,7 +54,7 @@ public class DataInitializer implements ApplicationRunner {
         product1.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product1.setPrice(2.5);
         product1.setCurrency("USD");
-        product1.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product1.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product1.setType(Type.DONUTS);
         product1.setCategory(category2);
 
@@ -67,7 +67,7 @@ public class DataInitializer implements ApplicationRunner {
         product2.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product2.setPrice(2.5);
         product2.setCurrency("USD");
-        product2.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product2.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product2.setType(Type.DONUTS);
         product2.setCategory(category2);
 
@@ -80,7 +80,7 @@ public class DataInitializer implements ApplicationRunner {
         product3.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product3.setPrice(2.5);
         product3.setCurrency("USD");
-        product3.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product3.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product3.setType(Type.DONUTS);
         product3.setCategory(category2);
 
@@ -93,7 +93,7 @@ public class DataInitializer implements ApplicationRunner {
         product4.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product4.setPrice(2.5);
         product4.setCurrency("USD");
-        product4.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product4.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product4.setType(Type.DONUTS);
         product4.setCategory(category2);
 
@@ -106,7 +106,7 @@ public class DataInitializer implements ApplicationRunner {
         product5.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product5.setPrice(2.5);
         product5.setCurrency("USD");
-        product5.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product5.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product5.setType(Type.DONUTS);
         product5.setCategory(category2);
 
@@ -119,7 +119,7 @@ public class DataInitializer implements ApplicationRunner {
         product6.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product6.setPrice(3);
         product6.setCurrency("USD");
-        product6.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product6.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product6.setType(Type.GELATO);
         product6.setCategory(category1);
 
@@ -132,7 +132,7 @@ public class DataInitializer implements ApplicationRunner {
         product7.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product7.setPrice(3.5);
         product7.setCurrency("USD");
-        product7.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product7.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product7.setType(Type.GELATO);
         product7.setCategory(category1);
 
@@ -145,7 +145,7 @@ public class DataInitializer implements ApplicationRunner {
         product8.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product8.setPrice(2.5);
         product8.setCurrency("USD");
-        product8.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product8.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product8.setType(Type.DONUTS);
         product8.setCategory(category2);
 
@@ -158,7 +158,7 @@ public class DataInitializer implements ApplicationRunner {
         product9.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product9.setPrice(2.5);
         product9.setCurrency("USD");
-        product9.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product9.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product9.setType(Type.DONUTS);
         product9.setCategory(category2);
 
@@ -171,7 +171,7 @@ public class DataInitializer implements ApplicationRunner {
         product10.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product10.setPrice(2.5);
         product10.setCurrency("USD");
-        product10.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product10.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product10.setType(Type.DONUTS);
         product10.setCategory(category2);
 
@@ -184,7 +184,7 @@ public class DataInitializer implements ApplicationRunner {
         product11.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product11.setPrice(2.5);
         product11.setCurrency("USD");
-        product11.setPhoto_urls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product11.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product11.setType(Type.DONUTS);
         product11.setCategory(category2);
 

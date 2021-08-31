@@ -11,8 +11,6 @@ import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.model.Product;
 import java.util.Optional;
 
-import javax.swing.text.html.Option;
-
 @Service
 public class RateService {
 

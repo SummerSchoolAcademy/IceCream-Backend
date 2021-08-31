@@ -46,7 +46,7 @@ public class ApplicationConfiguration {
             d.setAlergens(s.getAlergens());
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
-            d.setPhoto_urls(s.getPhoto_urls());
+            d.setPhotoUrls(s.getPhotoUrls());
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
