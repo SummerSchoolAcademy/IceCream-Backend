@@ -42,7 +42,7 @@ public class Product {
 
     @NotNull
     @ElementCollection
-    private List<String> photo_urls;
+    private List<String> photoUrls;
 
     @NotNull
     Type type;
@@ -92,8 +92,8 @@ public class Product {
         this.currency = currency;
     }
 
-    public void setPhoto_urls(List<String> photo_urls) {
-        this.photo_urls = photo_urls;
+    public void setPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
     }
 
     public void setType(Type type) {
@@ -146,8 +146,8 @@ public class Product {
         return currency;
     }
 
-    public List<String> getPhoto_urls() {
-        return photo_urls;
+    public List<String> getPhotoUrls() {
+        return photoUrls;
     }
 
     public Type getType() {

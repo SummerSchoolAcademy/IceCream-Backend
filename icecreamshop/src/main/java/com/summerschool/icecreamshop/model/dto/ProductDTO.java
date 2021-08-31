@@ -1,11 +1,7 @@
 package com.summerschool.icecreamshop.model.dto;
 
-import com.summerschool.icecreamshop.model.dto.RateDTO;
-import com.summerschool.icecreamshop.model.domain.Category;
-import com.summerschool.icecreamshop.model.domain.Rate;
 import com.summerschool.icecreamshop.model.domain.Type;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -37,7 +33,7 @@ public class ProductDTO {
     private String currency;
 
     @NotNull
-    private List<String> photo_urls;
+    private List<String> photoUrls;
 
     @NotNull
     Type type;
@@ -81,8 +77,8 @@ public class ProductDTO {
         this.currency = currency;
     }
 
-    public void setPhoto_urls(List<String> photo_urls) {
-        this.photo_urls = photo_urls;
+    public void setPhotoUrls(List<String> photoUrls) {
+        this.photoUrls = photoUrls;
     }
 
     public void setType(Type type) {
@@ -130,8 +126,8 @@ public class ProductDTO {
         return currency;
     }
 
-    public List<String> getPhoto_urls() {
-        return photo_urls;
+    public List<String> getPhotoUrls() {
+        return photoUrls;
     }
 
     public Type getType() {
