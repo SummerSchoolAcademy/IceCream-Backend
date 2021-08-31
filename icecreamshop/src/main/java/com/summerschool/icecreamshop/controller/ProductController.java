@@ -14,11 +14,15 @@ import java.util.stream.Collectors;
 @RequestMapping("/products")
 public class ProductController {
 
-    @Autowired
     private ProductService productService;
 
-    @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    public ProductController(ProductService productService, ModelMapper modelMapper){
+        this.productService = productService;
+        this.modelMapper = modelMapper;
+    }
 
     @GetMapping
     public ResponseEntity<List<com.summerschool.icecreamshop.model.dto.ProductDTO>> getAll() {
