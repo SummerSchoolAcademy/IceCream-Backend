@@ -1,7 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.model.Rate;
-import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.domain.Rate;
+import com.summerschool.icecreamshop.model.dto.RateDTO;
 import com.summerschool.icecreamshop.service.RateService;
 import org.junit.Before;
 import org.junit.Test;

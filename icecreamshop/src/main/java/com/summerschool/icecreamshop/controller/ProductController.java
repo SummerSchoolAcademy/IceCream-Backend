@@ -19,7 +19,6 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    @Qualifier("modelMapperProducts")
     private ModelMapper modelMapper;
 
     @GetMapping("")

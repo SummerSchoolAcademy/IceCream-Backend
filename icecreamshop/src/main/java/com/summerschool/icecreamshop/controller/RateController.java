@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpStatus;
 import org.modelmapper.ModelMapper;
-import com.summerschool.icecreamshop.model.Rate;
-import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.domain.Rate;
+import com.summerschool.icecreamshop.model.dto.RateDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
 

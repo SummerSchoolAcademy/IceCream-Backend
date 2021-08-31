@@ -1,6 +1,6 @@
 package com.summerschool.icecreamshop.service;
 
-import com.summerschool.icecreamshop.model.Rate;
+import com.summerschool.icecreamshop.model.domain.Rate;
 import com.summerschool.icecreamshop.repository.RateRepository;
 import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
@@ -8,7 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import com.summerschool.icecreamshop.model.Product;
+import com.summerschool.icecreamshop.model.domain.Product;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
