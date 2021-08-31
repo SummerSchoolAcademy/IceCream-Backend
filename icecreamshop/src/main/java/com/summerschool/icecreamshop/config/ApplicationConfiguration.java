@@ -109,7 +109,7 @@ public class ApplicationConfiguration {
             d.setAlergens(s.getAlergens());
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
-            d.setPhoto_urls(s.getPhoto_urls());
+            d.setPhoto_urls(s.getPhotoUrls());
             d.setType(s.getType());
             return d;
         };
