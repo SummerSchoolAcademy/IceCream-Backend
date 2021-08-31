@@ -3,6 +3,7 @@ package com.summerschool.icecreamshop.dto;
 import com.summerschool.icecreamshop.model.Type;
 
 import javax.validation.constraints.NotNull;
+
 import java.util.List;
 
 public class ProductDTO {
