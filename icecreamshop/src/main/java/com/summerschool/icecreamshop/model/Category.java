@@ -1,7 +1,8 @@
 package com.summerschool.icecreamshop.model;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
