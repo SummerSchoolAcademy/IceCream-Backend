@@ -26,7 +26,6 @@ public class ProductController {
             @RequestParam(value="page") Integer page,
             @RequestParam(value="size", required = false) Integer size
     ){
-
         if(page == null){
             throw new IllegalArgumentException("\\\"error\\\":\\\"Page argument must be supplied");
         }
