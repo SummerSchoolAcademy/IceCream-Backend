@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.stream.Collectors;
 
-
 @Configuration
 public class ApplicationConfiguration {
 

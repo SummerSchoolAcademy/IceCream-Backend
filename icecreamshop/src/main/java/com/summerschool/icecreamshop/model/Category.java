@@ -1,8 +1,7 @@
 package com.summerschool.icecreamshop.model;
 
-
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,6 +19,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Product> products;
+
 
     public Category() {}
 

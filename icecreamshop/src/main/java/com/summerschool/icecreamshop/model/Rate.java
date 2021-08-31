@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.*;
 
 @Entity
 @Table(name = "rates")
@@ -15,14 +16,14 @@ public class Rate {
     private Product product;
 
     @NotNull
-    private Integer rate; // 0-5
+    private int rate; // 0-5
 
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setRate(Integer rate) {
+    public void setRate(int rate) {
         this.rate = rate;
     }
 
@@ -38,7 +39,7 @@ public class Rate {
         return product;
     }
 
-    public Integer getRate() {
+    public int getRate() {
         return rate;
     }
 }
