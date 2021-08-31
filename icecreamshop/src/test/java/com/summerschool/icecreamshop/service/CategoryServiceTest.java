@@ -46,7 +46,7 @@ public class CategoryServiceTest {
 
     @Test
     public void testGetCategoryByValidId() {
-        Mockito.when(categoryRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(categoryInDb));
+        Mockito.when(categoryRepository.findById(categoryInDb.getId())).thenReturn(Optional.ofNullable(categoryInDb));
         Category actualCategory = categoryService.get(1L).get();
 
         assertEquals(categoryInDb.getId(), actualCategory.getId());
