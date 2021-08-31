@@ -1,9 +1,9 @@
 package com.summerschool.icecreamshop.init;
 
-import com.summerschool.icecreamshop.model.domain.Category;
-import com.summerschool.icecreamshop.model.domain.Product;
-import com.summerschool.icecreamshop.model.domain.Rate;
-import com.summerschool.icecreamshop.model.domain.Type;
+import com.summerschool.icecreamshop.model.Category;
+import com.summerschool.icecreamshop.model.Product;
+import com.summerschool.icecreamshop.model.Rate;
+import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.CategoryRepository;
 import com.summerschool.icecreamshop.repository.ProductRepository;
 import com.summerschool.icecreamshop.repository.RateRepository;

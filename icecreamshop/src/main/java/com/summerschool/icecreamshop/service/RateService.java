@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.summerschool.icecreamshop.repository.RateRepository;
-import com.summerschool.icecreamshop.model.domain.Rate;
-import com.summerschool.icecreamshop.model.domain.Product;
+import com.summerschool.icecreamshop.model.Rate;
+import com.summerschool.icecreamshop.model.Product;
 import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 @Service
 public class RateService {

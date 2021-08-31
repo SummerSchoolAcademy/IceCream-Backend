@@ -1,9 +1,9 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.model.dto.CategoryDTO;
-import com.summerschool.icecreamshop.model.dto.ProductDTO;
-import com.summerschool.icecreamshop.model.domain.Category;
-import com.summerschool.icecreamshop.model.domain.Product;
+import com.summerschool.icecreamshop.dto.CategoryDTO;
+import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.model.Category;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.service.CategoryService;
 import org.junit.Before;
 import org.junit.Test;

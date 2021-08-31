@@ -1,11 +1,10 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.model.dto.CategoryDTO;
+import com.summerschool.icecreamshop.dto.CategoryDTO;
 import com.summerschool.icecreamshop.service.CategoryService;
-import com.summerschool.icecreamshop.model.domain.Category;
+import com.summerschool.icecreamshop.model.Category;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;

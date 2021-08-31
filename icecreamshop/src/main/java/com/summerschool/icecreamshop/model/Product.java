@@ -1,29 +1,37 @@
-package com.summerschool.icecreamshop.model.dto;
-
-import com.summerschool.icecreamshop.model.domain.Type;
+package com.summerschool.icecreamshop.model;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
-public class ProductDTO {
+import javax.persistence.*;
+import java.util.*;
+
+@Entity
+@Table(name = "products")
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     private String title;
 
     @NotNull
+    @Column(length = 100)
     private String shortDescription;
 
     @NotNull
+    @Column(length = 500)
     private String longDescription;
 
     @NotNull
+    @ElementCollection
     private List<String> ingredients;
 
     @NotNull
     private int quantity;
 
     @NotNull
+    @ElementCollection
     private List<String> alergens;
 
     @NotNull
@@ -33,12 +41,19 @@ public class ProductDTO {
     private String currency;
 
     @NotNull
+    @ElementCollection
     private List<String> photoUrls;
 
     @NotNull
     Type type;
 
-    private List<RateDTO> rates;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Rate> rates;
+
 
     // Setters
     public void setId(Long id) {
@@ -85,9 +100,14 @@ public class ProductDTO {
         this.type = type;
     }
 
-    public void setRates(List<RateDTO> rates) {
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public void setRates(List<Rate> rates) {
         this.rates = rates;
     }
+
 
     // Getters
     public Long getId() {
@@ -134,7 +154,11 @@ public class ProductDTO {
         return type;
     }
 
-    public List<RateDTO> getRates() {
+    public Category getCategory() {
+        return category;
+    }
+
+    public List<Rate> getRates() {
         return rates;
     }
 }

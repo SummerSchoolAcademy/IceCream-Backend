@@ -1,6 +1,5 @@
-package com.summerschool.icecreamshop.model.dto;
+package com.summerschool.icecreamshop.dto;
 
-import com.summerschool.icecreamshop.model.domain.Product;
 import javax.validation.constraints.NotNull;
 
 public class RateDTO {

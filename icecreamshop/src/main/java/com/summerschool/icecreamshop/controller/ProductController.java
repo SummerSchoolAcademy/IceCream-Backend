@@ -1,9 +1,8 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.model.dto.ProductDTO;
+import com.summerschool.icecreamshop.dto.ProductDTO;
 import com.summerschool.icecreamshop.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;

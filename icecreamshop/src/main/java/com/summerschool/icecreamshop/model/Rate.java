@@ -1,4 +1,4 @@
-package com.summerschool.icecreamshop.model.domain;
+package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
