@@ -8,8 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import java.util.Optional;
-import org.mockito.junit.MockitoJUnitRunner;
 import com.summerschool.icecreamshop.model.Product;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 

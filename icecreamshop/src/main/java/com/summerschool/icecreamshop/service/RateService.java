@@ -19,9 +19,6 @@ public class RateService {
     @Autowired
     private RateRepository rateRepository;
 
-    @Autowired
-    private ProductService productService;
-
     public Optional<Rate> get(Long id){
 
         return rateRepository.findById(id);

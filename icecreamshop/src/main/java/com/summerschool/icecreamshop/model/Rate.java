@@ -2,7 +2,6 @@ package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.*;
 
 @Entity
 @Table(name = "rates")
