@@ -16,12 +16,7 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public List<Product> getProductsOfThePage(Integer page, Integer size){
-
-        if (page != null && size != null) {
-            Pageable pageable = PageRequest.of(page, size);
-            return productRepository.findAll(pageable).toList();
-        }
-
-        return productRepository.findAll();
+        Pageable pageable = PageRequest.of(page, size);
+        return productRepository.findAll(pageable).toList();
     }
 }
