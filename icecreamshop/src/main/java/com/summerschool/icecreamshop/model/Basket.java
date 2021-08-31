@@ -25,11 +25,19 @@ public class Basket {
         this.basketProduct = basketProduct;
     }
 
+    public void setSession_id(String session_id) {
+        this.session_id = session_id;
+    }
+
     public Long getId() {
         return id;
     }
 
     public List<BasketProduct> getBasketProduct() {
         return basketProduct;
+    }
+
+    public String getSession_id() {
+        return session_id;
     }
 }
