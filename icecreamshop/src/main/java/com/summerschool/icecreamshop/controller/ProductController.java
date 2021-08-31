@@ -29,7 +29,6 @@ public class ProductController {
         if(page == null){
             throw new IllegalArgumentException("\\\"error\\\":\\\"Page argument must be supplied");
         }
-
         if(null == size){
             size=10;
         }
