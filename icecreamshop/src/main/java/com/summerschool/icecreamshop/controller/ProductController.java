@@ -24,21 +24,17 @@ public class ProductController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping
-    public ResponseEntity<List<com.summerschool.icecreamshop.model.dto.ProductDTO>> getAll() {
-        return ResponseEntity.ok(productService.getAll()
-                .stream()
-                .map(product -> modelMapper.map(product, com.summerschool.icecreamshop.model.dto.ProductDTO.class))
-                .collect(Collectors.toList()));
-    }
-
     @GetMapping("")
     public ResponseEntity<List<ProductDTO>> getProducts(
-            @RequestParam(value="page") Integer page,
+            @RequestParam(value="page", required = false) Integer page,
             @RequestParam(value="size", required = false) Integer size
     ){
+
         if(page == null){
-            throw new IllegalArgumentException("\\\"error\\\":\\\"Page argument must be supplied");
+            return ResponseEntity.ok(productService.getAll()
+                    .stream()
+                    .map(product -> modelMapper.map(product, ProductDTO.class))
+                    .collect(Collectors.toList()));
         }
         if(size == null){
             size=10;
