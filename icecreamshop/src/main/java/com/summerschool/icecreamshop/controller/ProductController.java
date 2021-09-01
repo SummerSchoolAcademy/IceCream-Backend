@@ -1,7 +1,9 @@
 package com.summerschool.icecreamshop.controller;
 
 import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Product;
+import com.summerschool.icecreamshop.service.CategoryService;
 import com.summerschool.icecreamshop.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +20,22 @@ import java.util.stream.Collectors;
 public class ProductController {
 
     private ProductService productService;
-
+    private CategoryService categoryService;
     private ModelMapper modelMapper;
 
     @Autowired
-    public ProductController(ProductService productService, ModelMapper modelMapper) {
+    public ProductController(ProductService productService, ModelMapper modelMapper, CategoryService categoryService) {
         this.productService = productService;
         this.modelMapper = modelMapper;
+        this.categoryService = categoryService;
     }
 
-    @PostMapping
-    public ResponseEntity<ProductDTO> add(@Valid @RequestBody ProductDTO productDTO) {
+    @PostMapping("/{categoryId}")
+    public ResponseEntity<ProductDTO> add(@PathVariable("categoryId") Long categoryId, @Valid @RequestBody ProductDTO productDTO) {
         Product product = modelMapper.map(productDTO, Product.class);
-
-        Product savedProduct = productService.add(product);
+        Category productCategory = categoryService.getCategoryByID(categoryId);
+        product.setCategory(productCategory);
+        Product savedProduct = productService.add(categoryId, product);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));
     }
 

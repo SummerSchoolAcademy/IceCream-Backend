@@ -11,11 +11,13 @@ import java.util.List;
 
 @Service
 public class ProductService {
+    private static final String CATEGORY_NOT_FOUND = "Category not found exception";
     private ProductRepository productRepository;
-
+    private CategoryService categoryService;
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, CategoryService categoryService) {
         this.productRepository = productRepository;
+        this.categoryService = categoryService;
     }
 
     public List<Product> getProductsOfThePage(Integer page, Integer size) {
@@ -23,7 +25,7 @@ public class ProductService {
         return productRepository.findAll(pageable).toList();
     }
 
-    public Product add(Product product) {
+    public Product add(Long categoryId, Product product) {
         return productRepository.save(product);
     }
 }
