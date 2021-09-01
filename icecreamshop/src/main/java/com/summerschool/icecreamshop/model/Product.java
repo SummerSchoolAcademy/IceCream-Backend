@@ -28,14 +28,14 @@ public class Product {
     private List<String> ingredients;
 
     @NotNull
-    private int quantity;
+    private Integer quantity;
 
     @NotNull
     @ElementCollection
     private List<String> alergens;
 
     @NotNull
-    private double price;
+    private Double price;
 
     @NotNull
     private String currency;
@@ -53,6 +53,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rate> rates;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BasketProduct> basketProduct;
 
 
     // Setters
@@ -76,7 +79,7 @@ public class Product {
         this.ingredients = ingredients;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -84,7 +87,7 @@ public class Product {
         this.alergens = alergens;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -108,6 +111,9 @@ public class Product {
         this.rates = rates;
     }
 
+    public void setBasketProduct(List<BasketProduct> basketProduct) {
+        this.basketProduct = basketProduct;
+    }
 
     // Getters
     public Long getId() {
@@ -130,7 +136,7 @@ public class Product {
         return ingredients;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
@@ -138,7 +144,7 @@ public class Product {
         return alergens;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
@@ -160,5 +166,9 @@ public class Product {
 
     public List<Rate> getRates() {
         return rates;
+    }
+
+    public List<BasketProduct> getBasketProduct() {
+        return basketProduct;
     }
 }

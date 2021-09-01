@@ -117,7 +117,7 @@ public class DataInitializer implements ApplicationRunner {
         product6.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Mint", "Dark chocolate", "Chocolate topping"));
         product6.setQuantity(110);
         product6.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
-        product6.setPrice(3);
+        product6.setPrice(3.0);
         product6.setCurrency("USD");
         product6.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
         product6.setType(Type.GELATO);
