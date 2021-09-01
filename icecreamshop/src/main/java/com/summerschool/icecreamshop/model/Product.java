@@ -54,9 +54,8 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Rate> rates;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "basket_product_id")
-    private BasketProduct basketProduct;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<BasketProduct> basketProduct;
 
 
     // Setters
@@ -112,7 +111,7 @@ public class Product {
         this.rates = rates;
     }
 
-    public void setBasketProduct(BasketProduct basketProduct) {
+    public void setBasketProduct(List<BasketProduct> basketProduct) {
         this.basketProduct = basketProduct;
     }
 
@@ -169,7 +168,7 @@ public class Product {
         return rates;
     }
 
-    public BasketProduct getBasketProduct() {
+    public List<BasketProduct> getBasketProduct() {
         return basketProduct;
     }
 }
