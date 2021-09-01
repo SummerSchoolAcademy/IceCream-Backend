@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.stream.Collectors;
 
+
 @Configuration
 public class ApplicationConfiguration {
 
@@ -47,8 +48,8 @@ public class ApplicationConfiguration {
             d.setCurrency(s.getCurrency());
             d.setPhotoUrls(s.getPhotoUrls());
             d.setRates(s.getRates().stream()
-                       .map(x -> modelMapper.map(x , Rate.class))
-                       .collect(Collectors.toList()));
+                    .map(x -> modelMapper.map(x , Rate.class))
+                    .collect(Collectors.toList()));
             return d;
         };
 
@@ -65,57 +66,5 @@ public class ApplicationConfiguration {
         modelMapper.addConverter(rateConverter);
 
         return modelMapper;
-    }
-    @Bean
-    public ModelMapper modelMapperProduct() {
-        ModelMapper modelMapperProduct = new ModelMapper();
-
-
-        Converter<ProductDTO, Product> productConverter = context -> {
-            ProductDTO s = context.getSource();
-            Product d = new Product();
-            d.setId(s.getId());
-            d.setTitle(s.getTitle());
-            d.setShortDescription(s.getShortDescription());
-            d.setLongDescription(s.getLongDescription());
-            d.setIngredients(s.getIngredients());
-            d.setQuantity(s.getQuantity());
-            d.setAlergens(s.getAlergens());
-            d.setPrice(s.getPrice());
-            d.setCurrency(s.getCurrency());
-            d.setPhoto_urls(s.getPhotoUrls());
-            d.setType(s.getType());
-            return d;
-        };
-
-        modelMapperProduct.addConverter(productConverter);
-
-        return modelMapperProduct;
-    }
-    @Bean
-    public ModelMapper modelMapperProduct() {
-        ModelMapper modelMapperProduct = new ModelMapper();
-
-
-        Converter<ProductDTO, Product> productConverter = context -> {
-            ProductDTO s = context.getSource();
-            Product d = new Product();
-            d.setId(s.getId());
-            d.setTitle(s.getTitle());
-            d.setShortDescription(s.getShortDescription());
-            d.setLongDescription(s.getLongDescription());
-            d.setIngredients(s.getIngredients());
-            d.setQuantity(s.getQuantity());
-            d.setAlergens(s.getAlergens());
-            d.setPrice(s.getPrice());
-            d.setCurrency(s.getCurrency());
-            d.setPhoto_urls(s.getPhotoUrls());
-            d.setType(s.getType());
-            return d;
-        };
-
-        modelMapperProduct.addConverter(productConverter);
-
-        return modelMapperProduct;
     }
 }

@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+
     private ProductService productService;
 
     private ModelMapper modelMapper;
@@ -25,6 +26,7 @@ public class ProductController {
         this.productService = productService;
         this.modelMapper = modelMapper;
     }
+
     @PostMapping
     public ResponseEntity<ProductDTO> add(@Valid @RequestBody ProductDTO productDTO) {
         Product product = modelMapper.map(productDTO, Product.class);
@@ -35,14 +37,13 @@ public class ProductController {
 
     @GetMapping("")
     public ResponseEntity<List<ProductDTO>> getProducts(
-            @RequestParam(value="page") Integer page,
-            @RequestParam(value="size", required = false) Integer size
-    ){
-        if(page == null){
+            @RequestParam(value = "page") Integer page,
+            @RequestParam(value = "size", required = false) Integer size) {
+        if (page == null) {
             throw new IllegalArgumentException("\\\"error\\\":\\\"Page argument must be supplied");
         }
-        if(size == null){
-            size=10;
+        if (size == null) {
+            size = 10;
         }
 
         return ResponseEntity.ok(productService.getProductsOfThePage(page, size)
