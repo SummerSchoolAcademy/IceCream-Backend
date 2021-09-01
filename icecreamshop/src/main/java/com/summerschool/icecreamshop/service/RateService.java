@@ -14,8 +14,16 @@ import java.util.Optional;
 @Service
 public class RateService {
 
-    @Autowired
     private RateRepository rateRepository;
+
+    @Autowired
+    public RateService(RateRepository rateRepository) {
+        this.rateRepository = rateRepository;
+    }
+
+    public Rate add(Rate rate) {
+        return rateRepository.save(rate);
+    }
 
     public Optional<Rate> get(Long id){
 

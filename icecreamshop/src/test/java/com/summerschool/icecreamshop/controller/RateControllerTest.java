@@ -1,5 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.CategoryDTO;
+import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.dto.RateDTO;
 import com.summerschool.icecreamshop.service.RateService;
@@ -47,6 +49,17 @@ public class RateControllerTest {
 
         rateDTO.setId(1L);
         rateDTO.setRate(4);
+    }
+
+    @Test
+    public void testCreateRate() {
+
+        Mockito.when(modelMapper.map(rateDTO, Rate.class)).thenReturn(rate);
+        Mockito.when(rateService.add(rate)).thenReturn(rate);
+
+        ResponseEntity<RateDTO> r = rateController.add(rateDTO);
+
+        assertEquals(HttpStatus.CREATED, r.getStatusCode());
     }
 
     @Test
