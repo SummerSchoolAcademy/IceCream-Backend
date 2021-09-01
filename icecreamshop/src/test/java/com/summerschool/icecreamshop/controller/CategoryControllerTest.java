@@ -15,10 +15,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static com.summerschool.icecreamshop.exception.Constants.*;
+import static org.junit.Assert.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CategoryControllerTest {
@@ -38,10 +42,10 @@ public class CategoryControllerTest {
 
     @Before
     public void setUp() {
+        initMocks(this);
         category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
         categoryDTO = new CategoryDTO(5L, "Test Name", "ceva", new ArrayList<ProductDTO>());
     }
-
 
     @Test
     public void testCreateCategory() {
@@ -52,5 +56,28 @@ public class CategoryControllerTest {
         ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
 
         assertEquals(HttpStatus.CREATED, c.getStatusCode());
+    }
+
+    @Test
+    public void testGetCategoryByValidId() {
+        Mockito.when(modelMapper.map(category, CategoryDTO.class)).thenReturn(categoryDTO);
+        Mockito.when(cs.get(category.getId())).thenReturn(Optional.of(category));
+
+        ResponseEntity<CategoryDTO> c = categoryController.get(category.getId());
+        assertEquals(HttpStatus.OK, c.getStatusCode());
+
+        CategoryDTO actualCategory = c.getBody();
+        assertEquals(category.getId(), actualCategory.getId());
+        assertEquals(category.getName(), actualCategory.getName());
+        assertEquals(category.getDescription(), actualCategory.getDescription());
+    }
+
+    @Test
+    public void testGetCategoryByInvalidId() {
+        Exception exception = assertThrows(ResponseStatusException.class, () -> {
+            categoryController.get(-1L);
+        });
+
+        assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
     }
 }

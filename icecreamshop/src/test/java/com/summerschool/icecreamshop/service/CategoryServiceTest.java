@@ -12,8 +12,9 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CategoryServiceTest {
@@ -36,4 +37,20 @@ public class CategoryServiceTest {
         Mockito.when(categoryRepository.save(category)).thenReturn(category);
         assertEquals(category.getName(), categoryService.add(category).getName());
     }
+
+    @Test
+    public void testGetCategoryByValidId() {
+        Mockito.when(categoryRepository.findById(category.getId())).thenReturn(Optional.ofNullable(category));
+        Category actualCategory = categoryService.get(category.getId()).get();
+
+        assertEquals(category.getId(), actualCategory.getId());
+        assertEquals(category.getName(), actualCategory.getName());
+        assertEquals(category.getDescription(), actualCategory.getDescription());
+    }
+
+    @Test
+    public void testGetCategoryByInvalidId() {
+        assertTrue(categoryService.get(-1L).isEmpty());
+    }
+
 }

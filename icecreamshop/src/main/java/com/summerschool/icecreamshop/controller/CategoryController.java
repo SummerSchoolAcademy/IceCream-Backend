@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+
+import static com.summerschool.icecreamshop.exception.Constants.*;
 
 @RestController
 @RequestMapping("/categories")
@@ -33,4 +36,13 @@ public class CategoryController {
         Category savedCategory = categoryService.add(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedCategory, CategoryDTO.class));
     }
+
+    @GetMapping(path = "/{categoryId}")
+    public ResponseEntity<CategoryDTO> get(@PathVariable("categoryId") Long id) {
+        Category category = categoryService.get(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CATEGORY_NOT_FOUND));
+
+        return ResponseEntity.ok(modelMapper.map(category, CategoryDTO.class));
+    }
+
 }
