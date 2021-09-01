@@ -31,8 +31,7 @@ public class ApplicationConfiguration {
             return d;
         };
 
-        Converter<RateDTO, Rate>rateConverter=context ->
-        {
+        Converter<RateDTO, Rate>rateConverter=context -> {
             RateDTO s = context.getSource();
             Rate d = new Rate();
             d.setId(s.getId());
