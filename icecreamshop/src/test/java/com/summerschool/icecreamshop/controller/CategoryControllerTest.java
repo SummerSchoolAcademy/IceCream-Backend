@@ -22,6 +22,7 @@ import java.util.Optional;
 
 import static com.summerschool.icecreamshop.exception.Constants.*;
 import static org.junit.Assert.*;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class CategoryControllerTest {
@@ -39,16 +40,11 @@ public class CategoryControllerTest {
 
     Category category;
 
-    CategoryDTO categoryDTOInDb;
-
-    Category categoryInDb;
-
     @Before
     public void setUp() {
+        initMocks(this);
         category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
         categoryDTO = new CategoryDTO(5L, "Test Name", "ceva", new ArrayList<ProductDTO>());
-        categoryInDb = new Category(1L, "Gelato", "Cool yourself on a hot summer day with our gelato!", new ArrayList<Product>());
-        categoryDTOInDb = new CategoryDTO(1L, "Gelato", "Cool yourself on a hot summer day with our gelato!", new ArrayList<ProductDTO>());
     }
 
     @Test
@@ -64,11 +60,16 @@ public class CategoryControllerTest {
 
     @Test
     public void testGetCategoryByValidId() {
-        Mockito.when(modelMapper.map(categoryDTO, Category.class)).thenReturn(categoryInDb);
-        Mockito.when(cs.get(categoryInDb.getId())).thenReturn(Optional.ofNullable(categoryInDb));
+        Mockito.when(modelMapper.map(category, CategoryDTO.class)).thenReturn(categoryDTO);
+        Mockito.when(cs.get(category.getId())).thenReturn(Optional.of(category));
 
-        ResponseEntity<CategoryDTO> c = categoryController.get(categoryInDb.getId());
+        ResponseEntity<CategoryDTO> c = categoryController.get(category.getId());
         assertEquals(HttpStatus.OK, c.getStatusCode());
+
+        CategoryDTO actualCategory = c.getBody();
+        assertEquals(category.getId(), actualCategory.getId());
+        assertEquals(category.getName(), actualCategory.getName());
+        assertEquals(category.getDescription(), actualCategory.getDescription());
     }
 
     @Test

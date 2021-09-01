@@ -27,15 +27,9 @@ public class CategoryServiceTest {
 
     Category category;
 
-    Category categoryInDb;
-
     @Before
     public void setUp() {
         category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
-        categoryInDb = new Category();
-        categoryInDb.setId(1L);
-        categoryInDb.setName("Gelato");
-        categoryInDb.setDescription("Cool yourself on a hot summer day with our gelato!");
     }
 
     @Test
@@ -46,12 +40,12 @@ public class CategoryServiceTest {
 
     @Test
     public void testGetCategoryByValidId() {
-        Mockito.when(categoryRepository.findById(categoryInDb.getId())).thenReturn(Optional.ofNullable(categoryInDb));
-        Category actualCategory = categoryService.get(1L).get();
+        Mockito.when(categoryRepository.findById(category.getId())).thenReturn(Optional.ofNullable(category));
+        Category actualCategory = categoryService.get(category.getId()).get();
 
-        assertEquals(categoryInDb.getId(), actualCategory.getId());
-        assertEquals(categoryInDb.getName(), actualCategory.getName());
-        assertEquals(categoryInDb.getDescription(), actualCategory.getDescription());
+        assertEquals(category.getId(), actualCategory.getId());
+        assertEquals(category.getName(), actualCategory.getName());
+        assertEquals(category.getDescription(), actualCategory.getDescription());
     }
 
     @Test
