@@ -12,7 +12,7 @@ public class Basket {
     private Long id;
 
     @NotNull
-    private String session_id;
+    private String sessionId;
 
     @OneToMany(mappedBy = "basket", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<BasketProduct> basketProduct;
@@ -25,8 +25,8 @@ public class Basket {
         this.basketProduct = basketProduct;
     }
 
-    public void setSession_id(String session_id) {
-        this.session_id = session_id;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
     public Long getId() {
@@ -37,7 +37,7 @@ public class Basket {
         return basketProduct;
     }
 
-    public String getSession_id() {
-        return session_id;
+    public String getSessionId() {
+        return sessionId;
     }
 }
