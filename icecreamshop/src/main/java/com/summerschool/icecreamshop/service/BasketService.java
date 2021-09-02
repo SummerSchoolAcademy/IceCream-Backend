@@ -18,9 +18,9 @@ public class BasketService {
         return basketRepository.findById(id);
     }
 
-    public Basket update (Basket basket , List<BasketProduct> l){
+    public Basket update (Basket basket , List<BasketProduct> basketProductList){
 
-        basket.setBasketProduct(l);
+        basket.setBasketProduct(basketProductList);
         return basketRepository.save(basket);
     }
 

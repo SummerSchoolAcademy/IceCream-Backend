@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.*;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -34,12 +37,21 @@ public class BasketServiceTest {
     @Test
     public void testUpdateBasket() {
 
+        Basket basket2=new Basket();
+        basket2.setId(2L);
+        basket2.setSessionId("session2");
+        List<BasketProduct> basketProductList2 = new ArrayList<BasketProduct>();
+        basketProductList2.add(new BasketProduct());
+        basket2.setBasketProduct(basketProductList2);
+
         Basket basket = new Basket();
-        basket.setId(1L);
-        basket.setSessionId("session");
+        basket.setId(basket2.getId());
+        basket.setSessionId(basket2.getSessionId());
 
         when(basketRepository.save(basket)).thenReturn(basket);
-        Basket responseBasket = basketService.update(basket,new ArrayList<BasketProduct>());
+        Basket responseBasket = basketService.update(basket,basketProductList2);
         assertNotNull(responseBasket);
+        assertEquals(basketProductList2,responseBasket.getBasketProduct());
+
     }
 }
