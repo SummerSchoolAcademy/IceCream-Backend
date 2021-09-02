@@ -22,7 +22,15 @@ public class RateService {
     }
 
     public Rate add(Rate rate) {
-        return rateRepository.save(rate);
+        try
+        {
+            return rateRepository.save(rate);
+        }
+        catch(Exception e){
+            return null;
+        }
+
+
     }
 
     public Optional<Rate> get(Long id){

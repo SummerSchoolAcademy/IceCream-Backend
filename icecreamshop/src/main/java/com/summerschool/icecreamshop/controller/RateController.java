@@ -44,6 +44,10 @@ public class RateController {
         Rate rate = modelMapper.map(rateDTO, Rate.class);
 
         Rate savedRate = rateService.add(rate);
+        if(savedRate==null)
+        {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new RateDTO());
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedRate, RateDTO.class));
     }
 

@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import com.summerschool.icecreamshop.model.Product;
 import org.mockito.Mockito;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 
@@ -48,6 +50,7 @@ public class RateServiceTests {
         Mockito.when(rateRepository.save(rate)).thenReturn(rate);
         assertEquals(rate.getRate(), rateService.add(rate).getRate());
     }
+
     @Test
     public void testUpdateProductRating() {
 

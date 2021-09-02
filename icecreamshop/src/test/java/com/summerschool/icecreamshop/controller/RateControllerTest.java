@@ -45,10 +45,10 @@ public class RateControllerTest {
         initMocks(this);
 
         rate.setId(1L);
-        rate.setRate(5);
+       // rate.setRate(5);
 
         rateDTO.setId(1L);
-        rateDTO.setRate(4);
+        //rateDTO.setRate(4);
     }
 
     @Test
@@ -56,10 +56,20 @@ public class RateControllerTest {
 
         Mockito.when(modelMapper.map(rateDTO, Rate.class)).thenReturn(rate);
         Mockito.when(rateService.add(rate)).thenReturn(rate);
+        ResponseEntity<RateDTO> responseEntity = rateController.add(rateDTO);
 
-        ResponseEntity<RateDTO> r = rateController.add(rateDTO);
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
 
-        assertEquals(HttpStatus.CREATED, r.getStatusCode());
+    }
+
+    @Test
+    public void testCreateRate_failedToCreate(){
+
+        Mockito.when(modelMapper.map(rateDTO, Rate.class)).thenReturn(rate);
+        Mockito.when(rateService.add(rate)).thenReturn(null);
+        ResponseEntity<RateDTO> responseEntity = rateController.add(rateDTO);
+
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, responseEntity.getStatusCode());
     }
 
     @Test
@@ -68,9 +78,9 @@ public class RateControllerTest {
         Mockito.when(modelMapper.map(rateDTO,Rate.class)).thenReturn(rate);
         Mockito.when(rateService.get(ArgumentMatchers.any())).thenReturn(Optional.of(rate));
         Mockito.when(rateService.update(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(rate);
-        ResponseEntity<RateDTO> r = rateController.update(rate.getId(),rateDTO);
-        assertEquals(HttpStatus.OK, r.getStatusCode());
-        assertNotNull(r);
+        ResponseEntity<RateDTO> responseEntity = rateController.update(rate.getId(),rateDTO);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNotNull(responseEntity);
 
     }
 
