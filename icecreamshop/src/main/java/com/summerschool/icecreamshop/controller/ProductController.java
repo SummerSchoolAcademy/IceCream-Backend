@@ -65,4 +65,17 @@ public class ProductController {
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .collect(Collectors.toList()));
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductDTO> update(@PathVariable("id") Long id, @RequestBody @Valid ProductDTO productDTO){
+        Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), "PRODUCT NOT FOUND"));
+        productDTO.setId(id);
+        Product updateProduct = productService.patch(modelMapper.map(productDTO,Product.class), foundProduct);
+        return ResponseEntity.ok(modelMapper.map(updateProduct, ProductDTO.class));
+    }
+
+
+
+
+
 }
