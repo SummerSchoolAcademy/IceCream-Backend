@@ -1,13 +1,5 @@
 package com.summerschool.icecreamshop.config;
 
-import com.summerschool.icecreamshop.dto.BasketDTO;
-import com.summerschool.icecreamshop.dto.CategoryDTO;
-import com.summerschool.icecreamshop.dto.ProductDTO;
-import com.summerschool.icecreamshop.dto.RateDTO;
-import com.summerschool.icecreamshop.model.Basket;
-import com.summerschool.icecreamshop.model.Category;
-import com.summerschool.icecreamshop.model.Product;
-import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.dto.*;
 import com.summerschool.icecreamshop.model.*;
 import org.modelmapper.Converter;
