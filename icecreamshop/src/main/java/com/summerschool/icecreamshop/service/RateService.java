@@ -1,11 +1,7 @@
-
 package com.summerschool.icecreamshop.service;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.summerschool.icecreamshop.repository.RateRepository;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.model.Product;

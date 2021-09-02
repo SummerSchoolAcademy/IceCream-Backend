@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import com.summerschool.icecreamshop.model.Product;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
