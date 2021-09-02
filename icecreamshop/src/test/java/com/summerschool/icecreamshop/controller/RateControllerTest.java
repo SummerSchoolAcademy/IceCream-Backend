@@ -1,5 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.CategoryDTO;
+import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.dto.RateDTO;
 import com.summerschool.icecreamshop.service.RateService;
@@ -50,14 +52,35 @@ public class RateControllerTest {
     }
 
     @Test
+    public void testCreateRate() {
+
+        Mockito.when(modelMapper.map(rateDTO, Rate.class)).thenReturn(rate);
+        Mockito.when(rateService.add(rate)).thenReturn(rate);
+        ResponseEntity<RateDTO> responseEntity = rateController.add(rateDTO);
+
+        assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
+
+    }
+
+    @Test
+    public void testCreateRate_failedToCreate(){
+
+        Mockito.when(modelMapper.map(rateDTO, Rate.class)).thenReturn(rate);
+        Mockito.when(rateService.add(rate)).thenReturn(null);
+        ResponseEntity<RateDTO> responseEntity = rateController.add(rateDTO);
+
+        assertEquals(HttpStatus.UNPROCESSABLE_ENTITY, responseEntity.getStatusCode());
+    }
+
+    @Test
     public void testUpdateProductRating() {
 
         Mockito.when(modelMapper.map(rateDTO,Rate.class)).thenReturn(rate);
         Mockito.when(rateService.get(ArgumentMatchers.any())).thenReturn(Optional.of(rate));
         Mockito.when(rateService.update(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(rate);
-        ResponseEntity<RateDTO> r = rateController.update(rate.getId(),rateDTO);
-        assertEquals(HttpStatus.OK, r.getStatusCode());
-        assertNotNull(r);
+        ResponseEntity<RateDTO> responseEntity = rateController.update(rate.getId(),rateDTO);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertNotNull(responseEntity);
 
     }
 
