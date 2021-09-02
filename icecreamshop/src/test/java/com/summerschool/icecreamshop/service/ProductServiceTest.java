@@ -1,8 +1,7 @@
 package com.summerschool.icecreamshop.service;
 
-import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Product;
-import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.ProductRepository;
 import org.junit.Before;
@@ -12,19 +11,15 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyObject;
-import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class ProductServiceTest {
@@ -40,16 +35,23 @@ public class ProductServiceTest {
 
     Product product1 = new Product();
 
+    Category category1 = new Category();
+
     List<Product> productsList;
 
     @Before
     public void setup(){
         initMocks(this);
 
+        category1.setName("Gelato");
+        category1.setDescription("Cool yourself on a hot summer day with our gelato!");
+
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setType(Type.DONUTS);
         product1.setPrice(2.5);
+        product1.setCategory(category1);
+
     }
 
     @Test
@@ -77,5 +79,15 @@ public class ProductServiceTest {
 
         assertNotNull(response);
         assertEquals(1,response.size());
+    }
+
+    @Test
+    public  void testServiceForAddProduct(){
+
+        Mockito.when(productRepository.save(product1))
+                .thenReturn(product1);
+
+        Product response = productService.add(product1);
+        assertEquals(product1, response);
     }
 }
