@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class BasketCintrollerTest {
+public class BasketControllerTest {
 
     @InjectMocks
     private BasketController basketController;

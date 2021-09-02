@@ -1,11 +1,7 @@
 package com.summerschool.icecreamshop.config;
 
-import com.summerschool.icecreamshop.dto.ProductDTO;
-import com.summerschool.icecreamshop.model.Category;
-import com.summerschool.icecreamshop.model.Product;
-import com.summerschool.icecreamshop.dto.CategoryDTO;
-import com.summerschool.icecreamshop.model.Rate;
-import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.dto.*;
+import com.summerschool.icecreamshop.model.*;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
@@ -47,9 +43,13 @@ public class ApplicationConfiguration {
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
             d.setPhotoUrls(s.getPhotoUrls());
+            d.setType(s.getType());
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
+            d.setBasketProduct(s.getBasketProduct().stream()
+                        .map(x -> modelMapper.map(x, BasketProduct.class))
+                        .collect(Collectors.toList()));
             return d;
         };
 
@@ -61,9 +61,31 @@ public class ApplicationConfiguration {
             return d;
         };
 
+        Converter<BasketDTO, Basket> basketConverter = context -> {
+            BasketDTO s = context.getSource();
+            Basket d = new Basket();
+            d.setId(s.getId());
+            d.setSessionId(s.getSessionId());
+            d.setBasketProduct(s.getBasketProduct().stream()
+                    .map(x -> modelMapper.map(x , BasketProduct.class))
+                    .collect(Collectors.toList()));
+            return d;
+        };
+
+        Converter<BasketProductDTO, BasketProduct> basketProductConverter = context -> {
+            BasketProductDTO s = context.getSource();
+            BasketProduct d = new BasketProduct();
+            d.setId(s.getId());
+            d.setQuantity(s.getQuantity());
+            d.setPrice(s.getPrice());
+            return d;
+        };
+
         modelMapper.addConverter(categoryConverter);
         modelMapper.addConverter(productConverter);
         modelMapper.addConverter(rateConverter);
+        modelMapper.addConverter(basketConverter);
+        modelMapper.addConverter(basketProductConverter);
 
         return modelMapper;
     }

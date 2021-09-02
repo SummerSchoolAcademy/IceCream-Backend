@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.dto;
 
+import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Type;
 
 import javax.validation.constraints.NotNull;
@@ -39,6 +40,8 @@ public class ProductDTO {
     Type type;
 
     private List<RateDTO> rates;
+
+    private List<BasketProductDTO> basketProduct;
 
     // Setters
     public void setId(Long id) {
@@ -89,6 +92,8 @@ public class ProductDTO {
         this.rates = rates;
     }
 
+    public void setBasketProduct(List<BasketProductDTO> basketProduct){ this.basketProduct=basketProduct;}
+
     // Getters
     public Long getId() {
         return id;
@@ -137,4 +142,6 @@ public class ProductDTO {
     public List<RateDTO> getRates() {
         return rates;
     }
+
+    public List<BasketProductDTO> getBasketProduct(){ return basketProduct;}
 }
