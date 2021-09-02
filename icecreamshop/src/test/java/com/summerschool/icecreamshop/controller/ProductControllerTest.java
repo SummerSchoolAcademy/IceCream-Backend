@@ -48,6 +48,16 @@ public class ProductControllerTest {
     }
 
     @Test
+    public void testGetAllProducts(){
+        Mockito.when(productService.getAll())
+                .thenReturn(productsList);
+
+        ResponseEntity<List<ProductDTO>> response = productController.getProducts(null, null);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
     public void testGetProductsWithPagination(){
         Mockito.when(productService.getProductsOfThePage(0,5))
                 .thenReturn(productsList);
@@ -57,8 +67,4 @@ public class ProductControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
-    @Test
-    public void testGetProductsWithPaginationThrowsError(){
-        assertThrows(IllegalArgumentException.class ,() -> productController.getProducts(null,5));
-    }
 }

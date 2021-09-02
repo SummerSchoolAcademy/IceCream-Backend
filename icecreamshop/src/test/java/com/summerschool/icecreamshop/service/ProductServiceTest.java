@@ -38,19 +38,35 @@ public class ProductServiceTest {
 
     Page<Product> productsPage;
 
+    Product product1 = new Product();
+
+    List<Product> productsList;
+
     @Before
     public void setup(){
         initMocks(this);
-    }
 
-    @Test
-    public void testServiceForGetProductsWithPagination(){
-
-        Product product1 = new Product();
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setType(Type.DONUTS);
         product1.setPrice(2.5);
+    }
+
+    @Test
+    public void testServiceForGetAllProducts(){
+        productsList= new ArrayList<Product>();
+        productsList.add(product1);
+
+        Mockito.when(productRepository.findAll())
+                .thenReturn(productsList);
+
+        List<Product> response = productService.getAll();
+
+        assertNotNull(response);
+    }
+
+    @Test
+    public void testServiceForGetProductsWithPagination(){
 
         productsPage= new PageImpl<>(Arrays.asList(product1));
 
