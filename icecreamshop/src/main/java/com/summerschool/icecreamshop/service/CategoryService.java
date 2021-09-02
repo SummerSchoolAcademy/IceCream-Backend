@@ -17,10 +17,10 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category getCategoryByID(Long id) {
-        return this.categoryRepository
-                .getById(id);
-    }
+//    public Category getCategoryByID(Long id) {
+//        return this.categoryRepository
+//                .getById(id);
+//    }
     public Category add(Category category) {
         return categoryRepository.save(category);
     }

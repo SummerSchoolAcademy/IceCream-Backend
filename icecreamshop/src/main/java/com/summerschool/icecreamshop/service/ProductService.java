@@ -13,12 +13,10 @@ import java.util.List;
 public class ProductService {
 
     private ProductRepository productRepository;
-    private CategoryService categoryService;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, CategoryService categoryService){
+    public ProductService(ProductRepository productRepository){
         this.productRepository = productRepository;
-        this.categoryService = categoryService;
     }
 
     public List<Product> getAll() { return productRepository.findAll();}
@@ -27,7 +25,7 @@ public class ProductService {
         Pageable pageable = PageRequest.of(page, size);
         return productRepository.findAll(pageable).toList();
     }
-    public Product add(Long categoryId, Product product) {
+    public Product add(Product product) {
         return productRepository.save(product);
     }
 

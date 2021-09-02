@@ -35,16 +35,23 @@ public class ProductServiceTest {
 
     Product product1 = new Product();
 
+    Category category1 = new Category();
+
     List<Product> productsList;
 
     @Before
     public void setup(){
         initMocks(this);
 
+        category1.setName("Gelato");
+        category1.setDescription("Cool yourself on a hot summer day with our gelato!");
+
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setType(Type.DONUTS);
         product1.setPrice(2.5);
+        product1.setCategory(category1);
+
     }
 
     @Test
@@ -76,27 +83,11 @@ public class ProductServiceTest {
 
     @Test
     public  void testServiceForAddProduct(){
-        Category category1 = new Category();
-        category1.setName("Gelato");
-        category1.setDescription("Cool yourself on a hot summer day with our gelato!");
 
-        Product product10 = new Product();
-        product10.setTitle("Marshmallow Donuts");
-        product10.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
-        product10.setLongDescription("Donut with strawberry icing, and marshmallows");
-        product10.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Marshmallows", "Eggs"));
-        product10.setQuantity(110);
-        product10.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
-        product10.setPrice(2.5);
-        product10.setCurrency("USD");
-        product10.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
-        product10.setType(Type.DONUTS);
-        product10.setCategory(category1);
+        Mockito.when(productRepository.save(product1))
+                .thenReturn(product1);
 
-        Mockito.when(productRepository.save(product10))
-                .thenReturn(product10);
-
-        Product response = productService.add(category1.getId() ,product10);
-        assertEquals(product10, response);
+        Product response = productService.add(product1);
+        assertEquals(product1, response);
     }
 }

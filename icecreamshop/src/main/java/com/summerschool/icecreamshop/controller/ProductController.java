@@ -10,10 +10,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 
 @RestController
 @RequestMapping("/products")
@@ -33,9 +36,9 @@ public class ProductController {
     @PostMapping("/{categoryId}")
     public ResponseEntity<ProductDTO> add(@PathVariable("categoryId") Long categoryId, @Valid @RequestBody ProductDTO productDTO) {
         Product product = modelMapper.map(productDTO, Product.class);
-        Category productCategory = categoryService.getCategoryByID(categoryId);
+        Category productCategory = categoryService.get(categoryId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, CATEGORY_NOT_FOUND));
         product.setCategory(productCategory);
-        Product savedProduct = productService.add(categoryId, product);
+        Product savedProduct = productService.add(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));
     }
 

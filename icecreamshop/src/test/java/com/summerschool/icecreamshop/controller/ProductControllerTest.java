@@ -4,6 +4,7 @@ import com.summerschool.icecreamshop.dto.ProductDTO;
 import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Type;
+import com.summerschool.icecreamshop.service.CategoryService;
 import com.summerschool.icecreamshop.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,8 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -29,26 +30,58 @@ public class ProductControllerTest {
     @Mock
     ProductService productService;
 
+    @Mock
+    CategoryService categoryService;
+
     @InjectMocks
     ProductController productController;
 
     List<Product> productsList;
 
+    Product product1 = new Product();
+
+    Product product2 = new Product();
+
+    Category category1 = new Category();
+
+    Optional<Category> category2 = Optional.of(new Category(2L,"Gelato", "Text description",null));
+
+    ProductDTO productDTO = new ProductDTO();
+
     @Before
-    public void setup(){
+    public void setup() {
         initMocks(this);
-        Product product1 = new Product();
+
+        category1.setId(1L);
+        category1.setName("Gelato");
+        category1.setDescription("Cool yourself on a hot summer day with our gelato!");
+
+
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setPrice(2.5);
         product1.setType(Type.DONUTS);
+        product1.setCategory(category1);
 
-        productsList= new ArrayList<Product>();
+        product2.setTitle("Chocolate Mix");
+        product2.setQuantity(10);
+        product2.setPrice(2.1);
+        product2.setType(Type.DONUTS);
+        product2.setCategory(category1);
+
+        productDTO.setTitle("Chocolate Mix Donuts");
+        productDTO.setQuantity(100);
+        productDTO.setPrice(2.5);
+        productDTO.setType(Type.DONUTS);
+
+        productsList = new ArrayList<Product>();
         productsList.add(product1);
+
+
     }
 
     @Test
-    public void testGetAllProducts(){
+    public void testGetAllProducts() {
         Mockito.when(productService.getAll())
                 .thenReturn(productsList);
 
@@ -58,39 +91,28 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testGetProductsWithPagination(){
-        Mockito.when(productService.getProductsOfThePage(0,5))
+    public void testGetProductsWithPagination() {
+        Mockito.when(productService.getProductsOfThePage(0, 5))
                 .thenReturn(productsList);
 
-        ResponseEntity<List<ProductDTO>> response = productController.getProducts(0,5);
+        ResponseEntity<List<ProductDTO>> response = productController.getProducts(0, 5);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    public  void testServiceForAddProduct(){
-        Category category1 = new Category();
-        category1.setName("Gelato");
-        category1.setDescription("Cool yourself on a hot summer day with our gelato!");
+    public void testServiceForAddProduct() {
 
-        Product product10 = new Product();
-        product10.setTitle("Marshmallow Donuts");
-        product10.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
-        product10.setLongDescription("Donut with strawberry icing, and marshmallows");
-        product10.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Marshmallows", "Eggs"));
-        product10.setQuantity(110);
-        product10.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
-        product10.setPrice(2.5);
-        product10.setCurrency("USD");
-        product10.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
-        product10.setType(Type.DONUTS);
-        product10.setCategory(category1);
+        Mockito.when(modelMapper.map(productDTO,Product.class))
+                .thenReturn(product1);
+        Mockito.when(categoryService.get(category1.getId()))
+                .thenReturn(Optional.of(category1));
+        Mockito.when(productService.add(product1))
+                .thenReturn(product2);
+        Mockito.when(modelMapper.map(product2, ProductDTO.class))
+                .thenReturn(productDTO);
 
-
-        Mockito.when(productService.add(category1.getId(), product10))
-                .thenReturn(product10);
-
-        Product response = productController.add(category1.getId() ,product10);
-        assertEquals(product10, response);
+        ResponseEntity response = productController.add(category1.getId(), productDTO);
+        assertEquals(productDTO, response.getBody());
     }
 }
