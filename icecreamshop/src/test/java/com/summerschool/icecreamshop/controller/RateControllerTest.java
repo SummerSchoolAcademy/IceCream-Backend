@@ -45,10 +45,10 @@ public class RateControllerTest {
         initMocks(this);
 
         rate.setId(1L);
-       // rate.setRate(5);
+        rate.setRate(5);
 
         rateDTO.setId(1L);
-        //rateDTO.setRate(4);
+        rateDTO.setRate(4);
     }
 
     @Test
