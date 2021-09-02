@@ -19,11 +19,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import com.summerschool.icecreamshop.model.BasketProduct;
 import javax.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/baskets")
+@RequestMapping("/basket")
 public class BasketController {
 
 
@@ -58,5 +61,14 @@ public class BasketController {
         basketDTO.setId(basketId);
         Basket updatedBasket = basketService.patch(modelMapper.map(basketDTO,Basket.class),foundBasket);
         return ResponseEntity.ok(modelMapper.map(updatedBasket, BasketDTO.class));
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<BasketProduct>> getBasketProducts(
+    ){
+        return ResponseEntity.ok(basketService.getProductsFromBasket()
+                .stream()
+                .map(basket -> modelMapper.map(basket, BasketProduct.class))
+                .collect(Collectors.toList()));
     }
 }

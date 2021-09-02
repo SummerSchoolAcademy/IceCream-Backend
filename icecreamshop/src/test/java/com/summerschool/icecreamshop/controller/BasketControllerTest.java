@@ -1,5 +1,14 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.model.Basket;
+import com.summerschool.icecreamshop.model.BasketProduct;
+import com.summerschool.icecreamshop.model.Product;
+import com.summerschool.icecreamshop.model.Type;
+import com.summerschool.icecreamshop.service.BasketService;
+import com.summerschool.icecreamshop.service.ProductService;
+import org.junit.Before;
+import org.junit.Test;
 import com.summerschool.icecreamshop.dto.BasketDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
@@ -14,6 +23,9 @@ import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Optional;
 import static org.junit.Assert.assertEquals;
@@ -28,25 +40,58 @@ public class BasketControllerTest {
     @Mock
     ModelMapper modelMapper;
 
+    @Mock
+    BasketService basketService;
+
     @InjectMocks
     BasketController basketController;
 
-    @Mock
-    BasketService basketService;
+    List<BasketProduct> basketProductList;
 
     BasketDTO basketDTO = new BasketDTO();
 
     Basket basket = new Basket();
 
     @Before
-    public void setUp() {
+    public void setup(){
         initMocks(this);
+        Product product1 = new Product();
+        product1.setTitle("Chocolate Mix Donuts");
+        product1.setQuantity(100);
+        product1.setPrice(2.5);
+        product1.setType(Type.DONUTS);
+
+        Basket basket= new Basket();
+
+        BasketProduct basketProduct=new BasketProduct();
+
+        basketProduct.setProduct(product1);
+        basketProduct.setBasket(basket);
+        basketProduct.setPrice(product1.getPrice());
+        basketProduct.setQuantity(1);
+
+        basketProductList.add(basketProduct);
+
+        basket.setBasketProduct(basketProductList);
+
+
+
         basket.setId(5L);
         basket.setSessionId("ceva");
         basket.setBasketProduct(new ArrayList<BasketProduct>());
 
         basketDTO.setId(5L);
         basketDTO.setSessionId("ceva");
+    }
+
+    @Test
+    public void testGetAllProducts() {
+        Mockito.when(basketService.getProductsFromBasket())
+                .thenReturn(basketProductList);
+
+        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
