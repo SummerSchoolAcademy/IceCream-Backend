@@ -24,6 +24,7 @@ public class BasketProduct {
     @JoinColumn(name = "basket_id")
     private Basket basket;
 
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -40,9 +41,7 @@ public class BasketProduct {
         this.price = price;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
-    }
+    public void setBasket(Basket basket) {this.basket=basket;}
 
     public Long getId() {
         return id;
@@ -60,7 +59,6 @@ public class BasketProduct {
         return price;
     }
 
-    public Basket getBasket() {
-        return basket;
-    }
+    public Basket getBasket(){ return basket;}
+
 }
