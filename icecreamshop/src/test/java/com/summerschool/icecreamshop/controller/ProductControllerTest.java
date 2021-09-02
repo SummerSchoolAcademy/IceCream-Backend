@@ -40,11 +40,7 @@ public class ProductControllerTest {
 
     Product product1 = new Product();
 
-    Product product2 = new Product();
-
     Category category1 = new Category();
-
-    Optional<Category> category2 = Optional.of(new Category(2L,"Gelato", "Text description",null));
 
     ProductDTO productDTO = new ProductDTO();
 
@@ -62,12 +58,6 @@ public class ProductControllerTest {
         product1.setPrice(2.5);
         product1.setType(Type.DONUTS);
         product1.setCategory(category1);
-
-        product2.setTitle("Chocolate Mix");
-        product2.setQuantity(10);
-        product2.setPrice(2.1);
-        product2.setType(Type.DONUTS);
-        product2.setCategory(category1);
 
         productDTO.setTitle("Chocolate Mix Donuts");
         productDTO.setQuantity(100);
@@ -108,8 +98,8 @@ public class ProductControllerTest {
         Mockito.when(categoryService.get(category1.getId()))
                 .thenReturn(Optional.of(category1));
         Mockito.when(productService.add(product1))
-                .thenReturn(product2);
-        Mockito.when(modelMapper.map(product2, ProductDTO.class))
+                .thenReturn(product1);
+        Mockito.when(modelMapper.map(product1, ProductDTO.class))
                 .thenReturn(productDTO);
 
         ResponseEntity response = productController.add(category1.getId(), productDTO);

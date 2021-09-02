@@ -23,7 +23,9 @@ import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOU
 public class ProductController {
 
     private ProductService productService;
+
     private ModelMapper modelMapper;
+
     private CategoryService categoryService;
 
     @Autowired
