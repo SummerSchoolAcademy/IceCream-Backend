@@ -1,14 +1,11 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.dto.CategoryDTO;
-import com.summerschool.icecreamshop.model.Category;
-import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.service.RateService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

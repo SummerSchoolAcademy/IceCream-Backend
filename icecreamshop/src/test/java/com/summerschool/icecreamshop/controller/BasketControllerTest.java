@@ -1,12 +1,10 @@
 package com.summerschool.icecreamshop.controller;
 
-import com.summerschool.icecreamshop.dto.ProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.service.BasketService;
-import com.summerschool.icecreamshop.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
 import com.summerschool.icecreamshop.dto.BasketDTO;
@@ -43,6 +41,9 @@ public class BasketControllerTest {
     @Mock
     BasketService basketService;
 
+    @Mock
+    BasketProduct basketProductMock;
+
     @InjectMocks
     BasketController basketController;
 
@@ -50,29 +51,37 @@ public class BasketControllerTest {
 
     BasketDTO basketDTO = new BasketDTO();
 
+    Basket basket1 = new Basket();
+
+    Product product1 = new Product();
+
+    BasketProduct basketProduct=new BasketProduct();
+
     Basket basket = new Basket();
 
     @Before
     public void setup(){
         initMocks(this);
-        Product product1 = new Product();
+
+        basketProductList = new ArrayList<BasketProduct>();
+
+        product1.setId(1L);
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setPrice(2.5);
         product1.setType(Type.DONUTS);
 
-        Basket basket= new Basket();
-
-        BasketProduct basketProduct=new BasketProduct();
-
         basketProduct.setProduct(product1);
         basketProduct.setBasket(basket);
         basketProduct.setPrice(product1.getPrice());
         basketProduct.setQuantity(1);
+        basketProduct.setId(1L);
 
         basketProductList.add(basketProduct);
 
-        basket.setBasketProduct(basketProductList);
+        basket1.setBasketProduct(basketProductList);
+        basket1.setId(2L);
+        basket1.setSessionId("String");
 
 
 
@@ -85,9 +94,12 @@ public class BasketControllerTest {
     }
 
     @Test
-    public void testGetAllProducts() {
+    public void testGetAllProducts(){
         Mockito.when(basketService.getProductsFromBasket())
                 .thenReturn(basketProductList);
+
+        Mockito.when(modelMapper.map(basket1, BasketProduct.class))
+                .thenReturn(basketProductMock);
 
         ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts();
 

@@ -1,5 +1,7 @@
 package com.summerschool.icecreamshop.dto;
 
+import com.summerschool.icecreamshop.model.BasketProduct;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -9,13 +11,13 @@ public class BasketDTO {
     @NotNull
     private String sessionId;
 
-    private List<BasketProductDTO> basketProduct;
+    private List<BasketProduct> basketProduct;
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setBasketProduct(List<BasketProductDTO> basketProduct) {
+    public void setBasketProduct(List<BasketProduct> basketProduct) {
         this.basketProduct = basketProduct;
     }
 
@@ -27,7 +29,7 @@ public class BasketDTO {
         return id;
     }
 
-    public List<BasketProductDTO> getBasketProduct() {
+    public List<BasketProduct> getBasketProduct() {
         return basketProduct;
     }
 
