@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,13 +38,28 @@ public class ProductService {
     public Product patch(Product newProduct, Product oldProduct) {
         Product patched = null;
         try {
-            patched = Product.mergeObjects(newProduct,oldProduct);
+            patched = mergeObjects(newProduct,oldProduct);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
         return productRepository.save(patched);
+    }
+
+    public static <T> T mergeObjects(T first, T second) throws IllegalAccessException, InstantiationException {
+        Class<?> clazz = first.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        Object returnValue = clazz.newInstance();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object value1 = field.get(first);
+            Object value2 = field.get(second);
+            Object value = (value1 != null) ? value1 : value2;
+            field.set(returnValue, value);
+        }
+        System.out.println(returnValue.toString());
+        return (T) returnValue;
     }
 
 }
