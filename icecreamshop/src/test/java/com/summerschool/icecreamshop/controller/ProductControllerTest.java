@@ -112,7 +112,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testPatchProduct() {
+    public void testPatchProduct() throws IllegalAccessException {
 
         Mockito.when(productService.get(product1.getId())).thenReturn(Optional.of(product1));
         Mockito.when((modelMapper.map(productDTO,Product.class))).thenReturn(productPatch);
