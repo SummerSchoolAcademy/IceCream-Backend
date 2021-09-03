@@ -6,8 +6,6 @@ import javax.validation.constraints.NotNull;
 public class BasketProductDTO {
     Long id;
 
-    private ProductDTO product;
-
     @NotNull
     private Integer quantity;
 
@@ -27,7 +25,7 @@ public class BasketProductDTO {
         this.price = price;
     }
 
-    public void setProduct(ProductDTO product){this.product=product;}
+    //public void setProduct(ProductDTO product){this.product=product;}
 
 
     public Long getId() {
@@ -42,5 +40,5 @@ public class BasketProductDTO {
         return price;
     }
 
-    public ProductDTO getProduct(){return product;}
+    //public ProductDTO getProduct(){return product;}
 }
