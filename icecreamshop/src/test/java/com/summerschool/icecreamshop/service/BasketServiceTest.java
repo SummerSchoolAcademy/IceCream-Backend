@@ -34,7 +34,7 @@ public class BasketServiceTest {
     }
 
     @Test
-    public void categoryAddTest() {
+    public void basketAddTest() {
         Mockito.when(basketRepository.save(basket)).thenReturn(basket);
         assertEquals(basket.getSessionId(), basketService.add(basket).getSessionId());
     }
