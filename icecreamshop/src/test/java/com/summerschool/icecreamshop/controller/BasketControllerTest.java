@@ -48,7 +48,7 @@ public class BasketControllerTest {
     }
 
     @Test
-    public void testCreateCategory() {
+    public void testCreateBasket() {
 
         Mockito.when(modelMapper.map(basketDTO, Basket.class)).thenReturn(basket);
         Mockito.when(basketService.add(basket)).thenReturn(basket);
