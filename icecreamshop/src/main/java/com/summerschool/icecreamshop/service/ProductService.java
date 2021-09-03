@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -19,6 +20,10 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+    public Optional<Product> get(Long id) {
+        return productRepository.findById(id);
+    }
+
     public List<Product> getAll() { return productRepository.findAll();}
 
     public List<Product> getProductsOfThePage(Integer page, Integer size){
@@ -27,6 +32,18 @@ public class ProductService {
     }
     public Product add(Product product) {
         return productRepository.save(product);
+    }
+
+    public Product patch(Product newProduct, Product oldProduct) {
+        Product patched = null;
+        try {
+            patched = Product.mergeObjects(newProduct,oldProduct);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return productRepository.save(patched);
     }
 
 }
