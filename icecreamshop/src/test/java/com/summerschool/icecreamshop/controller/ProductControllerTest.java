@@ -40,6 +40,8 @@ public class ProductControllerTest {
 
     Product product1 = new Product();
 
+    Product productPatch = new Product();
+
     Category category1 = new Category();
 
     ProductDTO productDTO = new ProductDTO();
@@ -104,5 +106,16 @@ public class ProductControllerTest {
 
         ResponseEntity response = productController.add(category1.getId(), productDTO);
         assertEquals(productDTO, response.getBody());
+    }
+
+    @Test
+    public void testPatchProduct() {
+
+        Mockito.when((modelMapper.map(productDTO,Product.class))).thenReturn(productPatch);
+        Mockito.when(productService.get(product1.getId())).thenReturn(Optional.of(product1));
+        Mockito.when(productService.patch(product1,productPatch)).thenReturn(product1);
+
+        ResponseEntity<ProductDTO> p = productController.update(product1.getId(),productDTO);
+        assertEquals(p.getStatusCode(), HttpStatus.OK);
     }
 }
