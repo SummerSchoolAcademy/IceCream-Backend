@@ -1,16 +1,12 @@
 package com.summerschool.icecreamshop.dto;
 
-import com.summerschool.icecreamshop.model.Product;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "basket_products")
 public class BasketProductDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
+    private ProductDTO product;
 
     @NotNull
     private Integer quantity;
@@ -31,6 +27,8 @@ public class BasketProductDTO {
         this.price = price;
     }
 
+    public void setProduct(ProductDTO product){this.product=product;}
+
 
     public Long getId() {
         return id;
@@ -43,4 +41,6 @@ public class BasketProductDTO {
     public Double getPrice() {
         return price;
     }
+
+    public ProductDTO getProduct(){return product;}
 }

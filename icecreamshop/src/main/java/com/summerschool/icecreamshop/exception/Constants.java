@@ -6,4 +6,6 @@ public class Constants {
 
     public static final String CATEGORY_NOT_FOUND = "Category not found exception";
 
+    public static final String BASKET_NOT_FOUND = "Basket not found";
+
 }

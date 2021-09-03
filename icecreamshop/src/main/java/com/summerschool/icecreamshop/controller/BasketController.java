@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
-import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
+import static com.summerschool.icecreamshop.exception.Constants.BASKET_NOT_FOUND;
 
 @RestController
 @RequestMapping("/baskets")
@@ -25,7 +25,7 @@ public class BasketController {
     @PutMapping("/{basketId}")
     public ResponseEntity<BasketDTO> update (@PathVariable("basketId") Long basketId, @RequestBody @Valid BasketDTO basketDTO){
 
-        Basket foundBasket = basketService.get(basketId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, RATE_NOT_FOUND));
+        Basket foundBasket = basketService.get(basketId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, BASKET_NOT_FOUND));
 
         basketDTO.setId(foundBasket.getId());
         Basket updatedBasket = basketService.update(modelMapper.map(basketDTO, Basket.class),foundBasket.getBasketProduct());
