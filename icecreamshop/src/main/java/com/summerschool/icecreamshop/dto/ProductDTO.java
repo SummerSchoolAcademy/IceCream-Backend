@@ -40,6 +40,8 @@ public class ProductDTO {
 
     private List<RateDTO> rates;
 
+    private List<BasketProductDTO> basketProduct;
+
     // Setters
     public void setId(Long id) {
         this.id = id;
@@ -89,6 +91,10 @@ public class ProductDTO {
         this.rates = rates;
     }
 
+    public void setBasketProduct(List<BasketProductDTO> basketProduct) {
+        this.basketProduct = basketProduct;
+    }
+
     // Getters
     public Long getId() {
         return id;
@@ -136,5 +142,9 @@ public class ProductDTO {
 
     public List<RateDTO> getRates() {
         return rates;
+    }
+
+    public List<BasketProductDTO> getBasketProduct() {
+        return basketProduct;
     }
 }

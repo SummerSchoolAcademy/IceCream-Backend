@@ -18,7 +18,14 @@ public class CategoryService {
     }
 
     public Category add(Category category) {
-        return categoryRepository.save(category);
+        try
+        {
+            return categoryRepository.save(category);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public Optional<Category> get(Long id) {

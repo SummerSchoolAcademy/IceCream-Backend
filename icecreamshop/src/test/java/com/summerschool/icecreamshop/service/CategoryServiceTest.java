@@ -48,4 +48,9 @@ public class CategoryServiceTest {
         assertEquals(category.getDescription(), actualCategory.getDescription());
     }
 
+    @Test
+    public void testGetCategoryByInvalidId() {
+        assertTrue(!categoryService.get(-1L).isPresent());
+    }
+
 }
