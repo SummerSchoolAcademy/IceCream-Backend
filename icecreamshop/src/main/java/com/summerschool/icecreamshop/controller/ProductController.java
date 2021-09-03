@@ -13,10 +13,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
+import static com.summerschool.icecreamshop.exception.Constants.*;
 
 @RestController
 @RequestMapping("/products")
@@ -64,5 +65,33 @@ public class ProductController {
                 .stream()
                 .map(product -> modelMapper.map(product, ProductDTO.class))
                 .collect(Collectors.toList()));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ProductDTO> update(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO) throws IllegalAccessException {
+        Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), PRODUCT_NOT_FOUND));
+        productDTO.setId(id);
+        validatePatchRequestBody(productDTO);
+        Product updateProduct = productService.patch(modelMapper.map(productDTO,Product.class), foundProduct);
+        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(updateProduct, ProductDTO.class));
+    }
+
+    void validatePatchRequestBody(ProductDTO productDTO) throws IllegalAccessException {
+        if(productDTO == null) {
+            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);
+        }
+        Field[] fields = productDTO.getClass().getDeclaredFields();
+        boolean flag = false;
+        for (Field field : fields)
+        {
+            field.setAccessible(true);
+            Object value = field.get(productDTO);
+            if (value != null) {
+                flag = true;
+            }
+        }
+        if(!flag) {
+            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);
+        }
     }
 }

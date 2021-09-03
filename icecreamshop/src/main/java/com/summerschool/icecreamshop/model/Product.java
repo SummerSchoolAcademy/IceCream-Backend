@@ -3,6 +3,7 @@ package com.summerschool.icecreamshop.model;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import java.lang.reflect.Field;
 import java.util.*;
 
 @Entity
@@ -171,4 +172,7 @@ public class Product {
     public List<BasketProduct> getBasketProduct() {
         return basketProduct;
     }
+
+
+
 }
