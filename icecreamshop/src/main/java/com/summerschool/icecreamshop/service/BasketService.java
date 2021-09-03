@@ -26,7 +26,7 @@ public class BasketService {
     }
 
     public List<BasketProduct> getProductsFromBasket(Long basketId){
-        return basketProductRepository.queryGetProductsInBasketById(basketId);
+        return basketProductRepository.findByBasketId(basketId);
     }
   
     public Optional<Basket> get (Long id){

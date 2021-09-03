@@ -52,7 +52,7 @@ public class BasketServiceTest {
     BasketProduct basketProduct=new BasketProduct();
 
     Basket basketAvra= new Basket();
-    
+
     Basket basket = new Basket();
 
     Basket basket1 = new Basket();
@@ -87,7 +87,7 @@ public class BasketServiceTest {
         basket.setId(5L);
         basket.setSessionId("ceva");
         basket.setBasketProduct(new ArrayList<BasketProduct>());
-        
+
         basket1.setId(11L);
         basket1.setSessionId("test1");
 
@@ -101,7 +101,7 @@ public class BasketServiceTest {
 
     @Test
     public void testGetAllProducts(){
-        Mockito.when(basketProductRepository.findAll())
+        Mockito.when(basketProductRepository.findByBasketId(basket.getId()))
                 .thenReturn(basketProductListAvra);
 
         List<BasketProduct> productListReturned = basketService.getProductsFromBasket(basket.getId());
@@ -116,7 +116,7 @@ public class BasketServiceTest {
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket2);
         assertEquals(basketRepository.save(basket1).getBasketProduct(), basket2.getBasketProduct());
     }
-    
+
     @Test
     public void basketAddTest() {
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket1);

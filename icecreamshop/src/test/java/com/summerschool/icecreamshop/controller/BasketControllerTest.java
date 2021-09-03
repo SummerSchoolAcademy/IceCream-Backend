@@ -101,7 +101,7 @@ public class BasketControllerTest {
         Mockito.when(modelMapper.map(basket1, BasketProduct.class))
                 .thenReturn(basketProductMock);
 
-        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts(2L);
+        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts(1L);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }

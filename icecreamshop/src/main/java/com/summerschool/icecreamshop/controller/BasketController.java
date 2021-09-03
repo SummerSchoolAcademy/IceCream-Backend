@@ -66,8 +66,11 @@ public class BasketController {
 
     @GetMapping("")
     public ResponseEntity<List<BasketProduct>> getBasketProducts(
-            @RequestParam(value="basket", required = false) Long basketId
+            @RequestParam(value="basketId", required = false) Long basketId
     ){
+        if(basketId==null) {
+            basketId=1L;
+        }
         return ResponseEntity.ok(basketService.getProductsFromBasket(basketId)
                 .stream()
                 .map(basket -> modelMapper.map(basket, BasketProduct.class))
