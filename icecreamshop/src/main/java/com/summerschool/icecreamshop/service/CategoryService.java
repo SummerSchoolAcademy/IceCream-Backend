@@ -30,12 +30,6 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public Category patch(Category category)
-    {
-
-        return categoryRepository.save(category);
-
-    }
 
 
 }

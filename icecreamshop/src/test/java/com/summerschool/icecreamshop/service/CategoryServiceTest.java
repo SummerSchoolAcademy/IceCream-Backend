@@ -47,5 +47,11 @@ public class CategoryServiceTest {
         assertEquals(category.getName(), actualCategory.getName());
         assertEquals(category.getDescription(), actualCategory.getDescription());
     }
+    @Test
+    public void categoryPatchTest() {
+        Mockito.when(categoryRepository.save(category)).thenReturn(category);
+        assertEquals(category.getName(), categoryService.add(category).getName());
+    }
+
 
 }

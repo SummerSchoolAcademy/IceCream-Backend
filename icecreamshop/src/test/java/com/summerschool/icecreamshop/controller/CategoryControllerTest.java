@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -79,5 +80,14 @@ public class CategoryControllerTest {
         });
 
         assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
+    }
+    @Test
+    public void testPatchCategory(){
+        Mockito.when(modelMapper.map(categoryDTO, Category.class)).thenReturn(category);
+        Mockito.when(cs.add(category)).thenReturn(category);
+
+        ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
+
+        assertEquals(HttpStatus.CREATED, c.getStatusCode());
     }
 }
