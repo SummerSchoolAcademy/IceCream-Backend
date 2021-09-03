@@ -55,7 +55,7 @@ public class CategoryController {
 
         categoryDTO.setId(id);
 
-        Category updateCategory = categoryService.patch(modelMapper.map(categoryDTO,Category.class));
+        Category updateCategory = categoryService.add(modelMapper.map(categoryDTO,Category.class));
         return ResponseEntity.ok(modelMapper.map(updateCategory, CategoryDTO.class));
     }
 
