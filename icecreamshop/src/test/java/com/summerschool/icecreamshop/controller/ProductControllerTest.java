@@ -54,7 +54,7 @@ public class ProductControllerTest {
         category1.setName("Gelato");
         category1.setDescription("Cool yourself on a hot summer day with our gelato!");
 
-
+        product1.setId(1L);
         product1.setTitle("Chocolate Mix Donuts");
         product1.setQuantity(100);
         product1.setPrice(2.5);
@@ -68,6 +68,9 @@ public class ProductControllerTest {
 
         productsList = new ArrayList<Product>();
         productsList.add(product1);
+
+        productPatch.setId(1L);
+        productPatch.setTitle("test-title");
 
 
     }
@@ -111,8 +114,9 @@ public class ProductControllerTest {
     @Test
     public void testPatchProduct() {
 
-        Mockito.when((modelMapper.map(productDTO,Product.class))).thenReturn(productPatch);
         Mockito.when(productService.get(product1.getId())).thenReturn(Optional.of(product1));
+        Mockito.when((modelMapper.map(productDTO,Product.class))).thenReturn(productPatch);
+        product1.setTitle(productPatch.getTitle());
         Mockito.when(productService.patch(product1,productPatch)).thenReturn(product1);
 
         ResponseEntity<ProductDTO> p = productController.update(product1.getId(),productDTO);

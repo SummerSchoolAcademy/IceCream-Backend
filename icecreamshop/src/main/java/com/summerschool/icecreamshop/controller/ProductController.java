@@ -72,10 +72,7 @@ public class ProductController {
         Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), PRODUCT_NOT_FOUND));
         productDTO.setId(id);
         Product updateProduct = productService.patch(modelMapper.map(productDTO,Product.class), foundProduct);
-        if(updateProduct==null){
-            return (ResponseEntity<ProductDTO>) ResponseEntity.badRequest();
-        }
-        return ResponseEntity.ok(modelMapper.map(updateProduct, ProductDTO.class));
+        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(updateProduct, ProductDTO.class));
     }
 
 
