@@ -44,5 +44,15 @@ public class CategoryController {
 
         return ResponseEntity.ok(modelMapper.map(category, CategoryDTO.class));
     }
+    @PatchMapping(path = "/{categoryId}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable("categoryId") Long id, @RequestBody @Valid CategoryDTO categoryDTO){
+        categoryService.get(id)
+                .orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), CATEGORY_NOT_FOUND));
+
+        categoryDTO.setId(id);
+
+        Category updateCategory = categoryService.patch(modelMapper.map(categoryDTO,Category.class));
+        return ResponseEntity.ok(modelMapper.map(updateCategory, CategoryDTO.class));
+    }
 
 }

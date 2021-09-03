@@ -20,7 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static com.summerschool.icecreamshop.exception.Constants.*;
+import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 import static org.junit.Assert.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 

@@ -1,11 +1,16 @@
 package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Category;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.CategoryRepository;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.security.Key;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -25,17 +30,10 @@ public class CategoryService {
         return categoryRepository.findById(id);
     }
 
-    public Category patch(Category newCategory, Category oldCategory)
+    public Category patch(Category category)
     {
-        Category patched = oldCategory;
 
-        patched.setId(newCategory.getId()==null?oldCategory.getId():newCategory.getId());
-        patched.setName(newCategory.getName()==null?oldCategory.getName():newCategory.getName());
-        patched.setDescription(newCategory.getDescription()==null?oldCategory.getDescription():newCategory.getDescription());
-        patched.setProducts(newCategory.getProducts()==null?oldCategory.getProducts():newCategory.getProducts());
-
-        return categoryRepository.save(patched);
-
+        return categoryRepository.save(category);
 
     }
 
