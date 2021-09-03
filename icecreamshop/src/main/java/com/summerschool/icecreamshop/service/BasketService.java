@@ -25,8 +25,8 @@ public class BasketService {
         this.basketProductRepository = basketProductRepository;
     }
 
-    public List<BasketProduct> getProductsFromBasket(){
-        return basketProductRepository.findAll();
+    public List<BasketProduct> getProductsFromBasket(Long basketId){
+        return basketProductRepository.queryGetProductsInBasketById(basketId);
     }
   
     public Optional<Basket> get (Long id){

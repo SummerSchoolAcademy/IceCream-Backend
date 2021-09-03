@@ -95,13 +95,13 @@ public class BasketControllerTest {
 
     @Test
     public void testGetAllProducts(){
-        Mockito.when(basketService.getProductsFromBasket())
+        Mockito.when(basketService.getProductsFromBasket(2L))
                 .thenReturn(basketProductList);
 
         Mockito.when(modelMapper.map(basket1, BasketProduct.class))
                 .thenReturn(basketProductMock);
 
-        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts();
+        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts(2L);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }

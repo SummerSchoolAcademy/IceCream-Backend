@@ -18,6 +18,7 @@ import static com.summerschool.icecreamshop.exception.Constants.BASKET_NOT_FOUND
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import javax.validation.Valid;
@@ -65,8 +66,9 @@ public class BasketController {
 
     @GetMapping("")
     public ResponseEntity<List<BasketProduct>> getBasketProducts(
+            @RequestParam(value="basket", required = false) Long basketId
     ){
-        return ResponseEntity.ok(basketService.getProductsFromBasket()
+        return ResponseEntity.ok(basketService.getProductsFromBasket(basketId)
                 .stream()
                 .map(basket -> modelMapper.map(basket, BasketProduct.class))
                 .collect(Collectors.toList()));

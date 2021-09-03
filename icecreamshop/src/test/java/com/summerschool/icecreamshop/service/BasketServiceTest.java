@@ -104,7 +104,7 @@ public class BasketServiceTest {
         Mockito.when(basketProductRepository.findAll())
                 .thenReturn(basketProductListAvra);
 
-        List<BasketProduct> productListReturned = basketService.getProductsFromBasket();
+        List<BasketProduct> productListReturned = basketService.getProductsFromBasket(basket.getId());
 
         assertEquals(basketProductListAvra, productListReturned);
     }
