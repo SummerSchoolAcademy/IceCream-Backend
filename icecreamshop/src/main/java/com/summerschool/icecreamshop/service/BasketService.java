@@ -5,6 +5,8 @@ import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,10 +20,31 @@ public class BasketService {
         return basketRepository.findById(id);
     }
 
-    public Basket update (Basket basket , List<BasketProduct> basketProductList){
+    public static <T> T mergeObjects(T first, T second) throws IllegalAccessException, InstantiationException {
+        Class<?> clazz = first.getClass();
+        Field[] fields = clazz.getDeclaredFields();
+        Object returnValue = clazz.newInstance();
+        for (Field field : fields) {
+            field.setAccessible(true);
+            Object value1 = field.get(first);
+            Object value2 = field.get(second);
+            Object value = (value1 != null) ? value1 : value2;
+            field.set(returnValue, value);
+        }
+        System.out.println(returnValue.toString());
+        return (T) returnValue;
+    }
 
-        basket.setBasketProduct(basketProductList);
-        return basketRepository.save(basket);
+    public Basket patch(Basket newBasket, Basket oldBasket) {
+        Basket patched = null;
+        try {
+            patched = mergeObjects(newBasket,oldBasket);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+        return basketRepository.save(patched);
     }
 
 }

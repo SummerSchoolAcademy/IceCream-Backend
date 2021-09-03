@@ -50,7 +50,7 @@ public class BasketControllerTest {
     public void testUpdateBasket(){
         Mockito.when(modelMapper.map(basketDTO, Basket.class)).thenReturn(basket);
         Mockito.when(basketService.get(ArgumentMatchers.any())).thenReturn(Optional.of(basket));
-        Mockito.when(basketService.update(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(basket);
+        Mockito.when(basketService.patch(ArgumentMatchers.any(), ArgumentMatchers.any())).thenReturn(basket);
         ResponseEntity<BasketDTO> r = basketController.update(basket.getId(),basketDTO);
         assertEquals(HttpStatus.OK, r.getStatusCode());
         assertNotNull(r);

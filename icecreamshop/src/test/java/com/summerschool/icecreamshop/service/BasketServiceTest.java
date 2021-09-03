@@ -36,22 +36,20 @@ public class BasketServiceTest {
 
     @Test
     public void testUpdateBasket() {
+        Basket basket1 = new Basket();
+        basket1.setId(11L);
+        basket1.setSessionId("test1");
 
-        Basket basket2=new Basket();
-        basket2.setId(2L);
-        basket2.setSessionId("session2");
-        List<BasketProduct> basketProductList2 = new ArrayList<BasketProduct>();
-        basketProductList2.add(new BasketProduct());
-        basket2.setBasketProduct(basketProductList2);
+        Basket basket2 = new Basket();
+        basket2.setId(12L);
+        basket2.setSessionId("test2");
+        List<BasketProduct> basketProductList = new ArrayList<BasketProduct>();
+        basketProductList.add(new BasketProduct());
+        basket2.setBasketProduct(basketProductList);
 
-        Basket basket = new Basket();
-        basket.setId(basket2.getId());
-        basket.setSessionId(basket2.getSessionId());
-
-        when(basketRepository.save(basket)).thenReturn(basket);
-        Basket responseBasket = basketService.update(basket,basketProductList2);
+        when(basketRepository.save(basket1)).thenReturn(basket1);
+        Basket responseBasket = basketService.patch(basket2,basket1);
         assertNotNull(responseBasket);
-        assertEquals(basketProductList2,responseBasket.getBasketProduct());
-
+        assertEquals(basket1.getBasketProduct(),basketProductList);
     }
 }
