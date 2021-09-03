@@ -17,8 +17,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
-import static com.summerschool.icecreamshop.exception.Constants.PRODUCT_NOT_FOUND;
+import static com.summerschool.icecreamshop.exception.Constants.*;
 
 @RestController
 @RequestMapping("/products")
@@ -79,7 +78,7 @@ public class ProductController {
 
     void validatePatchRequestBody(ProductDTO productDTO) throws IllegalAccessException {
         if(productDTO == null) {
-            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), "bad request");
+            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);
         }
         Field[] fields = productDTO.getClass().getDeclaredFields();
         boolean flag = false;
@@ -92,7 +91,7 @@ public class ProductController {
             }
         }
         if(!flag) {
-            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), "bad request");
+            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);
         }
     }
 }
