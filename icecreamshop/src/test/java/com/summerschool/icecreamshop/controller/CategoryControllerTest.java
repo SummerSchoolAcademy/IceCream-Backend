@@ -60,6 +60,16 @@ public class CategoryControllerTest {
     }
 
     @Test
+    public void testCreateCategory_failedToCreate(){
+
+        Mockito.when(modelMapper.map(categoryDTO, Category.class)).thenReturn(category);
+        Mockito.when(cs.add(category)).thenReturn(null);
+        ResponseEntity<CategoryDTO> responseEntity = categoryController.add(categoryDTO);
+
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+    }
+
+    @Test
     public void testGetCategoryByValidId() {
         Mockito.when(modelMapper.map(category, CategoryDTO.class)).thenReturn(categoryDTO);
         Mockito.when(cs.get(category.getId())).thenReturn(Optional.of(category));
