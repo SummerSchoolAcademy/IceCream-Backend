@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
+import static com.summerschool.icecreamshop.exception.Constants.PRODUCT_NOT_FOUND;
 
 @RestController
 @RequestMapping("/products")
@@ -67,10 +68,13 @@ public class ProductController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<ProductDTO> update(@PathVariable("id") Long id, @RequestBody @Valid ProductDTO productDTO){
-        Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), "PRODUCT NOT FOUND"));
+    public ResponseEntity<ProductDTO> update(@PathVariable("id") Long id, @RequestBody ProductDTO productDTO){
+        Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), PRODUCT_NOT_FOUND));
         productDTO.setId(id);
         Product updateProduct = productService.patch(modelMapper.map(productDTO,Product.class), foundProduct);
+        if(updateProduct==null){
+            return (ResponseEntity<ProductDTO>) ResponseEntity.badRequest();
+        }
         return ResponseEntity.ok(modelMapper.map(updateProduct, ProductDTO.class));
     }
 
