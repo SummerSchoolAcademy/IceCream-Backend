@@ -21,7 +21,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class ProductControllerTest {
+public class ProductEndpointControllerTest {
     @Mock
     ModelMapper modelMapper;
 
@@ -92,5 +92,14 @@ public class ProductControllerTest {
         catch(Exception ex){
             assertEquals(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
         }
+    }
+
+    @Test
+    public void givenProductId_returnProduct(){
+        ProductDTO testProduct = this.productDTO;
+        Long id = testProduct.getId();
+        ResponseEntity<ProductDTO> response = productController.get(id);
+        ProductDTO result = response.getBody();
+
     }
 }

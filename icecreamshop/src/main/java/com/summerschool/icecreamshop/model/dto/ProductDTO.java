@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.model.dto;
 
 import com.summerschool.icecreamshop.model.Type;
 
+import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class ProductDTO {
     @NotNull String longDescription;
 
     @NotNull
+    @ElementCollection
     private List<String> ingredients;
 
 
@@ -24,6 +26,7 @@ public class ProductDTO {
     private int quantity;
 
     @NotNull
+    @ElementCollection
     private List<String> alergens;
 
     @NotNull
@@ -33,6 +36,7 @@ public class ProductDTO {
     private String currency;
 
     @NotNull
+    @ElementCollection
     private List<String> photo_urls;
 
     @NotNull
@@ -41,7 +45,7 @@ public class ProductDTO {
     public ProductDTO(){}
 
     public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
-                      int quantity, List <String> alergens, double price, String curreny, List<String> photoUrls, Type type){
+                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrls, Type type){
         this.id = id;
         this.title = title;
         this.shortDescription = shorDesc;
@@ -52,7 +56,7 @@ public class ProductDTO {
         this.type = type;
         this.ingredients = ingredients;
         this.quantity = quantity;
-        this.currency = curreny;
+        this.currency = currency;
     }
 
     public List<String> getIngredients() {
