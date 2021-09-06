@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.CategoryDTO;
 import com.summerschool.icecreamshop.dto.ProductDTO;
 import com.summerschool.icecreamshop.model.Category;
 import com.summerschool.icecreamshop.model.Product;
@@ -159,10 +160,16 @@ public class ProductControllerTest {
 
     @Test
     public void testGivenProductId_returnProduct(){
-        ProductDTO testProduct = this.productDTO;
-        Long id = testProduct.getId();
-        ResponseEntity<ProductDTO> response = productController.get(id);
-        ProductDTO result = response.getBody();
+        Mockito.when(modelMapper.map(product, ProductDTO.class)).thenReturn(productDTOTest);
+        Mockito.when(productService.get(product.getId())).thenReturn(Optional.of(product));
+
+        ResponseEntity<ProductDTO> p = productController.get(product.getId());
+        assertEquals(HttpStatus.OK, p.getStatusCode());
+
+        ProductDTO realProduct = p.getBody();
+        assertEquals(product.getId(), realProduct.getId());
+        assertEquals(product.getLongDescription(), realProduct.getLongDescription());
+        assertEquals(product.getShortDescription(), realProduct.getShortDescription());
 
     }
 
