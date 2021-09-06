@@ -1,0 +1,243 @@
+Index: icecreamshop/src/main/java/com/summerschool/icecreamshop/controller/ProductController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.summerschool.icecreamshop.controller;\r\n\r\nimport com.summerschool.icecreamshop.dto.ProductDTO;\r\nimport com.summerschool.icecreamshop.model.Category;\r\nimport com.summerschool.icecreamshop.model.Product;\r\nimport com.summerschool.icecreamshop.service.CategoryService;\r\nimport com.summerschool.icecreamshop.service.ProductService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.http.HttpStatus;\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.*;\r\nimport org.modelmapper.ModelMapper;\r\nimport org.springframework.web.server.ResponseStatusException;\r\n\r\nimport javax.validation.Valid;\r\nimport java.lang.reflect.Field;\r\nimport java.util.List;\r\nimport java.util.stream.Collectors;\r\n\r\nimport static com.summerschool.icecreamshop.exception.Constants.*;\r\n\r\n@RestController\r\n@RequestMapping(\"/products\")\r\npublic class ProductController {\r\n\r\n    private ProductService productService;\r\n\r\n    private ModelMapper modelMapper;\r\n\r\n    private CategoryService categoryService;\r\n\r\n    @Autowired\r\n    public ProductController(ProductService productService, ModelMapper modelMapper, CategoryService categoryService){\r\n        this.productService = productService;\r\n        this.modelMapper = modelMapper;\r\n        this.categoryService = categoryService;\r\n    }\r\n\r\n    @PostMapping(\"/{categoryId}\")\r\n    public ResponseEntity<ProductDTO> add(@PathVariable(\"categoryId\") Long categoryId, @Valid @RequestBody ProductDTO productDTO) {\r\n        Product product = modelMapper.map(productDTO, Product.class);\r\n        Category productCategory = categoryService.get(categoryId).orElseThrow(()->new ResponseStatusException(HttpStatus.NOT_FOUND, CATEGORY_NOT_FOUND));\r\n        product.setCategory(productCategory);\r\n        Product savedProduct = productService.add(product);\r\n        return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));\r\n    }\r\n\r\n    @GetMapping(\"\")\r\n    public ResponseEntity<List<ProductDTO>> getProducts(\r\n            @RequestParam(value=\"page\", required = false) Integer page,\r\n            @RequestParam(value=\"size\", required = false) Integer size\r\n    ){\r\n\r\n        if(page == null){\r\n            return ResponseEntity.ok(productService.getAll()\r\n                    .stream()\r\n                    .map(product -> modelMapper.map(product, ProductDTO.class))\r\n                    .collect(Collectors.toList()));\r\n        }\r\n        if(size == null){\r\n            size=10;\r\n        }\r\n\r\n        return ResponseEntity.ok(productService.getProductsOfThePage(page, size)\r\n                .stream()\r\n                .map(product -> modelMapper.map(product, ProductDTO.class))\r\n                .collect(Collectors.toList()));\r\n    }\r\n\r\n    @PatchMapping(\"/{id}\")\r\n    public ResponseEntity<ProductDTO> update(@PathVariable(\"id\") Long id, @RequestBody ProductDTO productDTO) throws IllegalAccessException {\r\n        Product foundProduct = productService.get(id).orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), PRODUCT_NOT_FOUND));\r\n        productDTO.setId(id);\r\n        validatePatchRequestBody(productDTO);\r\n        Product updateProduct = productService.patch(modelMapper.map(productDTO,Product.class), foundProduct);\r\n        return ResponseEntity.status(HttpStatus.OK).body(modelMapper.map(updateProduct, ProductDTO.class));\r\n    }\r\n\r\n    void validatePatchRequestBody(ProductDTO productDTO) throws IllegalAccessException {\r\n        if(productDTO == null) {\r\n            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);\r\n        }\r\n        Field[] fields = productDTO.getClass().getDeclaredFields();\r\n        boolean flag = false;\r\n        for (Field field : fields)\r\n        {\r\n            field.setAccessible(true);\r\n            Object value = field.get(productDTO);\r\n            if (value != null) {\r\n                flag = true;\r\n            }\r\n        }\r\n        if(!flag) {\r\n            throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/icecreamshop/src/main/java/com/summerschool/icecreamshop/controller/ProductController.java b/icecreamshop/src/main/java/com/summerschool/icecreamshop/controller/ProductController.java
+--- a/icecreamshop/src/main/java/com/summerschool/icecreamshop/controller/ProductController.java	(revision e099eb1b11299828af08d32925bec1d535ff206d)
++++ b/icecreamshop/src/main/java/com/summerschool/icecreamshop/controller/ProductController.java	(date 1630926031490)
+@@ -94,4 +94,10 @@
+             throw new ResponseStatusException((HttpStatus.BAD_REQUEST), BAD_REQUEST);
+         }
+     }
++
++    @GetMapping("/{id}")
++    public ResponseEntity<ProductDTO> get(@PathVariable("id") Long id){
++        Product product = productService.get(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
++        return ResponseEntity.ok(modelMapper.map(product, ProductDTO.class));
++    }
+ }
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+new file mode 100644
+--- /dev/null	(date 1630925793664)
++++ b/.idea/workspace.xml	(date 1630925793664)
+@@ -0,0 +1,210 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
++  <component name="ChangeListManager">
++    <list default="true" id="5fa3efb3-9cd5-4063-9d28-e3632d6cf24d" name="Default Changelist" comment="" />
++    <option name="SHOW_DIALOG" value="false" />
++    <option name="HIGHLIGHT_CONFLICTS" value="true" />
++    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
++    <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="master" />
++      </map>
++    </option>
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
++  </component>
++  <component name="GitSEFilterConfiguration">
++    <file-type-list>
++      <filtered-out-file-type name="LOCAL_BRANCH" />
++      <filtered-out-file-type name="REMOTE_BRANCH" />
++      <filtered-out-file-type name="TAG" />
++      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
++    </file-type-list>
++  </component>
++  <component name="HighlightingSettingsPerFile">
++    <setting file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-context/5.3.9/spring-context-5.3.9-sources.jar!/org/springframework/context/support/GenericApplicationContext.java" root0="FORCE_HIGHLIGHTING" />
++  </component>
++  <component name="ProjectId" id="1xAZqan4nxICmiKQaebxsCVHSnE" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
++  <component name="PropertiesComponent">
++    <property name="RequestMappingsPanelOrder0" value="0" />
++    <property name="RequestMappingsPanelOrder1" value="1" />
++    <property name="RequestMappingsPanelWidth0" value="75" />
++    <property name="RequestMappingsPanelWidth1" value="75" />
++    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
++    <property name="WebServerToolWindowFactoryState" value="false" />
++    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
++    <property name="aspect.path.notification.shown" value="true" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Spring-Essentials---Library-Project" />
++    <property name="nodejs_package_manager_path" value="npm" />
++    <property name="project.structure.last.edited" value="Modules" />
++    <property name="project.structure.proportion" value="0.0" />
++    <property name="project.structure.side.proportion" value="0.0" />
++    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.ignored.files" />
++  </component>
++  <component name="ReaderModeSettings">
++    <option name="enabled" value="false" />
++  </component>
++  <component name="RecentsManager">
++    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
++      <recent name="com.summerschool.icecreamshop" />
++    </key>
++  </component>
++  <component name="RunManager" selected="Spring Boot.IcecreamshopApplication">
++    <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="icecreamshop" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.summerschool.icecreamshop.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="com.summerschool.icecreamshop.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.summerschool.icecreamshop.controller.ProductControllerTest" />
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="ProductControllerTest.testPatchProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="icecreamshop" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.summerschool.icecreamshop.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="com.summerschool.icecreamshop.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.summerschool.icecreamshop.controller.ProductControllerTest" />
++      <option name="METHOD_NAME" value="testPatchProduct" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="ProductEndpointControllerTest.givenProductId_returnProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="icecreamshop" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.summerschool.icecreamshop.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="com.summerschool.icecreamshop.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.summerschool.icecreamshop.controller.ProductEndpointControllerTest" />
++      <option name="METHOD_NAME" value="givenProductId_returnProduct" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="ProductEndpointControllerTest.testGetProductAndModelMapper" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="icecreamshop" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.summerschool.icecreamshop.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="com.summerschool.icecreamshop.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.summerschool.icecreamshop.controller.ProductEndpointControllerTest" />
++      <option name="METHOD_NAME" value="testGetProductAndModelMapper" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="ProductEndpointControllerTest.testGetProductByIdOK" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++      <module name="icecreamshop" />
++      <extension name="coverage">
++        <pattern>
++          <option name="PATTERN" value="com.summerschool.icecreamshop.controller.*" />
++          <option name="ENABLED" value="true" />
++        </pattern>
++      </extension>
++      <option name="PACKAGE_NAME" value="com.summerschool.icecreamshop.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.summerschool.icecreamshop.controller.ProductEndpointControllerTest" />
++      <option name="METHOD_NAME" value="testGetProductByIdOK" />
++      <option name="TEST_OBJECT" value="method" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="IcecreamshopApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
++      <module name="icecreamshop" />
++      <option name="SPRING_BOOT_MAIN_CLASS" value="com.summerschool.icecreamshop.IcecreamshopApplication" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <recent_temporary>
++      <list>
++        <item itemvalue="JUnit.ProductControllerTest" />
++        <item itemvalue="JUnit.ProductEndpointControllerTest.givenProductId_returnProduct" />
++        <item itemvalue="JUnit.ProductEndpointControllerTest.testGetProductAndModelMapper" />
++        <item itemvalue="JUnit.ProductControllerTest.testPatchProduct" />
++        <item itemvalue="JUnit.ProductEndpointControllerTest.testGetProductByIdOK" />
++      </list>
++    </recent_temporary>
++  </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
++  <component name="SvnConfiguration">
++    <configuration>C:\Users\dalbe\AppData\Roaming\Subversion</configuration>
++  </component>
++  <component name="TaskManager">
++    <task active="true" id="Default" summary="Default task">
++      <changelist id="5fa3efb3-9cd5-4063-9d28-e3632d6cf24d" name="Default Changelist" comment="" />
++      <created>1629800045231</created>
++      <option name="number" value="Default" />
++      <option name="presentableId" value="Default" />
++      <updated>1629800045231</updated>
++      <workItem from="1629800046512" duration="593000" />
++      <workItem from="1629800660391" duration="5964000" />
++      <workItem from="1629813601633" duration="101000" />
++      <workItem from="1629813714766" duration="3822000" />
++      <workItem from="1629893724962" duration="1348000" />
++      <workItem from="1629895103390" duration="3341000" />
++      <workItem from="1629898490595" duration="138000" />
++      <workItem from="1629902328436" duration="1171000" />
++      <workItem from="1630314107954" duration="7219000" />
++      <workItem from="1630321672105" duration="8865000" />
++      <workItem from="1630670048676" duration="10000" />
++      <workItem from="1630915775129" duration="338000" />
++      <workItem from="1630916361012" duration="5370000" />
++      <workItem from="1630922538593" duration="2946000" />
++    </task>
++    <servers />
++  </component>
++  <component name="TypeScriptGeneratedFilesManager">
++    <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++    <option name="oldMeFiltersMigrated" value="true" />
++  </component>
++</project>
+\ No newline at end of file

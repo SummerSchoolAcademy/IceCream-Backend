@@ -43,6 +43,24 @@ public class ProductDTO {
 
     private List<BasketProductDTO> basketProduct;
 
+    //Constructors
+    public ProductDTO(){}
+
+    public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
+                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrls, Type type){
+        this.id = id;
+        this.title = title;
+        this.shortDescription = shorDesc;
+        this.longDescription = longDesc;
+        this.alergens = alergens;
+        this.price = price;
+        this.photoUrls = photoUrls;
+        this.type = type;
+        this.ingredients = ingredients;
+        this.quantity = quantity;
+        this.currency = currency;
+    }
+
     // Setters
     public void setId(Long id) {
         this.id = id;

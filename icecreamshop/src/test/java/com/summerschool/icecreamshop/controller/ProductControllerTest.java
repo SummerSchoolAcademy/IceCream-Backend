@@ -8,12 +8,14 @@ import com.summerschool.icecreamshop.service.CategoryService;
 import com.summerschool.icecreamshop.service.ProductService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@RunWith(SpringJUnit4ClassRunner.class)
 public class ProductControllerTest {
 
     @Mock
@@ -46,6 +49,8 @@ public class ProductControllerTest {
 
     ProductDTO productDTO = new ProductDTO();
 
+    Product product;
+    ProductDTO productDTOTest;
     @Before
     public void setup() {
         initMocks(this);
@@ -72,6 +77,24 @@ public class ProductControllerTest {
         productPatch.setId(1L);
         productPatch.setTitle("test-title");
 
+        List<String> alergens = new ArrayList<String>();
+        List<String> urls = new ArrayList<String>();
+        List<String> ingredients = new ArrayList<String>();
+        alergens.add("alergen1");
+        alergens.add("alergen2");
+
+        urls.add("url1");
+        urls.add("url2");
+
+        ingredients.add("ing1");
+        ingredients.add("ing2");
+
+        product = new Product(100L, "title",
+                "shortDesc", "longDesc", ingredients, 1, alergens,
+                10, "RON", urls, Type.GELATO);
+        productDTOTest = new ProductDTO(100L, "title",
+                "shortDesc", "longDesc", ingredients, 1, alergens,
+                10, "RON", urls, Type.GELATO);
 
     }
 
@@ -122,4 +145,50 @@ public class ProductControllerTest {
         ResponseEntity<ProductDTO> p = productController.update(product1.getId(),productDTO);
         assertEquals(p.getStatusCode(), HttpStatus.OK);
     }
+
+    @Test
+    public void testGetProductAndModelMapper() {
+        Long id = 105L;
+        Mockito.when(modelMapper.map(productDTO, Product.class)).thenReturn(product);
+        Mockito.when(productService.get(id)).thenReturn(java.util.Optional.ofNullable(product));
+
+        ResponseEntity<ProductDTO> response = productController.get(id);
+        System.out.println(response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testGivenProductId_returnProduct(){
+        ProductDTO testProduct = this.productDTO;
+        Long id = testProduct.getId();
+        ResponseEntity<ProductDTO> response = productController.get(id);
+        ProductDTO result = response.getBody();
+
+    }
+
+    @Test
+    public void testGetProductByIdNotFound () {
+        Long id = 1000L;
+        try {
+            ResponseEntity<ProductDTO> response = productController.get(id);
+            System.out.println(response.getStatusCode());
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+        } catch (Exception ex) {
+            assertEquals(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetProductByIdOK(){
+        Long id = 1L;
+        try {
+            ResponseEntity<ProductDTO> response = productController.get(id);
+            System.out.println(response.getStatusCode());
+            assertEquals(HttpStatus.OK, response.getStatusCode());
+        }
+        catch(Exception ex){
+            assertEquals(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
+        }
+    }
+
 }
