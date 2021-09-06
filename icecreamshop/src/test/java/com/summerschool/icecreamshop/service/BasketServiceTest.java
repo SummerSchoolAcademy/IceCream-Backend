@@ -53,10 +53,11 @@ public class BasketServiceTest {
         Mockito.when(basketService.patch(basket2, basket1)).thenReturn(basket1);
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket2);
         assertEquals(basketRepository.save(basket1).getBasketProduct(), basket2.getBasketProduct());
+    }
 
     @Test
     public void basketAddTest() {
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket1);
-        assertEquals(basket.getSessionId(), basketService.add(basket1).getSessionId());
+        assertEquals(basket1.getSessionId(), basketService.add(basket1).getSessionId());
     }
 }
