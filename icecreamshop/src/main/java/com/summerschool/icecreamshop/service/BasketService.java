@@ -1,8 +1,7 @@
 package com.summerschool.icecreamshop.service;
 
-import com.summerschool.icecreamshop.dto.BasketProductDTO;
-import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Basket;
+import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketRepository;
@@ -21,7 +20,7 @@ public class BasketService {
     private final BasketRepository basketRepository;
 
     @Autowired
-    public BasketService(BasketProductRepository basketProductRepository,BasketRepository basketRepository){
+    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository){
         this.basketRepository = basketRepository;
         this.basketProductRepository = basketProductRepository;
     }

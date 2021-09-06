@@ -1,6 +1,5 @@
 package com.summerschool.icecreamshop.service;
 
-import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
@@ -16,8 +15,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.modelmapper.ModelMapper;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;

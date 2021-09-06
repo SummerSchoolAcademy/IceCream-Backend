@@ -246,12 +246,12 @@ public class DataInitializer implements ApplicationRunner {
         rateRepository.saveAll(Arrays.asList(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10, rate11, rate12));
 
 
-        BasketProduct basketProduct11=new BasketProduct();
-        BasketProduct basketProduct21=new BasketProduct();
-        BasketProduct basketProduct31=new BasketProduct();
-        BasketProduct basketProduct41=new BasketProduct();
+        BasketProduct basketProduct11 = new BasketProduct();
+        BasketProduct basketProduct21 = new BasketProduct();
+        BasketProduct basketProduct31 = new BasketProduct();
+        BasketProduct basketProduct41 = new BasketProduct();
 
-        Basket basket= new Basket();
+        Basket basket = new Basket();
 
         List<BasketProduct> basketProductList;
         basketProductList = new ArrayList<BasketProduct>();

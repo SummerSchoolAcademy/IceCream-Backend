@@ -1,16 +1,11 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.BasketDTO;
 import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Type;
-import com.summerschool.icecreamshop.service.BasketService;
-import org.junit.Before;
-import org.junit.Test;
-import com.summerschool.icecreamshop.dto.BasketDTO;
-import com.summerschool.icecreamshop.model.Basket;
-import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.service.BasketService;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,9 +17,11 @@ import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Optional;
 import static org.junit.Assert.assertEquals;
@@ -127,7 +124,7 @@ public class BasketControllerTest {
 
         assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
     }
-    
+
     @Test
     public void testUpdateBasket(){
         Mockito.when(modelMapper.map(basketDTO, Basket.class)).thenReturn(basket);

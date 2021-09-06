@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import javax.validation.Valid;
-import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,7 +55,7 @@ public class BasketController {
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedBasket, BasketDTO.class));
 
     }
-  
+
     @PatchMapping("/{basketId}")
     public ResponseEntity<BasketDTO> update (@PathVariable("basketId") Long basketId, @RequestBody @Valid BasketDTO basketDTO){
 
@@ -67,10 +68,10 @@ public class BasketController {
 
     @GetMapping("")
     public ResponseEntity<List<BasketProductDTO>> getBasketProducts(
-            @RequestParam(value="basketId", required = false) Long basketId
+            @RequestParam(value = "basketId", required = false) Long basketId
     ){
-        if(basketId==null) {
-            basketId=1L;
+        if(basketId == null) {
+            basketId = 1L;
         }
         return ResponseEntity.ok(basketService.getProductsFromBasket(basketId)
                 .stream()
