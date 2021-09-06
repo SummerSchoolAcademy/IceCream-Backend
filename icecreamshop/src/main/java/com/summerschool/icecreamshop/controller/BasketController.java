@@ -1,6 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
 import com.summerschool.icecreamshop.dto.BasketDTO;
+import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.service.BasketService;
@@ -65,7 +66,7 @@ public class BasketController {
     }
 
     @GetMapping("")
-    public ResponseEntity<List<BasketProduct>> getBasketProducts(
+    public ResponseEntity<List<BasketProductDTO>> getBasketProducts(
             @RequestParam(value="basketId", required = false) Long basketId
     ){
         if(basketId==null) {
@@ -73,7 +74,7 @@ public class BasketController {
         }
         return ResponseEntity.ok(basketService.getProductsFromBasket(basketId)
                 .stream()
-                .map(basket -> modelMapper.map(basket, BasketProduct.class))
+                .map(basket_afis -> modelMapper.map(basket_afis, BasketProductDTO.class))
                 .collect(Collectors.toList()));
     }
 }

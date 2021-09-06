@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
@@ -93,18 +94,18 @@ public class BasketControllerTest {
         basketDTO.setSessionId("ceva");
     }
 
-//    @Test
-//    public void testGetAllProducts(){
-//        Mockito.when(basketService.getProductsFromBasket(2L))
-//                .thenReturn(basketProductList);
-//
-//        Mockito.when(modelMapper.map(basket1, BasketProduct.class))
-//                .thenReturn(basketProductMock);
-//
-//        ResponseEntity<List<BasketProduct>> response = basketController.getBasketProducts(1L);
-//
-//        assertEquals(HttpStatus.OK, response.getStatusCode());
-//    }
+    @Test
+    public void testGetAllProducts(){
+        Mockito.when(basketService.getProductsFromBasket(2L))
+                .thenReturn(basketProductList);
+
+        Mockito.when(modelMapper.map(basket1, BasketProduct.class))
+                .thenReturn(basketProductMock);
+
+        ResponseEntity<List<BasketProductDTO>> response = basketController.getBasketProducts(1L);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
 
     @Test
     public void testCreateBasket() {

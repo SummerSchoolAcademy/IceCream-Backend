@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.service;
 
+import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;

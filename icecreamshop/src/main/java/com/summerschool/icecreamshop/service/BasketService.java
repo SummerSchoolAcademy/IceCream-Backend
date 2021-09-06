@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.service;
 
+import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
@@ -26,7 +27,7 @@ public class BasketService {
     }
 
     public List<BasketProduct> getProductsFromBasket(Long basketId){
-        return basketProductRepository.queryGetBasketProducts(basketId);
+        return basketProductRepository.findByBasketId(basketId);
     }
   
     public Optional<Basket> get (Long id){
