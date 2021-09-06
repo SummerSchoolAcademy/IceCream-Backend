@@ -27,6 +27,7 @@ public class BasketServiceTest {
     @Mock
     ModelMapper modelMapper;
 
+    @Mock
     private BasketRepository basketRepository;
 
     @Mock
@@ -113,6 +114,7 @@ public class BasketServiceTest {
     @Test
     public void basketAddTest() {
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket1);
+        Mockito.when(basketService.add(basket1)).thenReturn(basket1);
         assertEquals(basket1.getSessionId(), basketService.add(basket1).getSessionId());
     }
 }
