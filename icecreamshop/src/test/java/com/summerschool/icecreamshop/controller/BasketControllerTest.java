@@ -21,13 +21,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import java.util.ArrayList;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -39,7 +36,6 @@ public class BasketControllerTest {
     @Mock
     BasketService basketService;
 
-    @Mock
     BasketProduct basketProductMock;
 
     @InjectMocks
@@ -53,7 +49,7 @@ public class BasketControllerTest {
 
     Product product1 = new Product();
 
-    BasketProduct basketProduct=new BasketProduct();
+    BasketProduct basketProduct = new BasketProduct();
 
     Basket basket = new Basket();
 
@@ -82,7 +78,6 @@ public class BasketControllerTest {
         basket1.setSessionId("String");
 
 
-
         basket.setId(5L);
         basket.setSessionId("ceva");
         basket.setBasketProduct(new ArrayList<BasketProduct>());
@@ -99,9 +94,10 @@ public class BasketControllerTest {
         Mockito.when(modelMapper.map(basket1, BasketProduct.class))
                 .thenReturn(basketProductMock);
 
-        ResponseEntity<List<BasketProductDTO>> response = basketController.getBasketProducts(1L);
+        ResponseEntity<List<BasketProductDTO>> response = basketController.getBasketProducts(2L);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(basketProductList.size(),response.getBody().size());
     }
 
     @Test

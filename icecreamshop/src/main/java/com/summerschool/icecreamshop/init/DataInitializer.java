@@ -246,46 +246,45 @@ public class DataInitializer implements ApplicationRunner {
         rateRepository.saveAll(Arrays.asList(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10, rate11, rate12));
 
 
-        BasketProduct basketProduct11 = new BasketProduct();
-        BasketProduct basketProduct21 = new BasketProduct();
-        BasketProduct basketProduct31 = new BasketProduct();
-        BasketProduct basketProduct41 = new BasketProduct();
+        BasketProduct basketProductTest1 = new BasketProduct();
+        BasketProduct basketProductTest2 = new BasketProduct();
+        BasketProduct basketProductTest3 = new BasketProduct();
+        BasketProduct basketProductTest4 = new BasketProduct();
 
-        Basket basket = new Basket();
+        Basket basketTest = new Basket();
 
-        List<BasketProduct> basketProductList;
-        basketProductList = new ArrayList<BasketProduct>();
+        List<BasketProduct> basketProductList = new ArrayList<BasketProduct>();
 
-        basketProduct11.setProduct(product1);
-        basketProduct11.setBasket(basket);
-        basketProduct11.setPrice(product1.getPrice());
-        basketProduct11.setQuantity(1);
+        basketProductTest1.setProduct(product1);
+        basketProductTest1.setBasket(basketTest);
+        basketProductTest1.setPrice(product1.getPrice());
+        basketProductTest1.setQuantity(1);
 
-        basketProduct21.setProduct(product2);
-        basketProduct21.setBasket(basket);
-        basketProduct21.setPrice(product2.getPrice());
-        basketProduct21.setQuantity(1);
+        basketProductTest2.setProduct(product2);
+        basketProductTest2.setBasket(basketTest);
+        basketProductTest2.setPrice(product2.getPrice());
+        basketProductTest2.setQuantity(1);
 
-        basketProduct31.setProduct(product3);
-        basketProduct31.setBasket(basket);
-        basketProduct31.setPrice(product2.getPrice());
-        basketProduct31.setQuantity(1);
+        basketProductTest3.setProduct(product3);
+        basketProductTest3.setBasket(basketTest);
+        basketProductTest3.setPrice(product3.getPrice());
+        basketProductTest3.setQuantity(1);
 
-        basketProduct41.setProduct(product4);
-        basketProduct41.setBasket(basket);
-        basketProduct41.setPrice(product2.getPrice());
-        basketProduct41.setQuantity(1);
+        basketProductTest4.setProduct(product4);
+        basketProductTest4.setBasket(basketTest);
+        basketProductTest4.setPrice(product4.getPrice());
+        basketProductTest4.setQuantity(1);
 
-        basketProductList.add(basketProduct11);
-        basketProductList.add(basketProduct21);
-        basketProductList.add(basketProduct31);
-        basketProductList.add(basketProduct41);
+        basketProductList.add(basketProductTest1);
+        basketProductList.add(basketProductTest2);
+        basketProductList.add(basketProductTest3);
+        basketProductList.add(basketProductTest4);
 
-        basket.setBasketProduct(basketProductList);
-        basket.setId(5L);
-        basket.setSessionId("String");
+        basketTest.setBasketProduct(basketProductList);
+        basketTest.setId(5L);
+        basketTest.setSessionId("String");
 
-        basketRepository.saveAll(Arrays.asList(basket));
+        basketRepository.saveAll(Arrays.asList(basketTest));
 
 
         Basket basket1 = new Basket();

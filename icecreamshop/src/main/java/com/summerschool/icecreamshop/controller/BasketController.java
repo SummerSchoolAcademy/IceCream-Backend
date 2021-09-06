@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 import static com.summerschool.icecreamshop.exception.Constants.BASKET_NOT_FOUND;
 
 @RestController
-@RequestMapping("/basket")
+@RequestMapping("/baskets")
 public class BasketController {
 
 
@@ -55,13 +55,9 @@ public class BasketController {
         return ResponseEntity.ok(modelMapper.map(updatedBasket, BasketDTO.class));
     }
 
-    @GetMapping("")
-    public ResponseEntity<List<BasketProductDTO>> getBasketProducts(
-            @RequestParam(value = "basketId", required = false) Long basketId
-    ){
-        if(basketId == null) {
-            basketId = 1L;
-        }
+    @GetMapping("/{basketId}")
+    public ResponseEntity<List<BasketProductDTO>> getBasketProducts(@PathVariable("basketId") Long basketId)
+    {
         return ResponseEntity.ok(basketService.getProductsFromBasket(basketId)
                 .stream()
                 .map(basket_afis -> modelMapper.map(basket_afis, BasketProductDTO.class))

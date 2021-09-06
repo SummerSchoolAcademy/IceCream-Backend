@@ -5,9 +5,6 @@ import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
-import com.summerschool.icecreamshop.model.Basket;
-import com.summerschool.icecreamshop.model.BasketProduct;
-import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,10 +18,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import java.util.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.mockito.MockitoAnnotations.initMocks;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -33,8 +26,7 @@ public class BasketServiceTest {
 
     @Mock
     ModelMapper modelMapper;
-    
-    @Mock
+
     private BasketRepository basketRepository;
 
     @Mock

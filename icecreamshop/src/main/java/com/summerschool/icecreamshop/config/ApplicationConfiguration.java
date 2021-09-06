@@ -51,6 +51,7 @@ public class ApplicationConfiguration {
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
             d.setPhotoUrls(s.getPhotoUrls());
+            d.setType(s.getType());
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
@@ -69,7 +70,6 @@ public class ApplicationConfiguration {
             BasketDTO s = context.getSource();
             Basket d = new Basket();
             d.setId(s.getId());
-            d.setBasketProduct(s.getBasketProduct());
             d.setSessionId(s.getSessionId());
             d.setBasketProduct(s.getBasketProduct().stream()
                     .map(x -> modelMapper.map(x , BasketProduct.class))
