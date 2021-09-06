@@ -85,6 +85,8 @@ public class CategoryControllerTest {
 
     @Test
     public void testGetCategoryByInvalidId() {
+        Mockito.when(cs.get(-1L)).thenReturn(Optional.empty());
+
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             categoryController.get(-1L);
         });
@@ -94,10 +96,22 @@ public class CategoryControllerTest {
     @Test
     public void testPatchCategory(){
         Mockito.when(modelMapper.map(categoryDTO, Category.class)).thenReturn(category);
-        Mockito.when(cs.add(category)).thenReturn(category);
+        Mockito.when(cs.patch(category)).thenReturn(category);
+        Mockito.when(cs.get(category.getId())).thenReturn(Optional.of(category));
+        Mockito.when(modelMapper.map(category, CategoryDTO.class)).thenReturn(categoryDTO);
 
-        ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
+        ResponseEntity<CategoryDTO> c = categoryController.update(category.getId(),categoryDTO);
 
-        assertEquals(HttpStatus.CREATED, c.getStatusCode());
+        assertEquals(HttpStatus.OK, c.getStatusCode());
+    }
+    @Test
+    public void testPatchCategoryByInvalidId() {
+        Mockito.when(cs.get(-1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(ResponseStatusException.class, () -> {
+            categoryController.update(-1L,categoryDTO);
+        });
+
+        assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
     }
 }
