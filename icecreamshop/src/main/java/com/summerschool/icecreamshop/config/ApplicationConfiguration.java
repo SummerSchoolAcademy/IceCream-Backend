@@ -1,5 +1,13 @@
 package com.summerschool.icecreamshop.config;
 
+import com.summerschool.icecreamshop.dto.BasketDTO;
+import com.summerschool.icecreamshop.dto.CategoryDTO;
+import com.summerschool.icecreamshop.dto.ProductDTO;
+import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.Basket;
+import com.summerschool.icecreamshop.model.Category;
+import com.summerschool.icecreamshop.model.Product;
+import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.dto.*;
 import com.summerschool.icecreamshop.model.*;
 import org.modelmapper.Converter;
@@ -47,9 +55,6 @@ public class ApplicationConfiguration {
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
-            d.setBasketProduct(s.getBasketProduct().stream()
-                    .map(x -> modelMapper.map(x, BasketProduct.class))
-                    .collect(Collectors.toList()));
             return d;
         };
 
