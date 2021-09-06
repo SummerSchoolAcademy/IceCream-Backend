@@ -1,6 +1,5 @@
 package com.summerschool.icecreamshop.dto;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

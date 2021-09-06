@@ -48,8 +48,8 @@ public class ApplicationConfiguration {
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
             d.setBasketProduct(s.getBasketProduct().stream()
-                        .map(x -> modelMapper.map(x, BasketProduct.class))
-                        .collect(Collectors.toList()));
+                    .map(x -> modelMapper.map(x, BasketProduct.class))
+                    .collect(Collectors.toList()));
             return d;
         };
 

@@ -5,7 +5,6 @@ import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +12,27 @@ import java.util.Optional;
 @Service
 public class BasketService {
 
-    @Autowired
-    private BasketRepository basketRepository;
+    private final BasketRepository basketRepository;
 
+    @Autowired
+    public BasketService(BasketRepository basketRepository) {
+        this.basketRepository = basketRepository;
+    }
+  
     public Optional<Basket> get (Long id){
         return basketRepository.findById(id);
+    }
+
+    public Basket add(Basket basket) {
+
+        try
+        {
+            return basketRepository.save(basket);
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 
     public static <T> T mergeObjects(T first, T second) throws IllegalAccessException, InstantiationException {

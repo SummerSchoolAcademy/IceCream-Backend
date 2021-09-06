@@ -92,7 +92,11 @@ public class ProductDTO {
         this.rates = rates;
     }
 
-    public void setBasketProduct(List<BasketProductDTO> basketProduct){ this.basketProduct=basketProduct;}
+
+    public void setBasketProduct(List<BasketProductDTO> basketProduct) {
+        this.basketProduct = basketProduct;
+    }
+
 
     // Getters
     public Long getId() {
@@ -143,5 +147,8 @@ public class ProductDTO {
         return rates;
     }
 
-    public List<BasketProductDTO> getBasketProduct(){ return basketProduct;}
+    public List<BasketProductDTO> getBasketProduct() {
+        return basketProduct;
+    }
+
 }

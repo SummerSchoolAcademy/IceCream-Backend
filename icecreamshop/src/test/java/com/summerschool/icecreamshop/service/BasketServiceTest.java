@@ -12,11 +12,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.*;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class BasketServiceTest {
@@ -29,11 +28,6 @@ public class BasketServiceTest {
 
     @Mock
     private CategoryService categoryService;
-
-    @Before
-    public void setup() {
-        initMocks(this);
-    }
 
     Basket basket1 = new Basket();
 
@@ -60,5 +54,9 @@ public class BasketServiceTest {
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket2);
         assertEquals(basketRepository.save(basket1).getBasketProduct(), basket2.getBasketProduct());
 
+    @Test
+    public void basketAddTest() {
+        Mockito.when(basketRepository.save(basket1)).thenReturn(basket1);
+        assertEquals(basket.getSessionId(), basketService.add(basket1).getSessionId());
     }
 }

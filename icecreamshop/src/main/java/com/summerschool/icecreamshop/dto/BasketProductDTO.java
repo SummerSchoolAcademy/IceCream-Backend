@@ -1,9 +1,10 @@
 package com.summerschool.icecreamshop.dto;
 
-import javax.persistence.*;
+
 import javax.validation.constraints.NotNull;
 
 public class BasketProductDTO {
+
     Long id;
 
     @NotNull
@@ -25,9 +26,6 @@ public class BasketProductDTO {
         this.price = price;
     }
 
-    //public void setProduct(ProductDTO product){this.product=product;}
-
-
     public Long getId() {
         return id;
     }
@@ -39,6 +37,4 @@ public class BasketProductDTO {
     public Double getPrice() {
         return price;
     }
-
-    //public ProductDTO getProduct(){return product;}
 }
