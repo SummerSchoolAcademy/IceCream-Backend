@@ -2,9 +2,11 @@ package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
+import com.summerschool.icecreamshop.repository.BasketProductRepository;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
@@ -12,11 +14,17 @@ import java.util.Optional;
 @Service
 public class BasketService {
 
+    private BasketProductRepository basketProductRepository;
     private final BasketRepository basketRepository;
 
     @Autowired
-    public BasketService(BasketRepository basketRepository) {
+    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository){
         this.basketRepository = basketRepository;
+        this.basketProductRepository = basketProductRepository;
+    }
+
+    public List<BasketProduct> getProductsFromBasket(Long basketId){
+        return basketProductRepository.findByBasketId(basketId);
     }
   
     public Optional<Basket> get (Long id){

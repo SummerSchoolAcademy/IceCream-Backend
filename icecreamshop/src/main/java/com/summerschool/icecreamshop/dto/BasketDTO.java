@@ -1,5 +1,7 @@
 package com.summerschool.icecreamshop.dto;
 
+import com.summerschool.icecreamshop.model.BasketProduct;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

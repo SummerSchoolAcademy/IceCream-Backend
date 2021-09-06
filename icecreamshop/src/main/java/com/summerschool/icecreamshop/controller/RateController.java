@@ -1,28 +1,18 @@
 package com.summerschool.icecreamshop.controller;
 
+import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.service.RateService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.http.HttpStatus;
-import org.modelmapper.ModelMapper;
-import com.summerschool.icecreamshop.model.Rate;
-import com.summerschool.icecreamshop.dto.RateDTO;
-import org.springframework.beans.factory.annotation.Autowired;
-import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
-import com.summerschool.icecreamshop.dto.RateDTO;
-import com.summerschool.icecreamshop.service.RateService;
-import com.summerschool.icecreamshop.model.Rate;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpStatus;
 
 import javax.validation.Valid;
-import javax.validation.Valid;
+
+import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
 
 @RestController
 @RequestMapping("/ratings")

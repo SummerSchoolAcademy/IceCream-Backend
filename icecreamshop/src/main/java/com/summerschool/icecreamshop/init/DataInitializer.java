@@ -7,7 +7,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class DataInitializer implements ApplicationRunner {
@@ -18,22 +20,22 @@ public class DataInitializer implements ApplicationRunner {
 
     private RateRepository rateRepository;
 
-    private BasketProductRepository basketProductRepository;
-
     private BasketRepository basketRepository;
+
+    private BasketProductRepository basketProductRepository;
 
     @Autowired
     public DataInitializer(
             CategoryRepository categoryRepository,
             ProductRepository productRepository,
             RateRepository rateRepository,
-            BasketProductRepository basketProductRepository,
-            BasketRepository basketRepository) {
+            BasketRepository basketRepository,
+            BasketProductRepository basketProductRepository) {
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.rateRepository = rateRepository;
-        this.basketProductRepository = basketProductRepository;
-        this.basketRepository = basketRepository;
+        this.basketRepository=basketRepository;
+        this.basketProductRepository=basketProductRepository;
     }
 
     @Override
@@ -243,6 +245,48 @@ public class DataInitializer implements ApplicationRunner {
 
         rateRepository.saveAll(Arrays.asList(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10, rate11, rate12));
 
+
+        BasketProduct basketProductTest1 = new BasketProduct();
+        BasketProduct basketProductTest2 = new BasketProduct();
+        BasketProduct basketProductTest3 = new BasketProduct();
+        BasketProduct basketProductTest4 = new BasketProduct();
+
+        Basket basketTest = new Basket();
+
+        List<BasketProduct> basketProductList = new ArrayList<BasketProduct>();
+
+        basketProductTest1.setProduct(product1);
+        basketProductTest1.setBasket(basketTest);
+        basketProductTest1.setPrice(product1.getPrice());
+        basketProductTest1.setQuantity(1);
+
+        basketProductTest2.setProduct(product2);
+        basketProductTest2.setBasket(basketTest);
+        basketProductTest2.setPrice(product2.getPrice());
+        basketProductTest2.setQuantity(1);
+
+        basketProductTest3.setProduct(product3);
+        basketProductTest3.setBasket(basketTest);
+        basketProductTest3.setPrice(product3.getPrice());
+        basketProductTest3.setQuantity(1);
+
+        basketProductTest4.setProduct(product4);
+        basketProductTest4.setBasket(basketTest);
+        basketProductTest4.setPrice(product4.getPrice());
+        basketProductTest4.setQuantity(1);
+
+        basketProductList.add(basketProductTest1);
+        basketProductList.add(basketProductTest2);
+        basketProductList.add(basketProductTest3);
+        basketProductList.add(basketProductTest4);
+
+        basketTest.setBasketProduct(basketProductList);
+        basketTest.setId(5L);
+        basketTest.setSessionId("String");
+
+        basketRepository.saveAll(Arrays.asList(basketTest));
+
+
         Basket basket1 = new Basket();
         basket1.setSessionId("session1");
 
@@ -287,9 +331,5 @@ public class DataInitializer implements ApplicationRunner {
 
         basketProductRepository.saveAll(Arrays.asList(basketProduct1,basketProduct2,basketProduct3,basketProduct4));
 
-
-
-
     }
-
 }
