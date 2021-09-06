@@ -52,5 +52,4 @@ public class CategoryServiceTest {
     public void testGetCategoryByInvalidId() {
         assertTrue(!categoryService.get(-1L).isPresent());
     }
-
 }

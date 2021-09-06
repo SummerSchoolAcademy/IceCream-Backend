@@ -1,12 +1,7 @@
 package com.summerschool.icecreamshop.init;
 
-import com.summerschool.icecreamshop.model.Category;
-import com.summerschool.icecreamshop.model.Product;
-import com.summerschool.icecreamshop.model.Rate;
-import com.summerschool.icecreamshop.model.Type;
-import com.summerschool.icecreamshop.repository.CategoryRepository;
-import com.summerschool.icecreamshop.repository.ProductRepository;
-import com.summerschool.icecreamshop.repository.RateRepository;
+import com.summerschool.icecreamshop.model.*;
+import com.summerschool.icecreamshop.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -23,14 +18,22 @@ public class DataInitializer implements ApplicationRunner {
 
     private RateRepository rateRepository;
 
+    private BasketProductRepository basketProductRepository;
+
+    private BasketRepository basketRepository;
+
     @Autowired
     public DataInitializer(
             CategoryRepository categoryRepository,
             ProductRepository productRepository,
-            RateRepository rateRepository) {
+            RateRepository rateRepository,
+            BasketProductRepository basketProductRepository,
+            BasketRepository basketRepository) {
         this.categoryRepository = categoryRepository;
         this.productRepository = productRepository;
         this.rateRepository = rateRepository;
+        this.basketProductRepository = basketProductRepository;
+        this.basketRepository = basketRepository;
     }
 
     @Override
@@ -239,6 +242,54 @@ public class DataInitializer implements ApplicationRunner {
         rate12.setRate(4);
 
         rateRepository.saveAll(Arrays.asList(rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8, rate9, rate10, rate11, rate12));
+
+        Basket basket1 = new Basket();
+        basket1.setSessionId("session1");
+
+        Basket basket2 = new Basket();
+        basket2.setId(2L);
+        basket2.setSessionId("session2");
+
+        Basket basket3 = new Basket();
+        basket3.setId(3L);
+        basket3.setSessionId("session3");
+
+        basketRepository.saveAll(Arrays.asList(basket1,basket2,basket3));
+
+
+        BasketProduct basketProduct1 = new BasketProduct();
+        basketProduct1.setId(1L);
+        basketProduct1.setProduct(product1);
+        basketProduct1.setQuantity(2);
+        basketProduct1.setPrice(product1.getPrice());
+        basketProduct1.setBasket(basket1);
+
+        BasketProduct basketProduct2 = new BasketProduct();
+        basketProduct2.setId(2L);
+        basketProduct2.setProduct(product2);
+        basketProduct2.setQuantity(3);
+        basketProduct2.setPrice(product2.getPrice());
+        basketProduct2.setBasket(basket1);
+
+        BasketProduct basketProduct3 = new BasketProduct();
+        basketProduct3.setId(3L);
+        basketProduct3.setProduct(product3);
+        basketProduct3.setQuantity(2);
+        basketProduct3.setPrice(product3.getPrice());
+        basketProduct3.setBasket(basket2);
+
+        BasketProduct basketProduct4 = new BasketProduct();
+        basketProduct4.setId(4L);
+        basketProduct4.setProduct(product4);
+        basketProduct4.setQuantity(3);
+        basketProduct4.setPrice(product4.getPrice());
+        basketProduct4.setBasket(basket3);
+
+        basketProductRepository.saveAll(Arrays.asList(basketProduct1,basketProduct2,basketProduct3,basketProduct4));
+
+
+
+
     }
 
 }
