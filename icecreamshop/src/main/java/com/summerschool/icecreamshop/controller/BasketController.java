@@ -3,30 +3,19 @@ package com.summerschool.icecreamshop.controller;
 import com.summerschool.icecreamshop.dto.BasketDTO;
 import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
-import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.service.BasketService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-import javax.validation.Valid;
-import java.util.List;
 
-import static com.summerschool.icecreamshop.exception.Constants.BASKET_NOT_FOUND;
-
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import com.summerschool.icecreamshop.model.BasketProduct;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.summerschool.icecreamshop.exception.Constants.BASKET_NOT_FOUND;
 
 @RestController
 @RequestMapping("/basket")

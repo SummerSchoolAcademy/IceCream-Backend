@@ -3,15 +3,13 @@ package com.summerschool.icecreamshop.service;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
-import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Optional;
-
-import java.util.List;
 
 @Service
 public class BasketService {
