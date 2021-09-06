@@ -55,9 +55,6 @@ public class ApplicationConfiguration {
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
                        .collect(Collectors.toList()));
-            d.setBasketProduct(s.getBasketProduct().stream()
-                    .map(x -> modelMapper.map(x, BasketProduct.class))
-                    .collect(Collectors.toList()));
             return d;
         };
 
