@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -34,8 +35,8 @@ public class RateControllerTest {
     private ModelMapper modelMapper;
 
 
-    private RateDTO rateDTO=new RateDTO();
-    private Rate rate=new Rate();
+    private final RateDTO rateDTO=new RateDTO();
+    private final Rate rate=new Rate();
 
     @Before
     public void setUp(){
@@ -81,5 +82,12 @@ public class RateControllerTest {
 
     }
 
+    @Test
+    public void testGetProductRatingOk(){
+        Mockito.when(modelMapper.map(rateDTO,Rate.class)).thenReturn(rate);
+        Mockito.when(rateService.get(rate.getRate().longValue())).thenReturn(Optional.of(rate));
+        ResponseEntity<List<RateDTO>> responseEntity = rateController.get(rate.getRate().longValue());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+    }
 
 }
