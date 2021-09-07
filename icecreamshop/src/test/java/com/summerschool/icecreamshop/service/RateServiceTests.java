@@ -6,6 +6,7 @@ import com.summerschool.icecreamshop.repository.RateRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import com.summerschool.icecreamshop.model.Product;
@@ -17,6 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import java.util.Optional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -60,6 +62,20 @@ public class RateServiceTests {
         Rate responseRate = rateService.update(rate,new Product());
         assertNotNull(responseRate);
         assertEquals(Integer.valueOf(5),responseRate.getRate());
+    }
+
+    @Test
+    public void testGetProductRatingOk(){
+        Mockito.when(rateRepository.findById(rate.getId())).thenReturn(Optional.of(rate));
+        Rate actualRate = rateService.get(1L).get();
+
+        assertEquals(rate.getRate(), actualRate.getRate());
+    }
+
+    @Test
+    public void testGetRatingFailed(){
+        Rate actualRate = rateService.get(-1L).get();
+        assertNotSame(rateService.get(-1L),actualRate.getRate());
     }
 
 }

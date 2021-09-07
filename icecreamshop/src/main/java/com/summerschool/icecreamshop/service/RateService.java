@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import com.summerschool.icecreamshop.repository.RateRepository;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.model.Product;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,5 +44,12 @@ public class RateService {
         return rateRepository.save(rate);
 
     }
+
+    public List<Rate> getByRateId(Long id)
+    {
+        return rateRepository.findByRateId(id);
+    }
+
+
 }
 
