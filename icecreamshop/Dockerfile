@@ -3,9 +3,9 @@
 FROM maven:3.5-jdk-8-alpine as builder
 
 # Copy local code to the container image.
-WORKDIR /icecreamshop
-COPY pom.xml .
-COPY src ./src
+WORKDIR /app
+COPY ./icecreamshop/pom.xml .
+COPY ./icecreamshop/src ./src
 
 # Build a release artifact.
 RUN mvn package -DskipTests
