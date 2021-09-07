@@ -1,24 +1,23 @@
 package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.dto.RateDTO;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Rate;
 import com.summerschool.icecreamshop.repository.RateRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import static org.junit.Assert.*;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import com.summerschool.icecreamshop.model.Product;
 import org.mockito.Mockito;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
-import java.util.Optional;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -71,11 +70,4 @@ public class RateServiceTests {
 
         assertEquals(rate.getRate(), actualRate.getRate());
     }
-
-    @Test
-    public void testGetRatingFailed(){
-        Rate actualRate = rateService.get(-1L).get();
-        assertNotSame(rateService.get(-1L),actualRate.getRate());
-    }
-
 }
