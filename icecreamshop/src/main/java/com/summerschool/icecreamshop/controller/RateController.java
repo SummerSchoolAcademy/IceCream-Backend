@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.summerschool.icecreamshop.exception.Constants.RATE_NOT_FOUND;
 
@@ -34,21 +36,30 @@ public class RateController {
         Rate rate = modelMapper.map(rateDTO, Rate.class);
 
         Rate savedRate = rateService.add(rate);
-        if(savedRate==null)
-        {
+        if (savedRate == null) {
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new RateDTO());
         }
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedRate, RateDTO.class));
     }
 
     @PutMapping("/{ratingId}")
-    public ResponseEntity<RateDTO> update (@PathVariable("ratingId") Long ratingId, @RequestBody @Valid RateDTO rateDTO){
+    public ResponseEntity<RateDTO> update(@PathVariable("ratingId") Long ratingId, @RequestBody @Valid RateDTO rateDTO) {
 
         Rate foundRate = rateService.get(ratingId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, RATE_NOT_FOUND));
 
         rateDTO.setId(foundRate.getId());
-        Rate updatedRate = rateService.update(modelMapper.map(rateDTO,Rate.class),foundRate.getProduct());
-        return ResponseEntity.ok(modelMapper.map(updatedRate,RateDTO.class));
+        Rate updatedRate = rateService.update(modelMapper.map(rateDTO, Rate.class), foundRate.getProduct());
+        return ResponseEntity.ok(modelMapper.map(updatedRate, RateDTO.class));
 
+    }
+
+    @GetMapping("/{productId}")
+    public ResponseEntity<List<RateDTO>> get(@PathVariable("productId") Long id) {
+        List<Rate> rateList = rateService.getByProductId(id);
+        return
+                ResponseEntity.ok(rateList
+                        .stream()
+                        .map(rate -> modelMapper.map(rate, RateDTO.class))
+                        .collect(Collectors.toList()));
     }
 }
