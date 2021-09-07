@@ -27,8 +27,6 @@ public class RateService {
         catch(Exception e){
             return null;
         }
-
-
     }
 
     public Optional<Rate> get(Long id){
@@ -45,9 +43,10 @@ public class RateService {
 
     }
 
-    public List<Rate> getByRateId(Long id)
+    public List<Rate> getByProductId(Long id)
     {
-        return rateRepository.findByRateId(id);
+        return rateRepository.findByProductId(id);
+
     }
 
 
