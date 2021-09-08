@@ -113,5 +113,11 @@ public class CategoryControllerTest {
         });
 
         assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
+
+        Mockito.when(cs.add(category)).thenReturn(category);
+
+        ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
+
+        assertEquals(HttpStatus.BAD_REQUEST, c.getStatusCode());
     }
 }
