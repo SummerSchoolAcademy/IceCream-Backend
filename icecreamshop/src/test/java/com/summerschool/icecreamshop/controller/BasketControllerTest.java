@@ -1,6 +1,7 @@
 package com.summerschool.icecreamshop.controller;
 
 import com.summerschool.icecreamshop.dto.BasketDTO;
+
 import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
@@ -10,7 +11,9 @@ import com.summerschool.icecreamshop.service.BasketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
 import org.mockito.ArgumentMatchers;
+
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -20,11 +23,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,6 +37,7 @@ public class BasketControllerTest {
 
     @Mock
     ModelMapper modelMapper;
+
 
     @Mock
     BasketService basketService;
@@ -87,6 +93,7 @@ public class BasketControllerTest {
     }
 
     @Test
+
     public void testGetAllProducts(){
         Mockito.when(basketService.getProductsFromBasket(2L))
                 .thenReturn(basketProductList);

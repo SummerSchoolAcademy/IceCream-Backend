@@ -30,6 +30,7 @@ public class CategoryServiceTest {
     @Before
     public void setUp() {
         category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
+
     }
 
     @Test
@@ -47,9 +48,17 @@ public class CategoryServiceTest {
         assertEquals(category.getName(), actualCategory.getName());
         assertEquals(category.getDescription(), actualCategory.getDescription());
     }
+    @Test
+    public void categoryPatchTest() {
+        Mockito.when(categoryRepository.save(category)).thenReturn(category);
+        assertEquals(category.getName(), categoryService.add(category).getName());
+
+    }
+
 
     @Test
     public void testGetCategoryByInvalidId() {
-        assertTrue(!categoryService.get(-1L).isPresent());
+        assertFalse(categoryService.get(-1L).isPresent());
     }
+
 }

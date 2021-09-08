@@ -2,9 +2,11 @@ package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
+
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
+
 import com.summerschool.icecreamshop.repository.BasketRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -113,6 +116,7 @@ public class BasketServiceTest {
 
     @Test
     public void basketAddTest() {
+
         Mockito.when(basketRepository.save(basket1)).thenReturn(basket1);
         Mockito.when(basketService.add(basket1)).thenReturn(basket1);
         assertEquals(basket1.getSessionId(), basketService.add(basket1).getSessionId());

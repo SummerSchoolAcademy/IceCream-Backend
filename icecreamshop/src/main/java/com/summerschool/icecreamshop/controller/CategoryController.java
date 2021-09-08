@@ -14,10 +14,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
-import static com.summerschool.icecreamshop.exception.Constants.*;
+import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 
 @RestController
-@RequestMapping("/categories")
+@RequestMapping(path = "/categories")
 public class CategoryController {
     private CategoryService categoryService;
 
@@ -47,6 +47,16 @@ public class CategoryController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, CATEGORY_NOT_FOUND));
 
         return ResponseEntity.ok(modelMapper.map(category, CategoryDTO.class));
+    }
+    @PatchMapping(path = "/{categoryId}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable("categoryId") Long id, @RequestBody @Valid CategoryDTO categoryDTO){
+        categoryService.get(id)
+                .orElseThrow(()-> new ResponseStatusException((HttpStatus.NOT_FOUND), CATEGORY_NOT_FOUND));
+
+        categoryDTO.setId(id);
+
+        Category updateCategory = categoryService.add(modelMapper.map(categoryDTO,Category.class));
+        return ResponseEntity.ok(modelMapper.map(updateCategory, CategoryDTO.class));
     }
 
 }

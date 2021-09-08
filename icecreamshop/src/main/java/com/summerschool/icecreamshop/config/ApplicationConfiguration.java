@@ -94,4 +94,5 @@ public class ApplicationConfiguration {
 
         return modelMapper;
     }
+
 }

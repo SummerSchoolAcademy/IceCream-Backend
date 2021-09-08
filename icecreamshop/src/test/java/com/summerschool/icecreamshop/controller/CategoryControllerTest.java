@@ -17,10 +17,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static com.summerschool.icecreamshop.exception.Constants.*;
+import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 import static org.junit.Assert.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -84,10 +85,39 @@ public class CategoryControllerTest {
 
     @Test
     public void testGetCategoryByInvalidId() {
+        Mockito.when(cs.get(-1L)).thenReturn(Optional.empty());
+
         Exception exception = assertThrows(ResponseStatusException.class, () -> {
             categoryController.get(-1L);
         });
 
         assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
+    }
+    @Test
+    public void testPatchCategory(){
+        Mockito.when(modelMapper.map(categoryDTO, Category.class)).thenReturn(category);
+        Mockito.when(cs.patch(category)).thenReturn(category);
+        Mockito.when(cs.get(category.getId())).thenReturn(Optional.of(category));
+        Mockito.when(modelMapper.map(category, CategoryDTO.class)).thenReturn(categoryDTO);
+
+        ResponseEntity<CategoryDTO> c = categoryController.update(category.getId(),categoryDTO);
+
+        assertEquals(HttpStatus.OK, c.getStatusCode());
+    }
+    @Test
+    public void testPatchCategoryByInvalidId() {
+        Mockito.when(cs.get(-1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(ResponseStatusException.class, () -> {
+            categoryController.update(-1L,categoryDTO);
+        });
+
+        assertTrue(exception.getMessage().contains(CATEGORY_NOT_FOUND));
+
+        Mockito.when(cs.add(category)).thenReturn(category);
+
+        ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
+
+        assertEquals(HttpStatus.BAD_REQUEST, c.getStatusCode());
     }
 }

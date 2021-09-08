@@ -1,6 +1,5 @@
 package com.summerschool.icecreamshop.dto;
 
-
 import javax.validation.constraints.NotNull;
 
 public class BasketProductDTO {
@@ -25,6 +24,7 @@ public class BasketProductDTO {
     public void setPrice(Double price) {
         this.price = price;
     }
+
 
     public Long getId() {
         return id;

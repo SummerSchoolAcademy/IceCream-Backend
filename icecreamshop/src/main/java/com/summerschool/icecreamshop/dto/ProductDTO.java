@@ -168,5 +168,4 @@ public class ProductDTO {
     public List<BasketProductDTO> getBasketProduct() {
         return basketProduct;
     }
-
 }
