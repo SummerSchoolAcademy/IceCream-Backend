@@ -1,5 +1,6 @@
 package com.summerschool.icecreamshop.dto;
 
+import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Type;
 
 import javax.validation.constraints.NotNull;
@@ -109,9 +110,11 @@ public class ProductDTO {
         this.rates = rates;
     }
 
+
     public void setBasketProduct(List<BasketProductDTO> basketProduct) {
         this.basketProduct = basketProduct;
     }
+
 
     // Getters
     public Long getId() {
