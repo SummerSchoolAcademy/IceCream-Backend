@@ -125,7 +125,7 @@ public class CategoryControllerTest {
 
     @Test
     public void testGetAllCategories() {
-        categoriesList= new ArrayList<Category>();
+        categoriesList = new ArrayList<Category>();
         categoriesList.add(category);
         Mockito.when(cs.getAll())
                 .thenReturn(categoriesList);

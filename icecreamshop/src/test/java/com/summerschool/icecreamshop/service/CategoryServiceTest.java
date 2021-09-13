@@ -66,7 +66,7 @@ public class CategoryServiceTest {
 
     @Test
     public void testServiceForGetAllCategories(){
-        categoriesList= new ArrayList<Category>();
+        categoriesList = new ArrayList<Category>();
         categoriesList.add(category);
 
         Mockito.when(categoryRepository.findAll())
