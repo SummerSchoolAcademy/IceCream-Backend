@@ -12,6 +12,7 @@ import org.mockito.Mockito;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -26,6 +27,8 @@ public class CategoryServiceTest {
     CategoryRepository categoryRepository;
 
     Category category;
+
+    List<Category> categoriesList;
 
     @Before
     public void setUp() {
@@ -59,6 +62,19 @@ public class CategoryServiceTest {
     @Test
     public void testGetCategoryByInvalidId() {
         assertFalse(categoryService.get(-1L).isPresent());
+    }
+
+    @Test
+    public void testServiceForGetAllCategories(){
+        categoriesList= new ArrayList<Category>();
+        categoriesList.add(category);
+
+        Mockito.when(categoryRepository.findAll())
+                .thenReturn(categoriesList);
+
+        List<Category> response = categoryService.getAll();
+
+        assertNotNull(response);
     }
 
 }

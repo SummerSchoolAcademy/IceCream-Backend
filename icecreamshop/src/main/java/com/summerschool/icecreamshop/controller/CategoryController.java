@@ -14,6 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
 
 @RestController
@@ -57,6 +60,14 @@ public class CategoryController {
 
         Category updateCategory = categoryService.add(modelMapper.map(categoryDTO,Category.class));
         return ResponseEntity.ok(modelMapper.map(updateCategory, CategoryDTO.class));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CategoryDTO>> getCategories() {
+        return ResponseEntity.ok(categoryService.getAll()
+                .stream()
+                .map(category -> modelMapper.map(category, CategoryDTO.class))
+                .collect(Collectors.toList()));
     }
 
 }
