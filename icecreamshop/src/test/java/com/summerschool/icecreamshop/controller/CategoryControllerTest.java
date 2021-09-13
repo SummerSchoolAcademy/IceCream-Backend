@@ -17,8 +17,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static com.summerschool.icecreamshop.exception.Constants.CATEGORY_NOT_FOUND;
@@ -40,6 +40,8 @@ public class CategoryControllerTest {
     CategoryDTO categoryDTO;
 
     Category category;
+
+    List<Category> categoriesList;
 
     @Before
     public void setUp() {
@@ -119,5 +121,17 @@ public class CategoryControllerTest {
         ResponseEntity<CategoryDTO> c = categoryController.add(categoryDTO);
 
         assertEquals(HttpStatus.BAD_REQUEST, c.getStatusCode());
+    }
+
+    @Test
+    public void testGetAllCategories() {
+        categoriesList = new ArrayList<Category>();
+        categoriesList.add(category);
+        Mockito.when(cs.getAll())
+                .thenReturn(categoriesList);
+
+        ResponseEntity<List<CategoryDTO>> response = categoryController.getCategories();
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }
