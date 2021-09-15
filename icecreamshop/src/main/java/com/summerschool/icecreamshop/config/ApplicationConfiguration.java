@@ -83,6 +83,8 @@ public class ApplicationConfiguration {
             d.setId(s.getId());
             d.setQuantity(s.getQuantity());
             d.setPrice(s.getPrice());
+            d.setTitle(s.getTitle());
+            d.setPhotoUrls(s.getPhotoUrls());
             return d;
         };
 

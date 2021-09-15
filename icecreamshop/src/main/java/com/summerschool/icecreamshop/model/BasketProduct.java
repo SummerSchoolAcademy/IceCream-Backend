@@ -2,6 +2,7 @@ package com.summerschool.icecreamshop.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "basket_products")
@@ -18,7 +19,13 @@ public class BasketProduct {
     private Integer quantity;
 
     @NotNull
+    private String title;
+
+    @NotNull
     private Double price;
+
+    @ElementCollection
+    private List<String> photoUrls;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "basket_id")
@@ -43,6 +50,12 @@ public class BasketProduct {
 
     public void setBasket(Basket basket) {this.basket=basket;}
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPhotoUrls(List<String> photoUrls) {this.photoUrls=photoUrls;}
+
     public Long getId() {
         return id;
     }
@@ -60,5 +73,11 @@ public class BasketProduct {
     }
 
     public Basket getBasket(){ return basket;}
+
+    public String getTitle() {
+        return title;
+    }
+
+    public List<String> getPhotoUrls(){ return photoUrls;}
 
 }
