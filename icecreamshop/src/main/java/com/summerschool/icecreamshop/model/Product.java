@@ -1,10 +1,8 @@
 package com.summerschool.icecreamshop.model;
 
-import javax.validation.constraints.NotNull;
-
 import javax.persistence.*;
-import java.lang.reflect.Field;
-import java.util.*;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -43,7 +41,15 @@ public class Product {
 
     @NotNull
     @ElementCollection
-    private List<String> photoUrls;
+    private List<String> photoUrlsBig;
+
+    @NotNull
+    @ElementCollection
+    private List<String> photoUrlsMedium;
+
+    @NotNull
+    @ElementCollection
+    private List<String> photoUrlsSmall;
 
     @NotNull
     Type type;
@@ -63,14 +69,16 @@ public class Product {
     public Product(){}
 
     public Product(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
-                   int quantity, List <String> alergens, double price, String currency, List<String> photoUrls, Type type){
+                   int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type){
         this.id = id;
         this.title = title;
         this.shortDescription = shorDesc;
         this.longDescription = longDesc;
         this.alergens = alergens;
         this.price = price;
-        this.photoUrls = photoUrls;
+        this.photoUrlsBig = photoUrlsBig;
+        this.photoUrlsMedium= photoUrlsMedium;
+        this.photoUrlsSmall = photoUrlsSmall;
         this.type = type;
         this.ingredients = ingredients;
         this.quantity = quantity;
@@ -114,8 +122,16 @@ public class Product {
         this.currency = currency;
     }
 
-    public void setPhotoUrls(List<String> photoUrls) {
-        this.photoUrls = photoUrls;
+    public void setPhotoUrlsBig(List<String> photoUrls) {
+        this.photoUrlsBig = photoUrls;
+    }
+
+    public void setPhotoUrlsMedium(List<String> photoUrls) {
+        this.photoUrlsMedium = photoUrls;
+    }
+
+    public void setPhotoUrlsSmall(List<String> photoUrls) {
+        this.photoUrlsSmall = photoUrls;
     }
 
     public void setType(Type type) {
@@ -171,8 +187,16 @@ public class Product {
         return currency;
     }
 
-    public List<String> getPhotoUrls() {
-        return photoUrls;
+    public List<String> getPhotoUrlsBig() {
+        return photoUrlsBig;
+    }
+
+    public List<String> getPhotoUrlsMedium() {
+        return photoUrlsMedium;
+    }
+
+    public List<String> getPhotoUrlsSmall() {
+        return photoUrlsSmall;
     }
 
     public Type getType() {

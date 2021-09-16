@@ -8,6 +8,7 @@ import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
 
 import com.summerschool.icecreamshop.repository.BasketRepository;
+import com.summerschool.icecreamshop.repository.ProductRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,10 +38,15 @@ public class BasketServiceTest {
     private CategoryService categoryService;
 
     @Mock
+    private ProductRepository productRepository;
+
+    @Mock
     BasketProductRepository basketProductRepository;
 
     @InjectMocks
     BasketService basketService;
+
+    List<Product> productListAvra;
 
     List<BasketProduct> basketProductListAvra;
 
@@ -60,6 +66,7 @@ public class BasketServiceTest {
     public void setup(){
         initMocks(this);
 
+        productListAvra = new ArrayList<Product>();
         basketProductListAvra = new ArrayList<BasketProduct>();
 
         product1.setId(1L);
@@ -70,10 +77,10 @@ public class BasketServiceTest {
 
         basketProduct.setProduct(product1);
         basketProduct.setBasket(basketAvra);
-        basketProduct.setPrice(product1.getPrice());
         basketProduct.setQuantity(1);
         basketProduct.setId(1L);
 
+        productListAvra.add(product1);
         basketProductListAvra.add(basketProduct);
 
         basketAvra.setBasketProduct(basketProductListAvra);
@@ -98,14 +105,13 @@ public class BasketServiceTest {
 
     @Test
     public void testGetAllProducts(){
-        Mockito.when(basketProductRepository.findByBasketId(basket.getId()))
-                .thenReturn(basketProductListAvra);
+        Mockito.when(productRepository.queryGetBasketProducts(basket.getId()))
+                .thenReturn(productListAvra);
 
-        List<BasketProduct> productListReturned = basketService.getProductsFromBasket(basket.getId());
+        List<Product> productListReturned = basketService.getProductsFromBasket(basket.getId());
 
-        assertEquals(basketProductListAvra, productListReturned);
+        assertEquals(productListAvra, productListReturned);
     }
-
 
     @Test
     public void testUpdateBasket() {

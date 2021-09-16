@@ -1,11 +1,10 @@
 package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Basket;
-
-import com.summerschool.icecreamshop.model.BasketProduct;
+import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
-
 import com.summerschool.icecreamshop.repository.BasketRepository;
+import com.summerschool.icecreamshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,15 +17,17 @@ public class BasketService {
 
     private BasketProductRepository basketProductRepository;
     private final BasketRepository basketRepository;
+    private ProductRepository productRepository;
 
     @Autowired
-    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository){
+    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository, ProductRepository productRepository){
         this.basketRepository = basketRepository;
         this.basketProductRepository = basketProductRepository;
+        this.productRepository = productRepository;
     }
 
-    public List<BasketProduct> getProductsFromBasket(Long basketId){
-        return basketProductRepository.findByBasketId(basketId);
+    public List<Product> getProductsFromBasket(Long basketId){
+        return productRepository.queryGetBasketProducts(basketId);
     }
   
     public Optional<Basket> get (Long id){

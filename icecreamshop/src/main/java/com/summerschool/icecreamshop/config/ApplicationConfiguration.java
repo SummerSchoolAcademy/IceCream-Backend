@@ -14,7 +14,6 @@ import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import java.util.stream.Collectors;
 
 
@@ -50,7 +49,9 @@ public class ApplicationConfiguration {
             d.setAlergens(s.getAlergens());
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
-            d.setPhotoUrls(s.getPhotoUrls());
+            d.setPhotoUrlsBig(s.getPhotoUrlsBig());
+            d.setPhotoUrlsMedium(s.getPhotoUrlsMedium());
+            d.setPhotoUrlsSmall(s.getPhotoUrlsSmall());
             d.setType(s.getType());
             d.setRates(s.getRates().stream()
                        .map(x -> modelMapper.map(x , Rate.class))
@@ -82,9 +83,6 @@ public class ApplicationConfiguration {
             BasketProduct d = new BasketProduct();
             d.setId(s.getId());
             d.setQuantity(s.getQuantity());
-            d.setPrice(s.getPrice());
-            d.setTitle(s.getTitle());
-            d.setPhotoUrls(s.getPhotoUrls());
             return d;
         };
 
@@ -96,5 +94,4 @@ public class ApplicationConfiguration {
 
         return modelMapper;
     }
-
 }

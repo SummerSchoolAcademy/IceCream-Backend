@@ -92,10 +92,10 @@ public class ProductControllerTest {
 
         product = new Product(100L, "title",
                 "shortDesc", "longDesc", ingredients, 1, alergens,
-                10, "RON", urls, Type.GELATO);
+                10, "RON", urls,urls,urls, Type.GELATO);
         productDTOTest = new ProductDTO(100L, "title",
                 "shortDesc", "longDesc", ingredients, 1, alergens,
-                10, "RON", urls, Type.GELATO);
+                10, "RON", urls,urls,urls, Type.GELATO);
 
 
     }
