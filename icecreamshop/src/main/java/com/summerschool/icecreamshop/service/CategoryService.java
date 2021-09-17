@@ -1,16 +1,12 @@
 package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Category;
-import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.CategoryRepository;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {

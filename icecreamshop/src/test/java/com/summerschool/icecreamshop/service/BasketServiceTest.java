@@ -8,6 +8,7 @@ import com.summerschool.icecreamshop.model.Type;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
 
 import com.summerschool.icecreamshop.repository.BasketRepository;
+import com.summerschool.icecreamshop.repository.ProductRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,18 +38,23 @@ public class BasketServiceTest {
     private CategoryService categoryService;
 
     @Mock
+    private ProductRepository productRepository;
+
+    @Mock
     BasketProductRepository basketProductRepository;
 
     @InjectMocks
     BasketService basketService;
 
-    List<BasketProduct> basketProductListAvra;
+    List<Product> productListTest;
+
+    List<BasketProduct> basketProductListTest;
 
     Product product1 = new Product();
 
     BasketProduct basketProduct=new BasketProduct();
 
-    Basket basketAvra= new Basket();
+    Basket basketTest= new Basket();
 
     Basket basket = new Basket();
 
@@ -60,7 +66,8 @@ public class BasketServiceTest {
     public void setup(){
         initMocks(this);
 
-        basketProductListAvra = new ArrayList<BasketProduct>();
+        productListTest = new ArrayList<Product>();
+        basketProductListTest = new ArrayList<BasketProduct>();
 
         product1.setId(1L);
         product1.setTitle("Chocolate Mix Donuts");
@@ -69,16 +76,16 @@ public class BasketServiceTest {
         product1.setType(Type.DONUTS);
 
         basketProduct.setProduct(product1);
-        basketProduct.setBasket(basketAvra);
-        basketProduct.setPrice(product1.getPrice());
+        basketProduct.setBasket(basketTest);
         basketProduct.setQuantity(1);
         basketProduct.setId(1L);
 
-        basketProductListAvra.add(basketProduct);
+        productListTest.add(product1);
+        basketProductListTest.add(basketProduct);
 
-        basketAvra.setBasketProduct(basketProductListAvra);
-        basketAvra.setId(2L);
-        basketAvra.setSessionId("String");
+        basketTest.setBasketProduct(basketProductListTest);
+        basketTest.setId(2L);
+        basketTest.setSessionId("String");
 
 
         basket.setId(5L);
@@ -99,13 +106,12 @@ public class BasketServiceTest {
     @Test
     public void testGetAllProducts(){
         Mockito.when(basketProductRepository.findByBasketId(basket.getId()))
-                .thenReturn(basketProductListAvra);
+                .thenReturn(basketProductListTest);
 
         List<BasketProduct> productListReturned = basketService.getProductsFromBasket(basket.getId());
 
-        assertEquals(basketProductListAvra, productListReturned);
+        assertEquals(basketProductListTest, productListReturned);
     }
-
 
     @Test
     public void testUpdateBasket() {

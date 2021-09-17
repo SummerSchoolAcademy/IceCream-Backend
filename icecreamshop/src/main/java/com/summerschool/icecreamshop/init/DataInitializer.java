@@ -59,7 +59,9 @@ public class DataInitializer implements ApplicationRunner {
         product1.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product1.setPrice(2.5);
         product1.setCurrency("USD");
-        product1.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product1.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1sp7d1GYCVy_Ss9E8ij2te1yC74HalBJg/view?usp=sharing"));
+        product1.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1Tk1Imi3-sRNzNeOLi6SuID8yUp-59BI8/view?usp=sharing"));
+        product1.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1TyUvmshHuIrUhHHpCmbaw9bBBNi6073_/view?usp=sharing"));
         product1.setType(Type.DONUTS);
         product1.setCategory(category2);
 
@@ -72,7 +74,9 @@ public class DataInitializer implements ApplicationRunner {
         product2.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product2.setPrice(2.5);
         product2.setCurrency("USD");
-        product2.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product2.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1hNy3z44jg434o72oeskkLnGLRstKvpVQ/view?usp=sharing"));
+        product2.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1vaXOOdJq-ttzcqWNY9rc4iWn-rZlByQG/view?usp=sharing"));
+        product2.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1wRWTl8EXIKX3c2oH5MKdVHn8w4sKq2Wm/view?usp=sharing"));
         product2.setType(Type.DONUTS);
         product2.setCategory(category2);
 
@@ -85,7 +89,9 @@ public class DataInitializer implements ApplicationRunner {
         product3.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product3.setPrice(2.5);
         product3.setCurrency("USD");
-        product3.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product3.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1l02N3XRzkKlkSQbZzrgljiRjgdhxSBJ9/view?usp=sharing"));
+        product3.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1FruboQRUPHzmSxUhUE51mtQ14QnAoUVg/view?usp=sharing"));
+        product3.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1wbIT2F_5qaTTdyER4ixP5HPjPutzzcfl/view?usp=sharing"));
         product3.setType(Type.DONUTS);
         product3.setCategory(category2);
 
@@ -98,7 +104,9 @@ public class DataInitializer implements ApplicationRunner {
         product4.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product4.setPrice(2.5);
         product4.setCurrency("USD");
-        product4.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product4.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1R0_ns4GAe4Fmn_beQpLIPbCpgXiLThU5/view?usp=sharing"));
+        product4.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1WYNrshhg6Q0xSjdY65ZR6Q21sKCWWZis/view?usp=sharing"));
+        product4.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1ZblLAO0Iu6ow9g0MPI9qHuJp5GwJd9Hk/view?usp=sharing"));
         product4.setType(Type.DONUTS);
         product4.setCategory(category2);
 
@@ -111,7 +119,9 @@ public class DataInitializer implements ApplicationRunner {
         product5.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product5.setPrice(2.5);
         product5.setCurrency("USD");
-        product5.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product5.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1t6rX4L1d_e-yAl276d9CJ3cmuxNDwEkx/view?usp=sharing"));
+        product5.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1_yJxJbmASaOzjyi2TI755BFjNZxmcWak/view?usp=sharing"));
+        product5.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1VQL_lJ7uupvGMlBq2XJyZHjtJebuwjQO/view?usp=sharing"));
         product5.setType(Type.DONUTS);
         product5.setCategory(category2);
 
@@ -124,7 +134,9 @@ public class DataInitializer implements ApplicationRunner {
         product6.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product6.setPrice(3.0);
         product6.setCurrency("USD");
-        product6.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product6.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1Mgx3bnM8JiM8h8W5rJbzYWljUpvyhURp/view?usp=sharing"));
+        product6.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1pU10R0g_t1IHgSBBNMj28mOzORTmZz57/view?usp=sharing"));
+        product6.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1CqKzLqPQY-ajB7BYwp3nhoWZQEnOpgrZ/view?usp=sharing"));
         product6.setType(Type.GELATO);
         product6.setCategory(category1);
 
@@ -137,7 +149,9 @@ public class DataInitializer implements ApplicationRunner {
         product7.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product7.setPrice(3.5);
         product7.setCurrency("USD");
-        product7.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product7.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1CSoT-6ehpPdEYtItXW6MkDeLYlX2kSEA/view?usp=sharing"));
+        product7.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1Uyl6O_Kd6Oy8F2bWUeGJQcd50v8iRH-8/view?usp=sharing"));
+        product7.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1Y5NI_s6TdICjLpOMkXqa6IzVTORbYn86/view?usp=sharing"));
         product7.setType(Type.GELATO);
         product7.setCategory(category1);
 
@@ -150,7 +164,9 @@ public class DataInitializer implements ApplicationRunner {
         product8.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product8.setPrice(2.5);
         product8.setCurrency("USD");
-        product8.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product8.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1S97BdZ0z117pGQRFN6eYnltfwYUTa6Cq/view?usp=sharing"));
+        product8.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1v2aUpOv3Oz77E_VCxDDoiiAx5QRpy612/view?usp=sharing"));
+        product8.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1SIwBSGJpGReEfVfiGJ3B5zm0Bu1d3GZe/view?usp=sharing"));
         product8.setType(Type.DONUTS);
         product8.setCategory(category2);
 
@@ -163,7 +179,9 @@ public class DataInitializer implements ApplicationRunner {
         product9.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product9.setPrice(2.5);
         product9.setCurrency("USD");
-        product9.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product9.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1llZjQDcbZp58a-iGj4AnMoVTJ_DAKZhj/view?usp=sharing"));
+        product9.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1boy7veyhZ9OOwIhfcdAAjGEDDt_81AdC/view?usp=sharing"));
+        product9.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1swiDwNwaKiAo-tyCnik9cKJz_EUFAD_Y/view?usp=sharing"));
         product9.setType(Type.DONUTS);
         product9.setCategory(category2);
 
@@ -176,7 +194,9 @@ public class DataInitializer implements ApplicationRunner {
         product10.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product10.setPrice(2.5);
         product10.setCurrency("USD");
-        product10.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product10.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1TYkanwveHAE-SUW9Lpj4ZFzsNpwQhenh/view?usp=sharing"));
+        product10.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1I0Cl1GnOpkFieJOsM5rB365w3mxKTZbF/view?usp=sharing"));
+        product10.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1AttTL08igTSAvDYMm1YbQSLovJFhjGUt/view?usp=sharing"));
         product10.setType(Type.DONUTS);
         product10.setCategory(category2);
 
@@ -189,7 +209,9 @@ public class DataInitializer implements ApplicationRunner {
         product11.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product11.setPrice(2.5);
         product11.setCurrency("USD");
-        product11.setPhotoUrls(Arrays.asList("url-small", "url-medium", "url-large"));
+        product11.setPhotoUrlsBig(Arrays.asList("https://drive.google.com/file/d/1VhxtA0xzTVdh5_xFRmnS_ndV9sihXd2w/view?usp=sharing"));
+        product11.setPhotoUrlsMedium(Arrays.asList("https://drive.google.com/file/d/1VhxtA0xzTVdh5_xFRmnS_ndV9sihXd2w/view?usp=sharing"));
+        product11.setPhotoUrlsSmall(Arrays.asList("https://drive.google.com/file/d/1ovasUjjOeB8xqQnpKmxQsejM-uU1KmaX/view?usp=sharing"));
         product11.setType(Type.DONUTS);
         product11.setCategory(category2);
 
@@ -257,22 +279,18 @@ public class DataInitializer implements ApplicationRunner {
 
         basketProductTest1.setProduct(product1);
         basketProductTest1.setBasket(basketTest);
-        basketProductTest1.setPrice(product1.getPrice());
         basketProductTest1.setQuantity(1);
 
         basketProductTest2.setProduct(product2);
         basketProductTest2.setBasket(basketTest);
-        basketProductTest2.setPrice(product2.getPrice());
         basketProductTest2.setQuantity(1);
 
         basketProductTest3.setProduct(product3);
         basketProductTest3.setBasket(basketTest);
-        basketProductTest3.setPrice(product3.getPrice());
         basketProductTest3.setQuantity(1);
 
         basketProductTest4.setProduct(product4);
         basketProductTest4.setBasket(basketTest);
-        basketProductTest4.setPrice(product4.getPrice());
         basketProductTest4.setQuantity(1);
 
         basketProductList.add(basketProductTest1);
@@ -305,31 +323,26 @@ public class DataInitializer implements ApplicationRunner {
         basketProduct1.setId(1L);
         basketProduct1.setProduct(product1);
         basketProduct1.setQuantity(2);
-        basketProduct1.setPrice(product1.getPrice());
         basketProduct1.setBasket(basket1);
 
         BasketProduct basketProduct2 = new BasketProduct();
         basketProduct2.setId(2L);
         basketProduct2.setProduct(product2);
         basketProduct2.setQuantity(3);
-        basketProduct2.setPrice(product2.getPrice());
         basketProduct2.setBasket(basket1);
 
         BasketProduct basketProduct3 = new BasketProduct();
         basketProduct3.setId(3L);
         basketProduct3.setProduct(product3);
         basketProduct3.setQuantity(2);
-        basketProduct3.setPrice(product3.getPrice());
         basketProduct3.setBasket(basket2);
 
         BasketProduct basketProduct4 = new BasketProduct();
         basketProduct4.setId(4L);
         basketProduct4.setProduct(product4);
         basketProduct4.setQuantity(3);
-        basketProduct4.setPrice(product4.getPrice());
         basketProduct4.setBasket(basket3);
 
         basketProductRepository.saveAll(Arrays.asList(basketProduct1,basketProduct2,basketProduct3,basketProduct4));
-
     }
 }

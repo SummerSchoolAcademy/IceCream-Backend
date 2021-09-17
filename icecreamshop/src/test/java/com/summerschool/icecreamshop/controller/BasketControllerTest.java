@@ -1,7 +1,6 @@
 package com.summerschool.icecreamshop.controller;
 
 import com.summerschool.icecreamshop.dto.BasketDTO;
-
 import com.summerschool.icecreamshop.dto.BasketProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
@@ -11,9 +10,7 @@ import com.summerschool.icecreamshop.service.BasketService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.mockito.ArgumentMatchers;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -23,13 +20,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -47,6 +42,8 @@ public class BasketControllerTest {
     @InjectMocks
     BasketController basketController;
 
+    List<Product> productListTest;
+
     List<BasketProduct> basketProductList;
 
     BasketDTO basketDTO = new BasketDTO();
@@ -63,6 +60,7 @@ public class BasketControllerTest {
     public void setup(){
         initMocks(this);
 
+        productListTest = new ArrayList<Product>();
         basketProductList = new ArrayList<BasketProduct>();
 
         product1.setId(1L);
@@ -73,10 +71,10 @@ public class BasketControllerTest {
 
         basketProduct.setProduct(product1);
         basketProduct.setBasket(basket);
-        basketProduct.setPrice(product1.getPrice());
         basketProduct.setQuantity(1);
         basketProduct.setId(1L);
 
+        productListTest.add(product1);
         basketProductList.add(basketProduct);
 
         basket1.setBasketProduct(basketProductList);
@@ -92,9 +90,10 @@ public class BasketControllerTest {
         basketDTO.setSessionId("ceva");
     }
 
+
     @Test
 
-    public void testGetAllProducts(){
+   public void testGetAllProducts(){
         Mockito.when(basketService.getProductsFromBasket(2L))
                 .thenReturn(basketProductList);
 

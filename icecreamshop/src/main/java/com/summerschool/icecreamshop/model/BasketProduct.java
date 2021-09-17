@@ -1,5 +1,7 @@
 package com.summerschool.icecreamshop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -12,18 +14,16 @@ public class BasketProduct {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")
+    @JsonBackReference
     private Product product;
 
     @NotNull
     private Integer quantity;
 
-    @NotNull
-    private Double price;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "basket_id")
+    @JsonBackReference
     private Basket basket;
-
 
     public void setId(Long id) {
         this.id = id;
@@ -35,10 +35,6 @@ public class BasketProduct {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public void setBasket(Basket basket) {this.basket=basket;}
@@ -53,10 +49,6 @@ public class BasketProduct {
 
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public Double getPrice() {
-        return price;
     }
 
     public Basket getBasket(){ return basket;}

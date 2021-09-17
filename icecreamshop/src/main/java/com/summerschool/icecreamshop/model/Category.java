@@ -1,8 +1,9 @@
 package com.summerschool.icecreamshop.model;
 
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,6 +20,7 @@ public class Category {
     private String description;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Product> products;
 
     public Category() {}

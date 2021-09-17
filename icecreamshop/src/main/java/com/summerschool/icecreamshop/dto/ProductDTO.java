@@ -1,8 +1,8 @@
 package com.summerschool.icecreamshop.dto;
 
-import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Type;
 
+import javax.persistence.ElementCollection;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -34,27 +34,36 @@ public class ProductDTO {
     private String currency;
 
     @NotNull
-    private List<String> photoUrls;
+    @ElementCollection
+    private List<String> photoUrlsBig;
+
+    @NotNull
+    @ElementCollection
+    private List<String> photoUrlsMedium;
+
+    @NotNull
+    @ElementCollection
+    private List<String> photoUrlsSmall;
 
     @NotNull
     Type type;
 
     private List<RateDTO> rates;
 
-    private List<BasketProductDTO> basketProduct;
-
     //Constructors
     public ProductDTO(){}
 
     public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
-                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrls, Type type){
+                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type){
         this.id = id;
         this.title = title;
         this.shortDescription = shorDesc;
         this.longDescription = longDesc;
         this.alergens = alergens;
         this.price = price;
-        this.photoUrls = photoUrls;
+        this.photoUrlsBig = photoUrlsBig;
+        this.photoUrlsMedium= photoUrlsMedium;
+        this.photoUrlsSmall = photoUrlsSmall;
         this.type = type;
         this.ingredients = ingredients;
         this.quantity = quantity;
@@ -98,8 +107,16 @@ public class ProductDTO {
         this.currency = currency;
     }
 
-    public void setPhotoUrls(List<String> photoUrls) {
-        this.photoUrls = photoUrls;
+    public void setPhotoUrlsBig(List<String> photoUrls) {
+        this.photoUrlsBig = photoUrls;
+    }
+
+    public void setPhotoUrlsMedium(List<String> photoUrls) {
+        this.photoUrlsMedium = photoUrls;
+    }
+
+    public void setPhotoUrlsSmall(List<String> photoUrls) {
+        this.photoUrlsSmall = photoUrls;
     }
 
     public void setType(Type type) {
@@ -108,11 +125,6 @@ public class ProductDTO {
 
     public void setRates(List<RateDTO> rates) {
         this.rates = rates;
-    }
-
-
-    public void setBasketProduct(List<BasketProductDTO> basketProduct) {
-        this.basketProduct = basketProduct;
     }
 
 
@@ -153,8 +165,16 @@ public class ProductDTO {
         return currency;
     }
 
-    public List<String> getPhotoUrls() {
-        return photoUrls;
+    public List<String> getPhotoUrlsBig() {
+        return photoUrlsBig;
+    }
+
+    public List<String> getPhotoUrlsMedium() {
+        return photoUrlsMedium;
+    }
+
+    public List<String> getPhotoUrlsSmall() {
+        return photoUrlsSmall;
     }
 
     public Type getType() {
@@ -163,9 +183,5 @@ public class ProductDTO {
 
     public List<RateDTO> getRates() {
         return rates;
-    }
-
-    public List<BasketProductDTO> getBasketProduct() {
-        return basketProduct;
     }
 }
