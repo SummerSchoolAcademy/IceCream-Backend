@@ -2,7 +2,6 @@ package com.summerschool.icecreamshop.controller;
 
 import com.summerschool.icecreamshop.dto.BasketDTO;
 import com.summerschool.icecreamshop.dto.BasketProductDTO;
-import com.summerschool.icecreamshop.dto.ProductDTO;
 import com.summerschool.icecreamshop.model.Basket;
 import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
@@ -43,7 +42,7 @@ public class BasketControllerTest {
     @InjectMocks
     BasketController basketController;
 
-    List<Product> productListAvra;
+    List<Product> productListTest;
 
     List<BasketProduct> basketProductList;
 
@@ -61,7 +60,7 @@ public class BasketControllerTest {
     public void setup(){
         initMocks(this);
 
-        productListAvra = new ArrayList<Product>();
+        productListTest = new ArrayList<Product>();
         basketProductList = new ArrayList<BasketProduct>();
 
         product1.setId(1L);
@@ -75,7 +74,7 @@ public class BasketControllerTest {
         basketProduct.setQuantity(1);
         basketProduct.setId(1L);
 
-        productListAvra.add(product1);
+        productListTest.add(product1);
         basketProductList.add(basketProduct);
 
         basket1.setBasketProduct(basketProductList);

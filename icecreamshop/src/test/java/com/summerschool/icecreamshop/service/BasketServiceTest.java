@@ -46,15 +46,15 @@ public class BasketServiceTest {
     @InjectMocks
     BasketService basketService;
 
-    List<Product> productListAvra;
+    List<Product> productListTest;
 
-    List<BasketProduct> basketProductListAvra;
+    List<BasketProduct> basketProductListTest;
 
     Product product1 = new Product();
 
     BasketProduct basketProduct=new BasketProduct();
 
-    Basket basketAvra= new Basket();
+    Basket basketTest= new Basket();
 
     Basket basket = new Basket();
 
@@ -66,8 +66,8 @@ public class BasketServiceTest {
     public void setup(){
         initMocks(this);
 
-        productListAvra = new ArrayList<Product>();
-        basketProductListAvra = new ArrayList<BasketProduct>();
+        productListTest = new ArrayList<Product>();
+        basketProductListTest = new ArrayList<BasketProduct>();
 
         product1.setId(1L);
         product1.setTitle("Chocolate Mix Donuts");
@@ -76,16 +76,16 @@ public class BasketServiceTest {
         product1.setType(Type.DONUTS);
 
         basketProduct.setProduct(product1);
-        basketProduct.setBasket(basketAvra);
+        basketProduct.setBasket(basketTest);
         basketProduct.setQuantity(1);
         basketProduct.setId(1L);
 
-        productListAvra.add(product1);
-        basketProductListAvra.add(basketProduct);
+        productListTest.add(product1);
+        basketProductListTest.add(basketProduct);
 
-        basketAvra.setBasketProduct(basketProductListAvra);
-        basketAvra.setId(2L);
-        basketAvra.setSessionId("String");
+        basketTest.setBasketProduct(basketProductListTest);
+        basketTest.setId(2L);
+        basketTest.setSessionId("String");
 
 
         basket.setId(5L);
@@ -105,12 +105,12 @@ public class BasketServiceTest {
 
     @Test
     public void testGetAllProducts(){
-        Mockito.when(basketProductRepository.queryGetBasketProducts(basket.getId()))
-                .thenReturn(basketProductListAvra);
+        Mockito.when(basketProductRepository.findByBasketId(basket.getId()))
+                .thenReturn(basketProductListTest);
 
         List<BasketProduct> productListReturned = basketService.getProductsFromBasket(basket.getId());
 
-        assertEquals(basketProductListAvra, productListReturned);
+        assertEquals(basketProductListTest, productListReturned);
     }
 
     @Test
