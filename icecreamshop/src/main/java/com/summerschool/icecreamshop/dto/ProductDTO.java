@@ -50,8 +50,6 @@ public class ProductDTO {
 
     private List<RateDTO> rates;
 
-    private List<BasketProductDTO> basketProduct;
-
     //Constructors
     public ProductDTO(){}
 
@@ -129,10 +127,6 @@ public class ProductDTO {
         this.rates = rates;
     }
 
-    public void setBasketProduct(List<BasketProductDTO> basketProduct) {
-        this.basketProduct = basketProduct;
-    }
-
 
     // Getters
     public Long getId() {
@@ -189,9 +183,5 @@ public class ProductDTO {
 
     public List<RateDTO> getRates() {
         return rates;
-    }
-
-    public List<BasketProductDTO> getBasketProduct() {
-        return basketProduct;
     }
 }
