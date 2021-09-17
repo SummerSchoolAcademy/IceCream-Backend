@@ -1,6 +1,7 @@
 package com.summerschool.icecreamshop.service;
 
 import com.summerschool.icecreamshop.model.Basket;
+import com.summerschool.icecreamshop.model.BasketProduct;
 import com.summerschool.icecreamshop.model.Product;
 import com.summerschool.icecreamshop.repository.BasketProductRepository;
 import com.summerschool.icecreamshop.repository.BasketRepository;
@@ -17,17 +18,15 @@ public class BasketService {
 
     private BasketProductRepository basketProductRepository;
     private final BasketRepository basketRepository;
-    private ProductRepository productRepository;
 
     @Autowired
-    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository, ProductRepository productRepository){
+    public BasketService(BasketProductRepository basketProductRepository, BasketRepository basketRepository){
         this.basketRepository = basketRepository;
         this.basketProductRepository = basketProductRepository;
-        this.productRepository = productRepository;
     }
 
-    public List<Product> getProductsFromBasket(Long basketId){
-        return productRepository.queryGetBasketProducts(basketId);
+    public List<BasketProduct> getProductsFromBasket(Long basketId){
+        return basketProductRepository.queryGetBasketProducts(basketId);
     }
   
     public Optional<Basket> get (Long id){

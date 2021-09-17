@@ -83,6 +83,7 @@ public class ApplicationConfiguration {
             BasketProduct d = new BasketProduct();
             d.setId(s.getId());
             d.setQuantity(s.getQuantity());
+            d.setProduct(s.getProduct());
             return d;
         };
 

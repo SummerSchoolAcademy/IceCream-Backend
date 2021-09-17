@@ -10,8 +10,4 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findById(int id);
-
-    @Query(nativeQuery = true, value =
-            "Select * From products Join (Select * From basket_products Where basket_products.basket_id = :basketId) as basket_products On products.id=basket_products.product_id")
-    List<Product> queryGetBasketProducts(Long basketId);
 }
