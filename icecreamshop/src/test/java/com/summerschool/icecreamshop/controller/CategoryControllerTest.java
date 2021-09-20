@@ -46,8 +46,13 @@ public class CategoryControllerTest {
     @Before
     public void setUp() {
         initMocks(this);
-        category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
-        categoryDTO = new CategoryDTO(5L, "Test Name", "ceva", new ArrayList<ProductDTO>());
+
+        List<String> pozeTest = new ArrayList<String>();
+
+        pozeTest.add("poze");
+
+        category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>(),pozeTest,pozeTest);
+        categoryDTO = new CategoryDTO(5L, "Test Name", "ceva", new ArrayList<ProductDTO>(),pozeTest,pozeTest);
     }
 
     @Test

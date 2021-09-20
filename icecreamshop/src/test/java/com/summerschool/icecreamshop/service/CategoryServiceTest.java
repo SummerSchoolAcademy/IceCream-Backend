@@ -32,7 +32,12 @@ public class CategoryServiceTest {
 
     @Before
     public void setUp() {
-        category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>());
+
+        List<String> pozeTest = new ArrayList<String>();
+
+        pozeTest.add("poze");
+
+        category = new Category(5L, "Test Name", "ceva", new ArrayList<Product>(),pozeTest,pozeTest);
 
     }
 

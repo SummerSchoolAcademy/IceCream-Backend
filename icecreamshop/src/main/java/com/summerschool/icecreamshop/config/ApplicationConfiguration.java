@@ -31,6 +31,8 @@ public class ApplicationConfiguration {
             d.setId(s.getId());
             d.setName(s.getName());
             d.setDescription(s.getDescription());
+            d.setCategoryPhotoBig(s.getCategoryPhotoBig());;
+            d.setCategoryPhotoMedium(s.getCategoryPhotoMedium());
             d.setProducts(s.getProducts().stream()
                     .map(x -> modelMapper.map(x , Product.class))
                     .collect(Collectors.toList()));

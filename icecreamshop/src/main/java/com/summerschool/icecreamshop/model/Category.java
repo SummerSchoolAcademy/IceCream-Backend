@@ -19,17 +19,25 @@ public class Category {
     @Column(length = 500)
     private String description;
 
+    @ElementCollection
+    private List<String> categoryPhotoBig;
+
+    @ElementCollection
+    private List<String> categoryPhotoMedium;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Product> products;
 
     public Category() {}
 
-    public Category(Long id, String name, String description, List<Product> products) {
+    public Category(Long id, String name, String description, List<Product> products, List<String> categoryPhotoBig, List<String> categoryPhotoMedium) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.products = products;
+        this.categoryPhotoBig=categoryPhotoBig;
+        this.categoryPhotoMedium=categoryPhotoMedium;
     }
 
     public void setId(Long id) {
@@ -48,6 +56,12 @@ public class Category {
         this.products = products;
     }
 
+    public void setCategoryPhotoBig(List<String> categoryPhotoBig) {
+        this.categoryPhotoBig = categoryPhotoBig;
+    }
+
+    public void setCategoryPhotoMedium(List<String> categoryPhotoMedium) {this.categoryPhotoMedium = categoryPhotoMedium;}
+
     public Long getId() {
         return id;
     }
@@ -64,13 +78,24 @@ public class Category {
         return products;
     }
 
+
+    public List<String> getCategoryPhotoBig() {
+        return categoryPhotoBig;
+    }
+
+    public List<String> getCategoryPhotoMedium() {
+        return categoryPhotoMedium;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", products=" + products +
+                ", products=" + products + '\'' +
+                ", categoryPhotoBig=" + categoryPhotoBig + '\'' +
+                ", categoryPhotoMedium=" + categoryPhotoMedium +
                 '}';
     }
 }
