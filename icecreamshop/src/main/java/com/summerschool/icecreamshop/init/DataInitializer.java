@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +57,7 @@ public class DataInitializer implements ApplicationRunner {
         category3.setCategoryPhotoBig(Arrays.asList("https://imgur.com/5cTilN1.png"));
         category3.setCategoryPhotoBig(Arrays.asList("https://imgur.com/Obw2cHB.png"));
 
-        categoryRepository.saveAll(Arrays.asList(category1, category2));
+        categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
 
         Product product1 = new Product();
         product1.setTitle("Chocolate Mix Donuts");
