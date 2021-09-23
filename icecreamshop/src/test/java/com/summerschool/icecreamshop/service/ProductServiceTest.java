@@ -106,7 +106,6 @@ public class ProductServiceTest {
 
         Mockito.when(productRepository.save(product1))
                 .thenReturn(product1);
-        productsList.add(product1);
 
         Product response = productService.add(product1);
         assertEquals(product1, response);
