@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findById(int id);
+
+    @Query(nativeQuery = true, value = "Select * From products Where products.how_many_alergens=0")
+    List<Product> querySpecialProducts();
 }

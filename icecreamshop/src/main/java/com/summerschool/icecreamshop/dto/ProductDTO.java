@@ -28,6 +28,9 @@ public class ProductDTO {
     private List<String> alergens;
 
     @NotNull
+    private Integer howManyAlergens;
+
+    @NotNull
     private double price;
 
     @NotNull
@@ -54,7 +57,7 @@ public class ProductDTO {
     public ProductDTO(){}
 
     public ProductDTO(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
-                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type){
+                      int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type, Integer howManyAlergens){
         this.id = id;
         this.title = title;
         this.shortDescription = shorDesc;
@@ -68,6 +71,7 @@ public class ProductDTO {
         this.ingredients = ingredients;
         this.quantity = quantity;
         this.currency = currency;
+        this.howManyAlergens = howManyAlergens;
     }
 
     // Setters
@@ -97,6 +101,10 @@ public class ProductDTO {
 
     public void setAlergens(List<String> alergens) {
         this.alergens = alergens;
+    }
+
+    public void setHowManyAlergens(Integer howManyAlergens) {
+        this.howManyAlergens = howManyAlergens;
     }
 
     public void setPrice(double price) {
@@ -155,6 +163,10 @@ public class ProductDTO {
 
     public List<String> getAlergens() {
         return alergens;
+    }
+
+    public Integer getHowManyAlergens() {
+        return howManyAlergens;
     }
 
     public double getPrice() {

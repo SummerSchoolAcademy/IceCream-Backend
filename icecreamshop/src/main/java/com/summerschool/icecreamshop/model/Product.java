@@ -38,6 +38,9 @@ public class Product {
     private List<String> alergens;
 
     @NotNull
+    private Integer howManyAlergens;
+
+    @NotNull
     private Double price;
 
     @NotNull
@@ -76,7 +79,7 @@ public class Product {
     public Product(){}
 
     public Product(Long id, String title, String shorDesc, String longDesc, List<String> ingredients,
-                   int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type){
+                   int quantity, List <String> alergens, double price, String currency, List<String> photoUrlsBig, List<String> photoUrlsMedium, List<String> photoUrlsSmall, Type type, Integer howManyAlergens){
         this.id = id;
         this.title = title;
         this.shortDescription = shorDesc;
@@ -90,6 +93,7 @@ public class Product {
         this.ingredients = ingredients;
         this.quantity = quantity;
         this.currency = currency;
+        this.howManyAlergens = howManyAlergens;
     }
 
     // Setters
@@ -119,6 +123,10 @@ public class Product {
 
     public void setAlergens(List<String> alergens) {
         this.alergens = alergens;
+    }
+
+    public void setHowManyAlergens(Integer howManyAlergens) {
+        this.howManyAlergens = howManyAlergens;
     }
 
     public void setPrice(Double price) {
@@ -184,6 +192,10 @@ public class Product {
 
     public List<String> getAlergens() {
         return alergens;
+    }
+
+    public Integer getHowManyAlergens() {
+        return howManyAlergens;
     }
 
     public Double getPrice() {

@@ -49,6 +49,7 @@ public class ApplicationConfiguration {
             d.setIngredients(s.getIngredients());
             d.setQuantity(s.getQuantity());
             d.setAlergens(s.getAlergens());
+            d.setHowManyAlergens(s.getHowManyAlergens());
             d.setPrice(s.getPrice());
             d.setCurrency(s.getCurrency());
             d.setPhotoUrlsBig(s.getPhotoUrlsBig());
