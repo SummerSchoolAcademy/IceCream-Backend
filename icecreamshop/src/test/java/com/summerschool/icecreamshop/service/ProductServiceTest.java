@@ -53,6 +53,7 @@ public class ProductServiceTest {
         product1.setType(Type.DONUTS);
         product1.setPrice(2.5);
         product1.setCategory(category1);
+        product1.setHowManyAlergens(0);
 
         productPatch.setTitle("test-title");
 
@@ -80,6 +81,21 @@ public class ProductServiceTest {
                 .thenReturn(productsPage);
 
         List<Product> response = productService.getProductsOfThePage(0,5);
+
+        assertNotNull(response);
+        assertEquals(1,response.size());
+    }
+
+    @Test
+    public void testServiceForGetSpecialProducts(){
+
+        productsList= new ArrayList<Product>();
+        productsList.add(product1);
+
+        Mockito.when(productRepository.querySpecialProducts())
+                .thenReturn(productsList);
+
+        List<Product> response = productService.getSpecialProducts();
 
         assertNotNull(response);
         assertEquals(1,response.size());

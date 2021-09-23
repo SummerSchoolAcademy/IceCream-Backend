@@ -63,9 +63,9 @@ public class DataInitializer implements ApplicationRunner {
         product1.setTitle("Chocolate Mix Donuts");
         product1.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
         product1.setLongDescription("Donut with chocolate icing, dark chocolate curls, Kinder Bueno™ wafers and delicate milk chocolate lines");
-        product1.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)", "Eggs"));
+        product1.setIngredients(Arrays.asList("Cream", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)"));
         product1.setQuantity(100);
-        product1.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product1.setAlergens(Arrays.asList());
         product1.setPrice(2.5);
         product1.setCurrency("USD");
         product1.setPhotoUrlsBig(Arrays.asList("https://imgur.com/S3X26u2.png"));
@@ -73,6 +73,7 @@ public class DataInitializer implements ApplicationRunner {
         product1.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/nT8abHV.png"));
         product1.setType(Type.DONUTS);
         product1.setCategory(category2);
+        product1.setHowManyAlergens(0);
 
         Product product2 = new Product();
         product2.setTitle("Chocolate Donuts");
@@ -88,14 +89,15 @@ public class DataInitializer implements ApplicationRunner {
         product2.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/FXBP37I.png"));
         product2.setType(Type.DONUTS);
         product2.setCategory(category2);
+        product2.setHowManyAlergens(4);
 
         Product product3 = new Product();
         product3.setTitle("Strawberry Donuts");
         product3.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
         product3.setLongDescription("Donut with strawberry icing and sprinkles");
-        product3.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)", "Strawberry extract", "Eggs"));
+        product3.setIngredients(Arrays.asList("Cream", "Cane Sugar", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)", "Strawberry extract"));
         product3.setQuantity(100);
-        product3.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product3.setAlergens(Arrays.asList());
         product3.setPrice(2.5);
         product3.setCurrency("USD");
         product3.setPhotoUrlsBig(Arrays.asList("https://imgur.com/PM5TYmV.png"));
@@ -103,6 +105,7 @@ public class DataInitializer implements ApplicationRunner {
         product3.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/z8Y393N.png"));
         product3.setType(Type.DONUTS);
         product3.setCategory(category2);
+        product3.setHowManyAlergens(0);
 
         Product product4 = new Product();
         product4.setTitle("Toffee Donuts");
@@ -118,6 +121,7 @@ public class DataInitializer implements ApplicationRunner {
         product4.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/YqdlYPC.png"));
         product4.setType(Type.DONUTS);
         product4.setCategory(category2);
+        product4.setHowManyAlergens(4);
 
         Product product5 = new Product();
         product5.setTitle("Banana Combo Donuts");
@@ -133,6 +137,7 @@ public class DataInitializer implements ApplicationRunner {
         product5.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/dHYfOUQ.png"));
         product5.setType(Type.DONUTS);
         product5.setCategory(category2);
+        product5.setHowManyAlergens(4);
 
         Product product6 = new Product();
         product6.setTitle("Bittersweet Mint Gelato");
@@ -143,11 +148,12 @@ public class DataInitializer implements ApplicationRunner {
         product6.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product6.setPrice(3.0);
         product6.setCurrency("USD");
-        product6.setPhotoUrlsBig(Arrays.asList("https://imgur.com/CdFPzfY.png"));
-        product6.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/fqoWSkM.png"));
-        product6.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/kkZwULZ.png"));
+        product6.setPhotoUrlsBig(Arrays.asList("https://imgur.com/MJxQcj3.png"));
+        product6.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/MJxQcj3.png"));
+        product6.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/MJxQcj3.png"));
         product6.setType(Type.GELATO);
         product6.setCategory(category1);
+        product6.setHowManyAlergens(4);
 
         Product product7 = new Product();
         product7.setTitle("Tiramisu Gelato");
@@ -158,19 +164,20 @@ public class DataInitializer implements ApplicationRunner {
         product7.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
         product7.setPrice(3.5);
         product7.setCurrency("USD");
-        product7.setPhotoUrlsBig(Arrays.asList("https://imgur.com/i5IqV13.png"));
-        product7.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/RD6a8lc.png"));
-        product7.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/zBf1vY9.png"));
+        product7.setPhotoUrlsBig(Arrays.asList("https://imgur.com/jSLdtBj.png"));
+        product7.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/jSLdtBj.png"));
+        product7.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/jSLdtBj.png"));
         product7.setType(Type.GELATO);
         product7.setCategory(category1);
+        product7.setHowManyAlergens(4);
 
         Product product8 = new Product();
         product8.setTitle("Paradise Donuts");
         product8.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
         product8.setLongDescription("Donut with blue icing, star-shaped sprinkles, and Kinder Chocolate");
-        product8.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)", "Eggs"));
+        product8.setIngredients(Arrays.asList("Cream","Cane Sugar", "Cake Pieces", "Cake Base", "Sprinkles (Sugar, Coconut Oil, Buttermilk Powder, Natural Flavor, Spirulina Extract, Skim Milk)"));
         product8.setQuantity(110);
-        product8.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product8.setAlergens(Arrays.asList());
         product8.setPrice(2.5);
         product8.setCurrency("USD");
         product8.setPhotoUrlsBig(Arrays.asList("https://imgur.com/IwofHb0.png"));
@@ -178,6 +185,7 @@ public class DataInitializer implements ApplicationRunner {
         product8.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/KKy7edw.png"));
         product8.setType(Type.DONUTS);
         product8.setCategory(category2);
+        product8.setHowManyAlergens(0);
 
         Product product9 = new Product();
         product9.setTitle("Ferrero Donuts");
@@ -193,14 +201,15 @@ public class DataInitializer implements ApplicationRunner {
         product9.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/R2p9MzO.png"));
         product9.setType(Type.DONUTS);
         product9.setCategory(category2);
+        product9.setHowManyAlergens(4);
 
         Product product10 = new Product();
         product10.setTitle("Marshmallow Donuts");
         product10.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
         product10.setLongDescription("Donut with strawberry icing, and marshmallows");
-        product10.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Cake Pieces", "Cake Base", "Marshmallows", "Eggs"));
+        product10.setIngredients(Arrays.asList("Cane Sugar", "Cake Pieces", "Cake Base", "Marshmallows"));
         product10.setQuantity(110);
-        product10.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product10.setAlergens(Arrays.asList());
         product10.setPrice(2.5);
         product10.setCurrency("USD");
         product10.setPhotoUrlsBig(Arrays.asList("https://imgur.com/tIxdrau.png"));
@@ -208,6 +217,7 @@ public class DataInitializer implements ApplicationRunner {
         product10.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/1I5oI3b.png"));
         product10.setType(Type.DONUTS);
         product10.setCategory(category2);
+        product10.setHowManyAlergens(0);
 
         Product product11 = new Product();
         product11.setTitle("Chocolate Sprinkled Donuts");
@@ -223,8 +233,108 @@ public class DataInitializer implements ApplicationRunner {
         product11.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/DrdlqGR.png"));
         product11.setType(Type.DONUTS);
         product11.setCategory(category2);
+        product11.setHowManyAlergens(4);
 
-        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11));
+
+        Product product12 = new Product();
+        product12.setTitle("Watermelon Gelato");
+        product12.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product12.setLongDescription("Gelato with mint, dark chocolate pieces and chocolate topping");
+        product12.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Mint", "Dark chocolate", "Chocolate topping"));
+        product12.setQuantity(110);
+        product12.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product12.setPrice(3.0);
+        product12.setCurrency("USD");
+        product12.setPhotoUrlsBig(Arrays.asList("https://imgur.com/e8qJ7bo.png"));
+        product12.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/EIqLW0s.png"));
+        product12.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/O2raYjI.png"));
+        product12.setType(Type.GELATO);
+        product12.setCategory(category1);
+        product12.setHowManyAlergens(4);
+
+        Product product13 = new Product();
+        product13.setTitle("Pink Watermelon Gelato");
+        product13.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product13.setLongDescription("Tiramisu Gelato with coffee and cocoa");
+        product13.setIngredients(Arrays.asList("Skimmed milk powder", "Cocoa powder", "Coffee", "Watermelon flavor"));
+        product13.setQuantity(130);
+        product13.setAlergens(Arrays.asList());
+        product13.setPrice(3.5);
+        product13.setCurrency("USD");
+        product13.setPhotoUrlsBig(Arrays.asList("https://imgur.com/Ix2GVkc.png"));
+        product13.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/RKZGvpr.png"));
+        product13.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/CYbKifr.png"));
+        product13.setType(Type.GELATO);
+        product13.setCategory(category1);
+        product13.setHowManyAlergens(0);
+
+
+        Product product14 = new Product();
+        product14.setTitle("Strawberry Gelato");
+        product14.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product14.setLongDescription("Gelato with mint, dark chocolate pieces and chocolate topping");
+        product14.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Mint", "Dark chocolate", "Chocolate topping"));
+        product14.setQuantity(110);
+        product14.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product14.setPrice(3.0);
+        product14.setCurrency("USD");
+        product14.setPhotoUrlsBig(Arrays.asList("https://imgur.com/i5IqV13.png"));
+        product14.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/RD6a8lc.png"));
+        product14.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/zBf1vY9.png"));
+        product14.setType(Type.GELATO);
+        product14.setCategory(category1);
+        product14.setHowManyAlergens(4);
+
+        Product product15 = new Product();
+        product15.setTitle("Pistachio Gelato");
+        product15.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product15.setLongDescription("Tiramisu Gelato with coffee and cocoa");
+        product15.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Cocoa powder", "Coffee", "Ladyfingers"));
+        product15.setQuantity(130);
+        product15.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product15.setPrice(3.5);
+        product15.setCurrency("USD");
+        product15.setPhotoUrlsBig(Arrays.asList("https://imgur.com/CdFPzfY.png"));
+        product15.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/fqoWSkM.png"));
+        product15.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/kkZwULZ.png"));
+        product15.setType(Type.GELATO);
+        product15.setCategory(category1);
+        product15.setHowManyAlergens(4);
+
+
+        Product product16 = new Product();
+        product16.setTitle("Chocolate Gelato");
+        product16.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product16.setLongDescription("Gelato with mint, dark chocolate pieces and chocolate topping");
+        product16.setIngredients(Arrays.asList("Cream", "Cane Sugar", "Skimmed milk powder", "Dark chocolate", "Chocolate topping"));
+        product16.setQuantity(110);
+        product16.setAlergens(Arrays.asList());
+        product16.setPrice(3.0);
+        product16.setCurrency("USD");
+        product16.setPhotoUrlsBig(Arrays.asList("https://imgur.com/Fwhw0gN.png"));
+        product16.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/Fwhw0gN.png"));
+        product16.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/Fwhw0gN.png"));
+        product16.setType(Type.GELATO);
+        product16.setCategory(category1);
+        product16.setHowManyAlergens(0);
+
+        Product product17 = new Product();
+        product17.setTitle("Caramel Gelato");
+        product17.setShortDescription("Treat yourself to ice cream infused with smooth Bourbon sprinkled");
+        product17.setLongDescription("Tiramisu Gelato with coffee and cocoa");
+        product17.setIngredients(Arrays.asList("Cream", "Milk", "Cane Sugar", "Skimmed milk powder", "Eggs", "Cocoa powder", "Coffee", "Ladyfingers"));
+        product17.setQuantity(130);
+        product17.setAlergens(Arrays.asList("Milk", "Egg", "Soy", "Wheat"));
+        product17.setPrice(3.5);
+        product17.setCurrency("USD");
+        product17.setPhotoUrlsBig(Arrays.asList("https://imgur.com/t3N8qgx.png"));
+        product17.setPhotoUrlsMedium(Arrays.asList("https://imgur.com/t3N8qgx.png"));
+        product17.setPhotoUrlsSmall(Arrays.asList("https://imgur.com/t3N8qgx.png"));
+        product17.setType(Type.GELATO);
+        product17.setCategory(category1);
+        product17.setHowManyAlergens(4);
+
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13, product14, product15, product16, product17));
 
         Rate rate1 = new Rate();
         rate1.setProduct(product1);

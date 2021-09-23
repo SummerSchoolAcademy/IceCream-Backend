@@ -92,10 +92,10 @@ public class ProductControllerTest {
 
         product = new Product(100L, "title",
                 "shortDesc", "longDesc", ingredients, 1, alergens,
-                10, "RON", urls,urls,urls, Type.GELATO);
+                10, "RON", urls,urls,urls, Type.GELATO,4);
         productDTOTest = new ProductDTO(100L, "title",
                 "shortDesc", "longDesc", ingredients, 1, alergens,
-                10, "RON", urls,urls,urls, Type.GELATO);
+                10, "RON", urls,urls,urls, Type.GELATO,4);
 
 
     }
@@ -116,6 +116,16 @@ public class ProductControllerTest {
                 .thenReturn(productsList);
 
         ResponseEntity<List<ProductDTO>> response = productController.getProducts(0, 5);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testGetSpecialProducts() {
+        Mockito.when(productService.getSpecialProducts())
+                .thenReturn(productsList);
+
+        ResponseEntity<List<ProductDTO>> response = productController.getSpecialProducts();
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }

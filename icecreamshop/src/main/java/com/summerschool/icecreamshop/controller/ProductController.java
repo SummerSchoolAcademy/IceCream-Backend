@@ -45,6 +45,15 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(savedProduct, ProductDTO.class));
     }
 
+    @GetMapping("/special")
+    public ResponseEntity<List<ProductDTO>> getSpecialProducts(){
+
+        return ResponseEntity.ok(productService.getSpecialProducts()
+                .stream()
+                .map(product -> modelMapper.map(product, ProductDTO.class))
+                .collect(Collectors.toList()));
+    }
+
     @GetMapping("")
     public ResponseEntity<List<ProductDTO>> getProducts(
             @RequestParam(value="page", required = false) Integer page,
